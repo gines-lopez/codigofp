@@ -184,13 +184,20 @@ h1 {
 	text-transform: uppercase;
 }
 .cards {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr;
 	gap: 16px;
+}
+.cards-side {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.cards-side .card {
+	flex: 1;
 }
 .card {
 	display: flex;
-	flex: 1 1 280px;
 	flex-direction: column;
 	gap: 8px;
 	min-width: 0;
@@ -219,11 +226,33 @@ h1 {
 	font-size: 15px;
 	line-height: 1.5;
 }
+.card-body {
+	color: rgb(var(--black));
+	font-size: 15px;
+	line-height: 1.6;
+}
+.card-featured .card-text {
+	margin-bottom: 8px;
+}
 .closing {
-	max-width: 680px;
 	margin: 8px 0 0;
+	padding: 24px 28px;
+	border: none;
+	border-radius: 12px;
+	background: rgba(22, 119, 190, 0.1);
+	color: var(--accent-dark);
+	text-align: center;
 	font-size: 17px;
 	line-height: 1.55;
+}
+.closing p {
+	margin: 0;
+}
+
+@media (min-width: 800px) {
+	.cards {
+		grid-template-columns: 1fr 1fr;
+	}
 }
 
 @media (max-width: 600px) {
