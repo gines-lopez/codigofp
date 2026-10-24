@@ -1,0 +1,100 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title={`Página no encontrada | ${SITE_TITLE}`}
+			description="Esta página no entraba en el temario."
+			noindex
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="not-found">
+			<section class="hero">
+				<p class="eyebrow">Error 404</p>
+				<h1>Esta página no entraba en el temario</h1>
+				<p class="lead">
+					Es como sacar del bombo justo el tema que no te habías estudiado: te quedas en blanco
+					mirando al tribunal. Tranquilo, aquí nadie te va a puntuar. Ni la página existe, ni
+					cuenta para la nota.
+				</p>
+				<p class="lead">
+					Lo que sí cuenta es tu Programación Didáctica. Apúntate a la newsletter y que la próxima
+					bola te pille con los deberes hechos.
+				</p>
+				<SubscribeForm />
+			</section>
+			<section class="back">
+				<p>O, si prefieres, <a href="/">vuelve al inicio</a> y haz como que esto no ha pasado.</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+<style>
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+	.not-found {
+		flex: 1;
+		width: 792px;
+		max-width: 100%;
+		box-sizing: border-box;
+		padding: 2rem 1rem 6rem;
+	}
+	.eyebrow {
+		margin: 0 0 2rem;
+		color: #9d9e9e;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 24.5px;
+		text-transform: uppercase;
+	}
+	h1 {
+		margin: 0 0 2rem;
+		color: #000;
+		font-size: 42px;
+		font-weight: 700;
+		line-height: 1.25;
+		text-align: center;
+	}
+	.lead {
+		margin: 0 0 1.5rem;
+	}
+	.lead:last-of-type {
+		margin-bottom: 2.5rem;
+	}
+	.back {
+		margin-top: 4rem;
+		text-align: center;
+	}
+	@media (max-width: 600px) {
+		.not-found {
+			padding: 1.5rem 1rem 4rem;
+		}
+		.eyebrow {
+			margin-bottom: 1.25rem;
+			text-align: center;
+		}
+		h1 {
+			margin-bottom: 1.5rem;
+			font-size: 32px;
+		}
+		.lead:last-of-type {
+			margin-bottom: 2rem;
+		}
+		.back {
+			margin-top: 3rem;
+		}
+	}
+</style>
