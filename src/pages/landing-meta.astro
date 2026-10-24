@@ -1,0 +1,118 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/landing-meta.css';
+
+const title = 'CódigoFP · El orden de una programación defendible';
+const description =
+	'El orden en que se construye una programación de FP que aguanta cada «por qué» del tribunal.';
+
+// Kit form that receives the subscriptions (same one as the home for now).
+const KIT_FORM_ID = '9943840';
+
+const deliverables = [
+	{
+		tag: 'VÍDEO · 6 MIN',
+		title: 'El mapa de una programación defendible',
+		text: 'Empieza en la sala, con la pregunta que me hicieron en mi defensa. Sin presentaciones.',
+	},
+	{
+		tag: 'PDF · 20 MIN',
+		title: '¿Tu programación aguanta el por qué?',
+		text: 'Cada ítem es una pregunta del tribunal. Tres casillas, y la del medio es la que duele.',
+	},
+	{
+		tag: 'PDF · 1 PÁGINA',
+		title: 'El mapa, para imprimir',
+		text: 'Para la mesa.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} noindex />
+	</head>
+	<body>
+		<Header />
+		<main class="landing">
+			<div class="hero">
+				<section class="pitch">
+					<p class="eyebrow">Para opositores de FP · vídeo de 6 minutos</p>
+					<h1>
+						El orden en que se construye una programación de FP que aguanta cada «por qué» del
+						tribunal. Casi nadie lo sigue.
+					</h1>
+					<p class="lead">
+						Te enseño el mapa fase a fase: qué decides en cada una y qué pregunta tiene que aguantar.
+						Luego, con tu programación delante, un autodiagnóstico de 20 minutos te dice qué apartados
+						sabrías defender y en cuáles acabarías citando la ley.
+					</p>
+
+					<form
+						class="optin"
+						action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
+						method="post"
+					>
+						<label for="email-a">¿A qué correo te lo mando?</label>
+						<div class="optin-row">
+							<input
+								id="email-a"
+								name="email_address"
+								type="email"
+								placeholder="tucorreo@ejemplo.com"
+								autocomplete="email"
+								required
+							/>
+							<button type="submit">Quiero el mapa</button>
+						</div>
+						<p class="optin-note">
+							Te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
+							sirve, te das de baja con un clic.
+						</p>
+					</form>
+				</section>
+
+				<aside class="proof">
+					<div class="score">
+						<span class="score-old">0,13</span>
+						<span class="score-arrow">→</span>
+						<span class="score-new">9,6</span>
+					</div>
+					<div class="proof-body">
+						<p>En 2023 me quedé a 0,13 de la plaza con una programación que cumplía con todo.</p>
+						<p>
+							En 2025 saqué un 9,6 en la programación y su defensa. La mejor nota de mi especialidad en
+							la Comunitat Valenciana, que me dio el cuarto puesto del concurso-oposición.
+						</p>
+					</div>
+					<p class="signature">Ginés · docente de FP y funcionario de carrera</p>
+				</aside>
+			</div>
+		</main>
+
+		<section class="deliverables">
+			<div class="deliverables-inner">
+				<h2>Lo que te llega al correo</h2>
+				<div class="cards">
+					{
+						deliverables.map((item) => (
+							<div class="card">
+								<p class="card-tag">{item.tag}</p>
+								<p class="card-title">{item.title}</p>
+								<p class="card-text">{item.text}</p>
+							</div>
+						))
+					}
+				</div>
+				<p class="closing">
+					No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y tiene
+					que sonar a ti.
+				</p>
+			</div>
+		</section>
+		<Footer />
+	</body>
+</html>

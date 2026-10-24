@@ -1,0 +1,42 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/legal.css';
+
+interface Props {
+	title: string;
+	description: string;
+	// Section headings, in order; each one is linked from the index as #section-N.
+	sections: string[];
+}
+
+const { title, description, sections } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`${title} · CódigoFP`} description={description} noindex />
+	</head>
+	<body>
+		<Header />
+		<main class="legal">
+			<h1>{title}</h1>
+			<nav class="legal-index" aria-label="Índice">
+				<p class="legal-index-title">Índice</p>
+				<ol>
+					{
+						sections.map((section, i) => (
+							<li>
+								<a href={`#section-${i + 1}`}>{section}</a>
+							</li>
+						))
+					}
+				</ol>
+			</nav>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,116 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/landing.css';
+
+const title = 'CódigoFP · De 0,13 a 9,6';
+const description =
+	'Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué un 9,6 cambiando el orden en que la hice.';
+
+// Kit form that receives the subscriptions (same one as the home for now).
+const KIT_FORM_ID = '9943840';
+
+const points = [
+	'El error que deja una programación que cumple pero no se defiende. No es redactar mal. Es redactar antes de haber decidido.',
+	'La pregunta que me hicieron en mi defensa sobre unidades de programación y unidades de trabajo, y por qué esta vez no contesté con un artículo.',
+	'El orden de las decisiones, fase a fase, con la pregunta del tribunal que tiene que aguantar cada una.',
+	'Un autodiagnóstico para hacer con tu programación delante. Tiene una casilla que dice «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes dónde estás.',
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} noindex />
+	</head>
+	<body>
+		<Header />
+		<main class="landing">
+			<p class="eyebrow">Para opositores de FP</p>
+			<h1>
+				Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué
+				un 9,6 cambiando el orden en que la hice.
+			</h1>
+
+			<div class="story">
+				<p>
+					Tenía los resultados de aprendizaje, los criterios, las unidades, la atención a la
+					diversidad. Todo lo que pide la normativa.
+				</p>
+				<p>
+					Lo que no tenía era una respuesta mía cuando me preguntaban por qué. Contestaba con el
+					artículo.
+				</p>
+				<p>
+					La noche que supe lo de las 13 centésimas monté cinco hojas de Excel para entender qué había
+					fallado. Y de ahí salió el cambio.
+				</p>
+			</div>
+
+			<div class="proof">
+				<div class="score">
+					<span class="score-old">0,13</span>
+					<span class="score-arrow">→</span>
+					<span class="score-new">9,6</span>
+					<span class="score-note">
+						mejor nota de mi especialidad · 4.º del concurso-oposición · Comunitat Valenciana, 2025
+					</span>
+				</div>
+				<p>
+					Si buscas una programación tipo para rellenar, hay academias y plantillas que te la dan. Y una
+					IA te escribe 60 páginas en una tarde.
+				</p>
+				<p>
+					Si lo que quieres es saber qué contestar cuando el tribunal te pregunte por qué, lo de abajo te
+					interesa.
+				</p>
+			</div>
+
+			<section class="points">
+				<h2>Lo que hice distinto la segunda vez, y que casi seguro tú todavía no haces:</h2>
+				<ol>
+					{
+						points.map((point, i) => (
+							<li>
+								<span class="point-number">{String(i + 1).padStart(2, '0')}</span>
+								<span>{point}</span>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+
+			<section class="cta">
+				<p class="cta-text">
+					Te lo mando ahora: un vídeo de 6 minutos, el autodiagnóstico y el mapa en una página para
+					imprimir. Si te sirve, respóndeme al correo y dime qué apartado te cuesta más.
+				</p>
+				<form
+					class="optin"
+					action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
+					method="post"
+				>
+					<label for="email-r">¿A qué correo te lo mando?</label>
+					<div class="optin-row">
+						<input
+							id="email-r"
+							name="email_address"
+							type="email"
+							placeholder="tucorreo@ejemplo.com"
+							autocomplete="email"
+							required
+						/>
+						<button type="submit">Mándamelo</button>
+					</div>
+					<p class="optin-note">
+						Después, cada martes, una de esas decisiones a fondo. Si no te sirve, te das de baja con un
+						clic.
+					</p>
+				</form>
+				<p class="signature">Ginés · docente de FP y funcionario de carrera</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

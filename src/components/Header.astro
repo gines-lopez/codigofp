@@ -1,15 +1,10 @@
 ---
 import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
 	<nav>
 		<a class="logo" href="/">{SITE_TITLE}</a>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-		</div>
 	</nav>
 </header>
 <style>
@@ -33,23 +28,6 @@ import HeaderLink from './HeaderLink.astro';
 		font-weight: 800;
 		letter-spacing: -0.5px;
 		line-height: 30px;
-		text-decoration: none;
-	}
-	.internal-links {
-		display: flex;
-		gap: 1.25rem;
-	}
-	.internal-links :global(a) {
-		color: rgb(var(--gray-dark));
-		font-family: var(--font-quicksand);
-		font-size: 14px;
-		font-weight: 700;
-		text-transform: uppercase;
-		text-decoration: none;
-	}
-	.internal-links :global(a:hover),
-	.internal-links :global(a.active) {
-		color: var(--accent);
 		text-decoration: none;
 	}
 </style>
