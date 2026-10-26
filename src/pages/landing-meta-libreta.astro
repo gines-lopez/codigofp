@@ -1,0 +1,160 @@
+---
+import { Font } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/landing-meta-libreta.css';
+
+const title = 'CódigoFP · El orden de una programación defendible';
+const description =
+	'El orden en que se construye una programación de FP que aguanta cada «por qué» del tribunal.';
+
+// Kit form that receives the subscriptions (same one as the home for now).
+const KIT_FORM_ID = '9943840';
+
+const deliverables = [
+	{
+		tag: 'Vídeo · 6 min',
+		title: 'El mapa de una programación defendible',
+		text: 'Empieza en la sala, con la pregunta que me hicieron en mi defensa. Sin presentaciones.',
+	},
+	{
+		tag: 'PDF · 20 min',
+		title: '¿Tu programación aguanta el por qué?',
+		text: 'Cada ítem es una pregunta del tribunal. Tres casillas, y la del medio es la que duele.',
+		checks: [
+			{ label: 'Lo tengo y sé por qué lo decidí' },
+			{ label: 'Lo tengo, pero respondería con la normativa', marked: true },
+			{ label: 'No lo tengo resuelto' },
+		],
+	},
+	{
+		tag: 'PDF · 1 página',
+		title: 'El mapa, para imprimir',
+		text: 'Para la mesa.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} noindex />
+		<Font cssVariable="--font-kalam" />
+	</head>
+	<body>
+		<Header />
+		<main class="libreta">
+			<div class="margen">
+				<span class="nota" aria-hidden="true">¿y tu<br />respuesta?</span>
+			</div>
+
+			<div class="hoja">
+				<section class="pitch">
+					<p class="eyebrow">Para opositores de FP · vídeo de 6 minutos</p>
+					<h1>
+						El orden en que se construye una programación de FP que aguanta cada <span class="circled"
+							>«por qué»<svg
+								class="ring"
+								aria-hidden="true"
+								viewBox="0 0 240 90"
+								preserveAspectRatio="none"
+								><path
+									pathLength="100"
+									d="M196 14 C150 2 52 4 20 26 C-4 44 14 74 70 82 C132 90 214 82 232 56 C246 34 216 12 168 8 C140 6 118 9 104 13"
+								></path></svg
+							></span
+						> del tribunal. Casi nadie lo sigue.
+					</h1>
+					<p class="lead">
+						Te enseño el mapa fase a fase: qué decides en cada una y qué pregunta tiene que aguantar.
+						Luego, con tu programación delante, un autodiagnóstico de 20 minutos te dice qué apartados
+						sabrías defender y en cuáles acabarías citando la ley.
+					</p>
+
+					<form
+						class="optin"
+						action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
+						method="post"
+					>
+						<label for="email-l">¿A qué correo te lo mando?</label>
+						<div class="optin-row">
+							<input
+								id="email-l"
+								name="email_address"
+								type="email"
+								placeholder="tucorreo@ejemplo.com"
+								autocomplete="email"
+								required
+							/>
+							<button type="submit">Quiero el mapa</button>
+						</div>
+						<p class="optin-note">
+							Te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
+							sirve, te das de baja con un clic.
+						</p>
+					</form>
+				</section>
+
+				<section class="record" aria-label="Mis dos convocatorias">
+					<h2 class="record-head">Mis dos convocatorias · Informática · Comunitat Valenciana</h2>
+					<div class="record-row record-past">
+						<p class="record-year">2023</p>
+						<p class="record-text">
+							Me quedé a <strong>0,13</strong> de la plaza con una programación que cumplía con todo.
+						</p>
+					</div>
+					<div class="record-row record-now">
+						<p class="record-year">2025</p>
+						<div class="record-result">
+							<span class="record-score">9,6</span>
+							<p class="record-text">
+								en la programación y su defensa. La mejor nota de mi especialidad en la Comunitat
+								Valenciana, que me dio el cuarto puesto del concurso-oposición.
+							</p>
+						</div>
+					</div>
+					<p class="record-foot">Ginés · docente de FP y funcionario de carrera</p>
+				</section>
+
+				<section class="deliverables">
+					<h2>Lo que te llega al correo</h2>
+					<ul class="deliverable-list">
+						{
+							deliverables.map((item) => (
+								<li class="deliverable">
+									<p class="deliverable-tag">{item.tag}</p>
+									<div class="deliverable-body">
+										<p class="deliverable-title">{item.title}</p>
+										<p class="deliverable-text">{item.text}</p>
+										{item.checks && (
+											<ul class="checks">
+												{item.checks.map((check) => (
+													<li class:list={{ marked: check.marked }}>
+														<span class="box" aria-hidden="true">
+															{check.marked && (
+																<svg viewBox="0 0 24 24">
+																	<path d="M3 4 C9 10 14 15 21 22 M20 3 C14 9 9 15 4 21" />
+																</svg>
+															)}
+														</span>
+														{check.label}
+													</li>
+												))}
+											</ul>
+										)}
+									</div>
+								</li>
+							))
+						}
+					</ul>
+					<p class="closing">
+						No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y
+						tiene que sonar a ti.
+					</p>
+				</section>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

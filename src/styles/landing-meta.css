@@ -109,52 +109,75 @@ h1 {
 	line-height: 1.5;
 }
 
-.proof {
+/* Track record: the hero's side column, the 2025 score as the focal point. */
+.record {
 	display: flex;
 	flex: 1 1 320px;
 	flex-direction: column;
-	gap: 18px;
 	min-width: 0;
 	box-sizing: border-box;
-	padding: 28px;
-	border-radius: 10px;
-	background: rgb(var(--black));
-	color: rgb(var(--gray-light));
+	border: 2px solid rgb(var(--black));
+	border-radius: 6px;
+	background: #fff;
+	color: rgb(var(--black));
 }
-/* Fills the space between score and signature, text vertically centered. */
-.proof-body {
-	display: flex;
-	flex: 1;
-	flex-direction: column;
-	justify-content: center;
-	gap: 18px;
-}
-.proof p {
+.record p,
+.record h2 {
 	margin: 0;
+}
+.record-head {
+	padding: 16px 22px;
+	border-bottom: 2px solid rgb(var(--black));
+	font-family: var(--font-quicksand);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+.record-row {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 22px;
+}
+.record-year {
+	font-family: var(--font-quicksand);
+	font-size: 22px;
+	font-weight: 700;
+}
+.record-text {
 	font-size: 16px;
 	line-height: 1.55;
 }
-.score {
+.record-past {
+	border-bottom: 1px dashed rgb(var(--gray));
+	color: rgb(var(--gray));
+}
+.record-past strong {
+	color: rgb(var(--black));
+}
+/* Takes the leftover height so the card matches the pitch column. */
+.record-now {
+	flex: 1;
+	justify-content: center;
+}
+.record-result {
 	display: flex;
-	align-items: baseline;
-	gap: 14px;
+	flex-direction: column;
+	gap: 10px;
+}
+.record-score {
+	color: var(--accent-dark);
 	font-family: var(--font-quicksand);
-}
-.score-old {
-	color: rgb(var(--gray));
-	font-size: 30px;
-	text-decoration: line-through;
-}
-.score-arrow {
-	color: rgb(var(--gray));
-	font-size: 22px;
-}
-.score-new {
-	color: var(--accent);
-	font-size: 52px;
+	font-size: 96px;
 	font-weight: 700;
+	letter-spacing: -0.03em;
+	line-height: 0.95;
 }
-.proof .signature {
+.record-foot {
+	padding: 14px 22px;
+	border-top: 2px solid rgb(var(--black));
 	color: rgb(var(--gray));
 	font-family: var(--font-quicksand);
 	font-size: 13px;
@@ -273,5 +296,14 @@ h1 {
 	}
 	.deliverables-inner {
 		padding: 40px 1rem 48px;
+	}
+	.record-head,
+	.record-row,
+	.record-foot {
+		padding-right: 18px;
+		padding-left: 18px;
+	}
+	.record-score {
+		font-size: 84px;
 	}
 }

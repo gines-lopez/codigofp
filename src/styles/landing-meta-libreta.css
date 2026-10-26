@@ -1,0 +1,404 @@
+/* Styles for /landing-meta-libreta only; imported from src/pages/landing-meta-libreta.astro. */
+:root {
+	/* Teacher's red pen: margin line, circled words and notes. */
+	--pen: #c8301e;
+	--margin-line: #ecafa4;
+	--grid: #e1e8ee;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #f6f8f7;
+	background-image:
+		linear-gradient(var(--grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+	background-size: 24px 24px;
+}
+
+/* Notebook page: a margin with the handwritten note, then the red line. */
+.libreta {
+	display: flex;
+	flex: 1;
+	width: 1120px;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 0 1.5rem;
+}
+.margen {
+	display: flex;
+	flex: 0 0 168px;
+	justify-content: flex-end;
+	align-items: flex-start;
+	box-sizing: border-box;
+	padding: 150px 28px 0 0;
+}
+.nota {
+	display: block;
+	color: var(--pen);
+	font-family: var(--font-kalam);
+	font-size: 30px;
+	line-height: 1.1;
+	text-align: right;
+	opacity: 0;
+	transform: rotate(-7deg) translateY(6px);
+	animation: nota-in 420ms ease-out 1350ms forwards;
+}
+.hoja {
+	flex: 1 1 0;
+	min-width: 0;
+	padding-left: 44px;
+	border-left: 2px solid var(--margin-line);
+}
+.hoja p,
+.hoja h1,
+.hoja h2,
+.hoja ul {
+	margin: 0;
+}
+
+.pitch {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	max-width: 860px;
+	padding: 4rem 0 56px;
+}
+.eyebrow {
+	color: var(--accent);
+	font-family: var(--font-quicksand);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+h1 {
+	color: rgb(var(--black));
+	font-size: clamp(32px, 5vw, 52px);
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.025em;
+}
+.circled {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+}
+.ring {
+	position: absolute;
+	top: -12px;
+	left: -18px;
+	width: calc(100% + 36px);
+	height: calc(100% + 24px);
+	overflow: visible;
+	pointer-events: none;
+}
+.ring path {
+	fill: none;
+	stroke: var(--pen);
+	stroke-width: 3.4;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: 100;
+	stroke-dashoffset: 100;
+	animation: ring-draw 900ms cubic-bezier(0.65, 0.05, 0.35, 1) 550ms forwards;
+}
+.lead {
+	max-width: 660px;
+	font-size: 20px;
+	line-height: 1.55;
+}
+
+.optin {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 600px;
+	margin-top: 4px;
+}
+.optin label {
+	color: rgb(var(--black));
+	font-size: 15px;
+	font-weight: 700;
+}
+.optin-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+.optin input {
+	flex: 1 1 260px;
+	min-width: 0;
+	height: 54px;
+	box-sizing: border-box;
+	padding: 0 16px;
+	border: 1.5px solid rgb(var(--black));
+	border-radius: 6px;
+	background: #fff;
+	color: rgb(var(--black));
+	font-family: inherit;
+	font-size: 17px;
+}
+.optin input::placeholder {
+	color: rgb(var(--gray));
+}
+.optin input:focus {
+	border-color: var(--accent);
+	outline: 2px solid var(--accent);
+	outline-offset: 1px;
+}
+.optin button {
+	flex: 0 0 auto;
+	height: 54px;
+	padding: 0 26px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--accent);
+	color: #fff;
+	font-family: inherit;
+	font-size: 17px;
+	font-weight: 700;
+	cursor: pointer;
+}
+.optin button:hover {
+	background: var(--accent-dark);
+}
+.optin-note {
+	color: rgb(var(--gray));
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+/* Track record: two calls, the 2025 score as the focal point. */
+.record {
+	max-width: 760px;
+	margin-bottom: 64px;
+	border: 2px solid rgb(var(--black));
+	border-radius: 6px;
+	background: #fff;
+	color: rgb(var(--black));
+}
+.record-head {
+	padding: 16px 24px;
+	border-bottom: 2px solid rgb(var(--black));
+	font-family: var(--font-quicksand);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: 1.5;
+	text-transform: uppercase;
+}
+.record-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	padding: 22px 24px;
+}
+.record-year {
+	flex: 0 0 72px;
+	font-family: var(--font-quicksand);
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+.record-text {
+	flex: 1 1 260px;
+	font-size: 17px;
+	line-height: 1.55;
+}
+.record-past {
+	border-bottom: 1px dashed rgb(var(--gray));
+	color: rgb(var(--gray));
+}
+.record-past strong {
+	color: rgb(var(--black));
+}
+.record-result {
+	display: flex;
+	flex: 1 1 360px;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 22px;
+}
+.record-score {
+	color: var(--accent-dark);
+	font-family: var(--font-quicksand);
+	font-size: 88px;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	line-height: 0.95;
+}
+.record-foot {
+	padding: 14px 24px;
+	border-top: 2px solid rgb(var(--black));
+	color: rgb(var(--gray));
+	font-family: var(--font-quicksand);
+	font-size: 13px;
+}
+
+/* Deliverables as ruled lines of the page. */
+.deliverables {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 860px;
+	padding-bottom: 56px;
+}
+.deliverables h2 {
+	color: rgb(var(--black));
+	font-size: 28px;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+.deliverable-list {
+	padding: 0;
+	border-top: 2px solid rgb(var(--black));
+	border-bottom: 2px solid rgb(var(--black));
+	list-style: none;
+}
+.deliverable {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 32px;
+	padding: 22px 0;
+}
+.deliverable + .deliverable {
+	border-top: 1px dashed rgb(var(--gray));
+}
+.deliverable-tag {
+	flex: 0 0 150px;
+	padding-top: 3px;
+	color: var(--accent);
+	font-family: var(--font-quicksand);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	line-height: 1.6;
+	text-transform: uppercase;
+}
+.deliverable-body {
+	display: flex;
+	flex: 1 1 380px;
+	flex-direction: column;
+	gap: 6px;
+	min-width: 0;
+}
+.deliverable-title {
+	color: rgb(var(--black));
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 1.35;
+}
+.deliverable-text {
+	font-size: 16px;
+	line-height: 1.55;
+}
+.checks {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 460px;
+	margin-top: 12px !important;
+	padding: 14px 18px;
+	border: 1.5px solid rgb(var(--black));
+	border-radius: 6px;
+	background: #fff;
+	list-style: none;
+}
+.checks li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	color: rgb(var(--gray));
+	font-size: 15px;
+	line-height: 1.4;
+}
+.checks li.marked {
+	color: rgb(var(--black));
+	font-weight: 700;
+}
+.box {
+	position: relative;
+	flex: 0 0 20px;
+	height: 20px;
+	box-sizing: border-box;
+	border: 1.5px solid rgb(var(--black));
+	border-radius: 2px;
+}
+.box svg {
+	position: absolute;
+	top: -6px;
+	left: -4px;
+	width: 28px;
+	height: 28px;
+	overflow: visible;
+}
+.box path {
+	fill: none;
+	stroke: var(--pen);
+	stroke-width: 2.6;
+	stroke-linecap: round;
+}
+.closing {
+	max-width: 640px;
+	margin-top: 12px !important;
+	color: rgb(var(--black));
+	font-size: 19px;
+	font-weight: 700;
+	line-height: 1.55;
+}
+
+@keyframes ring-draw {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes nota-in {
+	to {
+		opacity: 1;
+		transform: rotate(-7deg) translateY(0);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.ring path {
+		animation: none;
+		stroke-dashoffset: 0;
+	}
+	.nota {
+		animation: none;
+		opacity: 1;
+		transform: rotate(-7deg);
+	}
+}
+
+@media (max-width: 760px) {
+	.margen {
+		display: none;
+	}
+	.hoja {
+		padding-left: 20px;
+	}
+}
+@media (max-width: 600px) {
+	.libreta {
+		padding: 0 1rem;
+	}
+	.pitch {
+		padding-top: 2rem;
+	}
+	.lead {
+		font-size: 18px;
+	}
+	.optin button {
+		flex: 1 1 100%;
+	}
+	.record-head,
+	.record-row,
+	.record-foot {
+		padding-right: 18px;
+		padding-left: 18px;
+	}
+	.record-score {
+		font-size: 76px;
+	}
+}
