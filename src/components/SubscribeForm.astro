@@ -9,26 +9,102 @@ import formHtml from './kit-form.html?raw';
 </div>
 <script is:inline async src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 <style>
+	/*
+	 * Brand look for Kit's embed. Kit puts inline styles on the input and button and
+	 * ships its own green/red alerts, so these overrides need !important.
+	 */
 	.subscribe :global(.formkit-form[data-uid='d1972e390f']) {
-		max-width: 640px;
-		margin: 0 auto;
+		max-width: 720px;
+		margin: 0;
 		font-family: inherit;
 	}
-	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-input),
+	/* Kit pads the form 10px at 700px+, which pushes the input off the text axis. */
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] [data-style='clean']) {
+		padding: 0 !important;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-fields) {
+		gap: 8px;
+		margin: 0 !important;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-field),
 	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit) {
-		font-family: inherit;
+		flex: 1 1 100% !important;
+		margin: 0 !important;
 	}
-	/* Kit only lays out email + button in a row at 700px+; keep the row on desktop. */
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-input) {
+		width: 100%;
+		height: 48px;
+		padding: 0 16px !important;
+		border: 1px solid var(--brand-line) !important;
+		border-radius: 8px !important;
+		background: transparent !important;
+		color: var(--brand-dark) !important;
+		font: 500 16px var(--font-inter) !important;
+		transition: none !important;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-input::placeholder) {
+		color: var(--brand-graphite);
+		opacity: 1;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-input:focus-visible) {
+		border-color: var(--brand-accent) !important;
+		box-shadow: var(--brand-focus-ring);
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit) {
+		height: 48px;
+		border-radius: 8px !important;
+		background: var(--brand-accent) !important;
+		color: var(--brand-light) !important;
+		font: 500 16px var(--font-inter) !important;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit:hover) {
+		background: var(--brand-accent-hover) !important;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit:focus-visible) {
+		outline: 2px solid var(--brand-accent);
+		outline-offset: 2px;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit > span) {
+		padding: 0 24px;
+		line-height: 48px;
+		transition: none;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit:focus > span) {
+		background: none;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-spinner > div) {
+		background-color: var(--brand-light);
+	}
+	/* Success and error: ink on bone, the error with a cobalt border. No red or green. */
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-alert) {
+		margin: 0 0 16px;
+		padding: 16px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+		background: var(--brand-light);
+		color: var(--brand-dark);
+		text-align: left;
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-alert-success) {
+		border-color: var(--brand-line);
+		background: var(--brand-light);
+		color: var(--brand-dark);
+	}
+	.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-alert-error) {
+		border-color: var(--brand-accent);
+		background: var(--brand-light);
+		color: var(--brand-dark);
+	}
+	/* Desktop: input and button in a row. Mobile keeps them stacked at full width. */
 	@media (min-width: 601px) {
 		.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-fields) {
 			flex-wrap: nowrap;
-			gap: 10px;
 		}
 		.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-field) {
-			flex: 1 1 auto;
+			flex: 1 1 auto !important;
 		}
 		.subscribe :global(.formkit-form[data-uid='d1972e390f'] .formkit-submit) {
-			flex: 0 0 auto;
+			flex: 0 0 auto !important;
 		}
 	}
 </style>

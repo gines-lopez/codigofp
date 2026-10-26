@@ -3,6 +3,7 @@ import { Font } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import TrackRecord from '../components/TrackRecord.astro';
 import '../styles/landing-meta-libreta.css';
 
 const title = 'CódigoFP · El orden de una programación defendible';
@@ -51,7 +52,7 @@ const deliverables = [
 
 			<div class="hoja">
 				<section class="pitch">
-					<p class="eyebrow">Para opositores de FP · vídeo de 6 minutos</p>
+					<p class="brand-label">para opositores de FP · vídeo de 6 minutos</p>
 					<h1>
 						El orden en que se construye una programación de FP que aguanta cada <span class="circled"
 							>«por qué»<svg
@@ -80,6 +81,7 @@ const deliverables = [
 						<label for="email-l">¿A qué correo te lo mando?</label>
 						<div class="optin-row">
 							<input
+								class="brand-input"
 								id="email-l"
 								name="email_address"
 								type="email"
@@ -87,7 +89,7 @@ const deliverables = [
 								autocomplete="email"
 								required
 							/>
-							<button type="submit">Quiero el mapa</button>
+							<button class="brand-button" type="submit">Quiero el mapa</button>
 						</div>
 						<p class="optin-note">
 							Te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
@@ -96,26 +98,7 @@ const deliverables = [
 					</form>
 				</section>
 
-				<section class="record" aria-label="Mis dos convocatorias">
-					<h2 class="record-head">Mis dos convocatorias · Informática · Comunitat Valenciana</h2>
-					<div class="record-row record-past">
-						<p class="record-year">2023</p>
-						<p class="record-text">
-							Me quedé a <strong>0,13</strong> de la plaza con una programación que cumplía con todo.
-						</p>
-					</div>
-					<div class="record-row record-now">
-						<p class="record-year">2025</p>
-						<div class="record-result">
-							<span class="record-score">9,6</span>
-							<p class="record-text">
-								en la programación y su defensa. La mejor nota de mi especialidad en la Comunitat
-								Valenciana, que me dio el cuarto puesto del concurso-oposición.
-							</p>
-						</div>
-					</div>
-					<p class="record-foot">Ginés · docente de FP y funcionario de carrera</p>
-				</section>
+				<TrackRecord class="libreta-record" />
 
 				<section class="deliverables">
 					<h2>Lo que te llega al correo</h2>

@@ -5,27 +5,29 @@
  */
 
 :root {
-	--accent: #1677be;
-	--accent-dark: #0f5a91;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 44, 45, 46;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	/* CódigoFP visual system. Every color in the site comes from these tokens. */
+	--brand-light: #fafaf7; /* Hueso: fondo dominante */
+	--brand-dark: #0f1115; /* Tinta: texto principal y footer */
+	--brand-graphite: #5b5f66; /* Grafito: texto secundario, labels, metadatos */
+	--brand-line: #e5e5e0; /* Niebla: bordes y divisores */
+	--brand-accent: #1e3a8a; /* Cobalto seco: acento, botón, links */
+	--brand-accent-hover: #172e6e;
+	--brand-secondary: #b45309; /* Ámbar tinta: sin uso por ahora */
+	--brand-accent-on-dark: #7b9bea; /* Solo sobre fondo tinta */
+	--brand-on-dark: rgba(250, 250, 247, 0.65); /* Texto secundario sobre tinta */
+	--brand-focus-ring: 0 0 0 3px rgba(30, 58, 138, 0.18);
 }
 body {
 	font-family: var(--font-inter);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: #fff;
+	background: var(--brand-light);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 16px;
-	line-height: 1.75;
+	color: var(--brand-dark);
+	font-size: 17px;
+	line-height: 1.6;
 }
 main {
 	width: 720px;
@@ -40,14 +42,19 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--brand-dark);
 	line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 48px;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.12;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 32px;
+	font-weight: 600;
+	letter-spacing: -0.015em;
 }
 h3 {
 	font-size: 1.953em;
@@ -63,10 +70,15 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--brand-accent);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--brand-accent-hover);
+}
+a:focus-visible,
+button:focus-visible {
+	outline: 2px solid var(--brand-accent);
+	outline-offset: 2px;
 }
 p {
 	margin-bottom: 1em;
@@ -91,29 +103,86 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	background-color: var(--brand-line);
+	border-radius: 4px;
+	font-family: var(--font-mono);
 }
 pre {
 	padding: 1.5em;
+	font-family: var(--font-mono);
 	border-radius: 8px;
 }
 pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--brand-accent);
 	padding: 0 0 0 20px;
 	margin: 0;
 	font-size: 1.333em;
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--brand-line);
 }
 @media (max-width: 720px) {
 	main {
 		padding: 1em;
+	}
+	h1 {
+		font-size: 32px;
+	}
+	h2 {
+		font-size: 24px;
+	}
+}
+
+/* Shared brand pieces: eyebrow label, subscription input and button. */
+.brand-label {
+	margin: 0;
+	color: var(--brand-graphite);
+	font-family: var(--font-mono);
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.4;
+}
+.brand-label::before {
+	content: '// ';
+}
+.brand-input {
+	height: 48px;
+	box-sizing: border-box;
+	padding: 0 16px;
+	border: 1px solid var(--brand-line);
+	border-radius: 8px;
+	background: transparent;
+	color: var(--brand-dark);
+	font: 500 16px var(--font-inter);
+}
+.brand-input::placeholder {
+	color: var(--brand-graphite);
+}
+.brand-input:focus-visible {
+	border-color: var(--brand-accent);
+	outline: none;
+	box-shadow: var(--brand-focus-ring);
+}
+.brand-button {
+	height: 48px;
+	padding: 0 24px;
+	border: 0;
+	border-radius: 8px;
+	background: var(--brand-accent);
+	color: var(--brand-light);
+	font: 500 16px var(--font-inter);
+	cursor: pointer;
+}
+.brand-button:hover {
+	background: var(--brand-accent-hover);
+}
+@media (max-width: 600px) {
+	.brand-label {
+		font-size: 13px;
 	}
 }
 

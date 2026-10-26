@@ -1,0 +1,135 @@
+---
+// "Mis dos convocatorias" card: 2023 near miss vs. 2025 score.
+// `compact` stacks every row, for narrow side columns.
+interface Props {
+	compact?: boolean;
+	class?: string;
+}
+
+const { compact = false, class: className } = Astro.props;
+---
+
+<section class:list={['record', { compact }, className]} aria-label="Mis dos convocatorias">
+	<h2 class="record-head">Mis dos convocatorias · Informática · Comunitat Valenciana</h2>
+	<div class="record-row record-past">
+		<p class="record-year">2023</p>
+		<p class="record-text">
+			Me quedé a <strong>0,13</strong> de la plaza con una programación que cumplía con todo.
+		</p>
+	</div>
+	<div class="record-row record-now">
+		<p class="record-year">2025</p>
+		<div class="record-result">
+			<span class="record-score">9,6</span>
+			<p class="record-text">
+				en la programación y su defensa. La mejor nota de mi especialidad en la Comunitat
+				Valenciana, que me dio el cuarto puesto del concurso-oposición.
+			</p>
+		</div>
+	</div>
+	<p class="record-foot">Ginés · docente de FP y funcionario de carrera</p>
+</section>
+
+<style>
+	.record {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		box-sizing: border-box;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+		color: var(--brand-dark);
+	}
+	.record p,
+	.record h2 {
+		margin: 0;
+	}
+	.record-head {
+		padding: 16px 24px;
+		border-bottom: 1px solid var(--brand-line);
+		color: var(--brand-dark);
+		font-family: var(--font-mono);
+		font-size: 14px;
+		font-weight: 500;
+		letter-spacing: 0;
+		line-height: 1.4;
+	}
+	.record-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 24px;
+		padding: 24px;
+	}
+	.record-year {
+		flex: 0 0 72px;
+		font-size: 24px;
+		font-weight: 600;
+		letter-spacing: -0.015em;
+		line-height: 1.2;
+	}
+	.record-text {
+		flex: 1 1 260px;
+		font-size: 17px;
+		line-height: 1.6;
+	}
+	.record-past {
+		border-bottom: 1px solid var(--brand-line);
+		color: var(--brand-graphite);
+	}
+	.record-past strong {
+		color: var(--brand-dark);
+	}
+	.record-result {
+		display: flex;
+		flex: 1 1 360px;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 24px;
+	}
+	.record-score {
+		color: var(--brand-accent);
+		font-size: 88px;
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 1;
+	}
+	.record-foot {
+		padding: 16px 24px;
+		border-top: 1px solid var(--brand-line);
+		color: var(--brand-graphite);
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.5;
+	}
+
+	/* Narrow column: everything stacked, the 2025 row takes the leftover height. */
+	.compact .record-row {
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+	.compact .record-year,
+	.compact .record-text,
+	.compact .record-result {
+		flex: none;
+	}
+	.compact .record-now {
+		flex: 1;
+		justify-content: center;
+	}
+	.compact .record-result {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	@media (max-width: 600px) {
+		.record-head,
+		.record-row,
+		.record-foot {
+			padding-right: 16px;
+			padding-left: 16px;
+		}
+		.record-score {
+			font-size: 72px;
+		}
+	}
+</style>

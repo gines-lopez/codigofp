@@ -15,8 +15,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Header />
 		<main class="home">
 			<section class="hero">
-				<p class="eyebrow">Oposiciones de FP</p>
-				<h1>Cómo hacer una Programación Didáctica que te de la plaza</h1>
+				<p class="brand-label">oposiciones de FP</p>
+				<h1>Cómo hacer una Programación Didáctica que te dé la plaza</h1>
 				<p class="lead">{SITE_DESCRIPTION}</p>
 				<SubscribeForm />
 			</section>
@@ -36,68 +36,49 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	}
 	.home {
 		flex: 1;
-		width: 792px;
+		width: 752px;
 		max-width: 100%;
 		box-sizing: border-box;
-		padding: 2rem 1rem 6rem;
+		padding: 48px 16px 96px;
 	}
-	.eyebrow {
-		margin: 0 0 2rem;
-		color: #9d9e9e;
-		font-size: 14px;
-		font-weight: 700;
-		line-height: 24.5px;
-		text-transform: uppercase;
+	.hero .brand-label {
+		margin-bottom: 24px;
 	}
 	h1 {
-		margin: 0 0 2rem;
-		color: #000;
-		font-size: 42px;
-		font-weight: 700;
-		line-height: 1.25;
-		text-align: center;
+		margin: 0 0 24px;
 	}
 	.lead {
-		margin: 0 0 2.5rem;
+		margin: 0 0 32px;
+		color: var(--brand-graphite);
+		font-size: 19px;
+		line-height: 1.6;
 	}
 	.pitch {
-		margin-top: 4rem;
-		text-align: center;
+		margin-top: 96px;
 	}
 	.pitch h2 {
-		margin: 0 0 2rem;
-		color: #000;
-		font-size: 28px;
+		margin: 0 0 16px;
 		font-weight: 400;
-		line-height: 1.5;
+	}
+	.pitch h2 strong {
+		font-weight: 700;
 	}
 	.pitch p {
-		max-width: 20em;
-		margin: 0 auto;
-		font-size: 24px;
-		line-height: 1.5;
+		margin: 0;
+		color: var(--brand-graphite);
+		font-size: 26px;
+		letter-spacing: -0.01em;
+		line-height: 1.35;
 	}
 	@media (max-width: 600px) {
 		.home {
-			padding: 1.5rem 1rem 4rem;
-		}
-		.eyebrow {
-			margin-bottom: 1.25rem;
-			text-align: center;
-		}
-		h1 {
-			margin-bottom: 1.5rem;
-			font-size: 32px;
+			padding: 32px 16px 64px;
 		}
 		.lead {
-			margin-bottom: 2rem;
+			font-size: 17px;
 		}
 		.pitch {
-			margin-top: 3rem;
-		}
-		.pitch h2 {
-			margin-bottom: 1.25rem;
-			font-size: 24px;
+			margin-top: 64px;
 		}
 		.pitch p {
 			font-size: 20px;

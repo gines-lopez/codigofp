@@ -19,7 +19,7 @@ import { SITE_TITLE } from '../consts';
 		<Header />
 		<main class="not-found">
 			<section class="hero">
-				<p class="eyebrow">Error 404</p>
+				<p class="brand-label">error 404</p>
 				<h1>Esta página no entraba en el temario</h1>
 				<p class="lead">
 					Es como sacar del bombo justo el tema que no te habías estudiado: te quedas en blanco
@@ -47,54 +47,38 @@ import { SITE_TITLE } from '../consts';
 	}
 	.not-found {
 		flex: 1;
-		width: 792px;
+		width: 752px;
 		max-width: 100%;
 		box-sizing: border-box;
-		padding: 2rem 1rem 6rem;
+		padding: 48px 16px 96px;
 	}
-	.eyebrow {
-		margin: 0 0 2rem;
-		color: #9d9e9e;
-		font-size: 14px;
-		font-weight: 700;
-		line-height: 24.5px;
-		text-transform: uppercase;
+	.hero .brand-label {
+		margin-bottom: 24px;
 	}
 	h1 {
-		margin: 0 0 2rem;
-		color: #000;
-		font-size: 42px;
-		font-weight: 700;
-		line-height: 1.25;
-		text-align: center;
+		margin: 0 0 24px;
 	}
 	.lead {
-		margin: 0 0 1.5rem;
+		margin: 0 0 16px;
+		color: var(--brand-graphite);
+		font-size: 19px;
+		line-height: 1.6;
 	}
 	.lead:last-of-type {
-		margin-bottom: 2.5rem;
+		margin-bottom: 32px;
 	}
 	.back {
-		margin-top: 4rem;
-		text-align: center;
+		margin-top: 64px;
 	}
 	@media (max-width: 600px) {
 		.not-found {
-			padding: 1.5rem 1rem 4rem;
+			padding: 32px 16px 64px;
 		}
-		.eyebrow {
-			margin-bottom: 1.25rem;
-			text-align: center;
-		}
-		h1 {
-			margin-bottom: 1.5rem;
-			font-size: 32px;
-		}
-		.lead:last-of-type {
-			margin-bottom: 2rem;
+		.lead {
+			font-size: 17px;
 		}
 		.back {
-			margin-top: 3rem;
+			margin-top: 48px;
 		}
 	}
 </style>

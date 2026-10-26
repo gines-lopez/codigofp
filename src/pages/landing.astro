@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import TrackRecord from '../components/TrackRecord.astro';
 import '../styles/landing.css';
 
 const title = 'CódigoFP · Construye una programación de FP defendible';
@@ -27,7 +28,7 @@ const points = [
 	<body>
 		<Header />
 		<main class="landing">
-			<p class="eyebrow">Para opositores de FP</p>
+			<p class="brand-label">para opositores de FP</p>
 			<h1>
 				Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué
 				un 9,6 cambiando el orden en que la hice.
@@ -48,26 +49,7 @@ const points = [
 				</p>
 			</div>
 
-			<section class="record" aria-label="Mis dos convocatorias">
-				<h2 class="record-head">Mis dos convocatorias · Informática · Comunitat Valenciana</h2>
-				<div class="record-row record-past">
-					<p class="record-year">2023</p>
-					<p class="record-text">
-						Me quedé a <strong>0,13</strong> de la plaza con una programación que cumplía con todo.
-					</p>
-				</div>
-				<div class="record-row record-now">
-					<p class="record-year">2025</p>
-					<div class="record-result">
-						<span class="record-score">9,6</span>
-						<p class="record-text">
-							en la programación y su defensa. La mejor nota de mi especialidad en la Comunitat
-							Valenciana, que me dio el cuarto puesto del concurso-oposición.
-						</p>
-					</div>
-				</div>
-				<p class="record-foot">Ginés · docente de FP y funcionario de carrera</p>
-			</section>
+			<TrackRecord />
 
 			<div class="story">
 				<p>
@@ -107,6 +89,7 @@ const points = [
 					<label for="email-r">¿A qué correo te lo mando?</label>
 					<div class="optin-row">
 						<input
+							class="brand-input"
 							id="email-r"
 							name="email_address"
 							type="email"
@@ -114,7 +97,7 @@ const points = [
 							autocomplete="email"
 							required
 						/>
-						<button type="submit">Mándamelo</button>
+						<button class="brand-button" type="submit">Mándamelo</button>
 					</div>
 					<p class="optin-note">
 						Después, cada martes, una de esas decisiones a fondo. Si no te sirve, te das de baja con un
