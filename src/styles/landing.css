@@ -42,45 +42,70 @@ h1 {
 	line-height: 1.6;
 }
 
-.proof {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
+/* Track record: two calls, the 2025 score as the focal point. */
+.record {
 	margin-top: 8px;
-	padding: 30px;
-	border-radius: 10px;
-	background: rgb(var(--black));
-	color: rgb(var(--gray-light));
+	border: 2px solid rgb(var(--black));
+	border-radius: 6px;
+	background: #fff;
+	color: rgb(var(--black));
 }
-.proof p {
-	font-size: 17px;
-	line-height: 1.6;
+.record-head {
+	padding: 16px 24px;
+	border-bottom: 2px solid rgb(var(--black));
+	font-family: var(--font-quicksand);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: 1.5;
+	text-transform: uppercase;
 }
-.score {
+.record-row {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: baseline;
-	gap: 14px;
+	gap: 8px 24px;
+	padding: 22px 24px;
+}
+.record-year {
+	flex: 0 0 72px;
 	font-family: var(--font-quicksand);
-}
-.score-old {
-	color: rgb(var(--gray));
-	font-size: 26px;
-	text-decoration: line-through;
-}
-.score-arrow {
-	color: rgb(var(--gray));
-	font-size: 20px;
-}
-.score-new {
-	color: var(--accent);
-	font-size: 44px;
+	font-size: 22px;
 	font-weight: 700;
+	line-height: 1.4;
 }
-.score-note {
+.record-text {
+	flex: 1 1 260px;
+	font-size: 17px;
+	line-height: 1.55;
+}
+.record-past {
+	border-bottom: 1px dashed rgb(var(--gray));
 	color: rgb(var(--gray));
-	font-size: 14px;
-	line-height: 1.5;
+}
+.record-past strong {
+	color: rgb(var(--black));
+}
+.record-result {
+	display: flex;
+	flex: 1 1 360px;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 22px;
+}
+.record-score {
+	color: var(--accent-dark);
+	font-family: var(--font-quicksand);
+	font-size: 88px;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	line-height: 0.95;
+}
+.record-foot {
+	padding: 14px 24px;
+	border-top: 2px solid rgb(var(--black));
+	color: rgb(var(--gray));
+	font-family: var(--font-quicksand);
+	font-size: 13px;
 }
 
 .points {
@@ -203,8 +228,14 @@ h1 {
 	.cta-text {
 		font-size: 18px;
 	}
-	.proof {
-		padding: 24px;
+	.record-head,
+	.record-row,
+	.record-foot {
+		padding-right: 18px;
+		padding-left: 18px;
+	}
+	.record-score {
+		font-size: 76px;
 	}
 	.optin button {
 		flex: 1 1 100%;
