@@ -1,22 +1,29 @@
 ---
 // "Mis dos convocatorias" card: 2023 near miss vs. 2025 score.
-// `compact` stacks every row, for narrow side columns.
+// `compact` stacks every row while the card is narrower than 480px (side columns).
+// `showPast={false}` drops the 2023 row, for pages whose H1 already tells it.
 interface Props {
 	compact?: boolean;
+	showPast?: boolean;
 	class?: string;
 }
 
-const { compact = false, class: className } = Astro.props;
+const { compact = false, showPast = true, class: className } = Astro.props;
+const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
-<section class:list={['record', { compact }, className]} aria-label="Mis dos convocatorias">
-	<h2 class="record-head">Mis dos convocatorias · Informática · Comunitat Valenciana</h2>
-	<div class="record-row record-past">
-		<p class="record-year">2023</p>
-		<p class="record-text">
-			Me quedé a <strong>0,13</strong> de la plaza con una programación que cumplía con todo.
-		</p>
-	</div>
+<section class:list={['record', { compact }, className]} aria-label={head}>
+	<h2 class="record-head">{head} · Informática · Comunitat Valenciana</h2>
+	{
+		showPast && (
+			<div class="record-row record-past">
+				<p class="record-year">2023</p>
+				<p class="record-text">
+					Me quedé a <strong>0,13</strong> de la plaza con una programación que cumplía con todo.
+				</p>
+			</div>
+		)
+	}
 	<div class="record-row record-now">
 		<p class="record-year">2025</p>
 		<div class="record-result">
@@ -103,22 +110,27 @@ const { compact = false, class: className } = Astro.props;
 	}
 
 	/* Narrow column: everything stacked, the 2025 row takes the leftover height. */
-	.compact .record-row {
-		flex-direction: column;
-		flex-wrap: nowrap;
+	.compact {
+		container-type: inline-size;
 	}
-	.compact .record-year,
-	.compact .record-text,
-	.compact .record-result {
-		flex: none;
-	}
-	.compact .record-now {
-		flex: 1;
-		justify-content: center;
-	}
-	.compact .record-result {
-		flex-direction: column;
-		align-items: flex-start;
+	@container (max-width: 479px) {
+		.compact .record-row {
+			flex-direction: column;
+			flex-wrap: nowrap;
+		}
+		.compact .record-year,
+		.compact .record-text,
+		.compact .record-result {
+			flex: none;
+		}
+		.compact .record-now {
+			flex: 1;
+			justify-content: center;
+		}
+		.compact .record-result {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
 
 	@media (max-width: 600px) {

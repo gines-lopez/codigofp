@@ -35,10 +35,6 @@ body {
 	gap: 16px;
 	margin-top: 24px;
 }
-.points h2 {
-	font-size: 24px;
-	line-height: 1.3;
-}
 .points ol {
 	display: flex;
 	flex-direction: column;
@@ -57,7 +53,7 @@ body {
 	padding-top: 2px;
 	color: var(--brand-accent);
 	font-family: var(--font-mono);
-	font-size: 15px;
+	font-size: 14px;
 	font-weight: 500;
 }
 
@@ -67,46 +63,12 @@ body {
 	gap: 16px;
 	margin-top: 48px;
 }
-.optin {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-.optin label {
-	color: var(--brand-dark);
-	font-size: 16px;
-	font-weight: 600;
-}
-.optin-row {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-}
-.optin .brand-input {
-	flex: 1 1 260px;
-	min-width: 0;
-}
-.optin .brand-button {
-	flex: 0 0 auto;
-}
-.optin-note {
-	color: var(--brand-graphite);
-	font-size: 14px;
-	line-height: 1.5;
-}
-.signature {
-	margin-top: 8px !important;
-	color: var(--brand-graphite);
-	font-size: 14px;
-	font-weight: 500;
-}
 
 @media (max-width: 600px) {
 	.landing {
 		padding: 32px 16px 64px;
 	}
-	.optin .brand-input,
-	.optin .brand-button {
-		flex: 1 1 100%;
+	.point-number {
+		font-size: 13px;
 	}
 }

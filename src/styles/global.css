@@ -10,6 +10,7 @@
 	--brand-dark: #0f1115; /* Tinta: texto principal y footer */
 	--brand-graphite: #5b5f66; /* Grafito: texto secundario, labels, metadatos */
 	--brand-line: #e5e5e0; /* Niebla: bordes y divisores */
+	--brand-line-strong: #878a91; /* Niebla densa: borde de campos (3:1 sobre hueso) */
 	--brand-accent: #1e3a8a; /* Cobalto seco: acento, botón, links */
 	--brand-accent-hover: #172e6e;
 	--brand-secondary: #b45309; /* Ámbar tinta: sin uso por ahora */
@@ -129,12 +130,6 @@ hr {
 	main {
 		padding: 1em;
 	}
-	h1 {
-		font-size: 32px;
-	}
-	h2 {
-		font-size: 24px;
-	}
 }
 
 /* Shared brand pieces: eyebrow label, subscription input and button. */
@@ -153,7 +148,7 @@ hr {
 	height: 48px;
 	box-sizing: border-box;
 	padding: 0 16px;
-	border: 1px solid var(--brand-line);
+	border: 1px solid var(--brand-line-strong);
 	border-radius: 8px;
 	background: transparent;
 	color: var(--brand-dark);
@@ -161,6 +156,10 @@ hr {
 }
 .brand-input::placeholder {
 	color: var(--brand-graphite);
+}
+.brand-input:user-invalid {
+	border: 2px solid var(--brand-dark);
+	padding: 0 15px;
 }
 .brand-input:focus-visible {
 	border-color: var(--brand-accent);
@@ -180,9 +179,85 @@ hr {
 .brand-button:hover {
 	background: var(--brand-accent-hover);
 }
+a.brand-button {
+	display: inline-flex;
+	align-items: center;
+	box-sizing: border-box;
+	height: auto;
+	min-height: 48px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	line-height: 1.5;
+	text-decoration: none;
+}
+a.brand-button:hover {
+	color: var(--brand-light);
+}
+/* Secondary action: outlined, ink text. Never the page's main CTA. */
+.brand-button--secondary {
+	border: 1px solid var(--brand-line-strong);
+	background: transparent;
+	color: var(--brand-dark);
+}
+.brand-button--secondary:hover,
+a.brand-button--secondary:hover {
+	border-color: var(--brand-dark);
+	background: transparent;
+	color: var(--brand-dark);
+}
+/* Subtitle under the H1: 20px on mobile, 26px from 601px. */
+.brand-lead {
+	font-size: 26px;
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	line-height: 1.35;
+}
+/* Opt-in form used by the landings: label, input + button row, reassurance note. */
+.brand-optin {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.brand-optin label {
+	color: var(--brand-dark);
+	font-size: 16px;
+	font-weight: 600;
+}
+.brand-optin-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.brand-optin .brand-input {
+	flex: 1 1 260px;
+	min-width: 0;
+	scroll-margin-top: 96px;
+}
+.brand-optin .brand-button {
+	flex: 0 0 auto;
+}
+.brand-optin-note {
+	margin: 0;
+	color: var(--brand-graphite);
+	font-size: 14px;
+	line-height: 1.5;
+}
 @media (max-width: 600px) {
+	h1 {
+		font-size: 32px;
+	}
+	h2 {
+		font-size: 24px;
+	}
+	.brand-lead {
+		font-size: 20px;
+	}
 	.brand-label {
 		font-size: 13px;
+	}
+	.brand-optin .brand-input,
+	.brand-optin .brand-button {
+		flex: 1 1 100%;
 	}
 }
 

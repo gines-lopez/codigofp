@@ -1,0 +1,94 @@
+/* Styles for /gracias only; imported from src/pages/gracias.astro. */
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.gracias {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 64px;
+	width: 672px;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 64px 16px 96px;
+}
+.gracias p,
+.gracias h1,
+.gracias h2,
+.gracias ol {
+	margin: 0;
+}
+.intro,
+.block {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.intro {
+	gap: 24px;
+}
+.intro .brand-lead {
+	color: var(--brand-graphite);
+}
+.sender {
+	font-size: 20px;
+	letter-spacing: -0.01em;
+	line-height: 1.35;
+}
+.mail-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.steps {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 0;
+	list-style: none;
+}
+.steps li {
+	display: flex;
+	gap: 16px;
+}
+.step-number {
+	flex: 0 0 auto;
+	padding-top: 2px;
+	color: var(--brand-accent);
+	font-family: var(--font-mono);
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.personal {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.signature {
+	color: var(--brand-graphite);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.5;
+}
+.signature strong {
+	color: var(--brand-dark);
+	font-size: 17px;
+}
+
+@media (max-width: 600px) {
+	.gracias {
+		gap: 48px;
+		padding: 32px 16px 64px;
+	}
+	.mail-buttons .brand-button {
+		flex: 1 1 100%;
+		justify-content: center;
+	}
+	.step-number {
+		font-size: 13px;
+	}
+}

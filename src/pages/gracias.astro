@@ -1,0 +1,120 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/gracias.css';
+
+// Landing page after subscribing. Kit has double opt-in, so the only goal is getting the visitor
+// to confirm in their inbox. Reached only through Kit's redirect: never link to it.
+const title = 'Suscripción recibida · CódigoFP';
+const description = 'Confirma tu email para recibir la newsletter de CódigoFP.';
+
+const steps = [
+	{
+		title: 'Confirmas tu email.',
+		text: 'El correo llega desde «Ginés de CódigoFP». Un clic en el botón y listo.',
+	},
+	{
+		title: 'Recibes el vídeo y los dos PDF.',
+		text: 'En cuanto confirmas, te llega el correo de bienvenida con el orden en que se construye una programación defendible, para que luego aguante el «por qué» del tribunal.',
+	},
+	{
+		title: 'Me respondes.',
+		text: 'Ese correo termina con una pregunta. Contéstala: leo todas las respuestas yo.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} noindex />
+	</head>
+	<body>
+		<Header width={640} />
+		<main class="gracias">
+			<section class="intro">
+				<p class="brand-label">newsletter de CódigoFP</p>
+				<h1>Estás a un correo de entrar</h1>
+				<p class="brand-lead">
+					Te acabo de enviar un email para confirmar tu dirección. Hasta que no lo confirmes, no te
+					llega nada, tampoco el vídeo.
+				</p>
+				<p class="sender">Busca un correo de <strong>Ginés de CódigoFP</strong>.</p>
+				<div class="mail-buttons">
+					<a
+						class="brand-button brand-button--secondary"
+						href="https://mail.google.com"
+						target="_blank"
+						rel="noopener">Abrir Gmail<span class="sr-only"> (se abre en otra pestaña)</span></a
+					>
+					<a
+						class="brand-button brand-button--secondary"
+						href="https://outlook.office.com/mail/"
+						target="_blank"
+						rel="noopener">Abrir Outlook<span class="sr-only"> (se abre en otra pestaña)</span></a
+					>
+				</div>
+			</section>
+
+			<section class="block">
+				<h2>Si no lo ves en cinco minutos</h2>
+				<p>
+					Mira en spam y, si usas Gmail, en la pestaña Promociones. Si está ahí, muévelo a
+					Principal: así los martes no se pierden.
+				</p>
+				<p>
+					Si sigue sin aparecer, probablemente hay una errata en el email. Puedes <a href="/"
+						>volver a suscribirte con la dirección correcta</a
+					>.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>Qué pasa ahora</h2>
+				<ol class="steps">
+					{
+						steps.map((step, i) => (
+							<li>
+								<span class="step-number">{String(i + 1).padStart(2, '0')}</span>
+								<p>
+									<strong>{step.title}</strong> {step.text}
+								</p>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+
+			<section class="block">
+				<h2>Lo que vas a recibir</h2>
+				<p>Un correo cada martes a las 07:30. Uno. Sin envíos de relleno los viernes.</p>
+				<p>
+					Trata de una sola cosa: cómo construir tu programación didáctica de FP y cómo defenderla
+					ante el tribunal. Estructura, evaluación por RA y CE, defensa oral y baremo.
+				</p>
+				<p>
+					No trata del tema escrito ni del supuesto práctico. Para eso hay gente que lo hace mejor
+					que yo.
+				</p>
+			</section>
+
+			<section class="personal" aria-label="Quién te escribe">
+				<p>
+					En 2023 me quedé a 0,13 puntos de la plaza. En 2025 saqué un 9,6 en la defensa de la
+					programación, la mejor nota de mi especialidad.
+				</p>
+				<p>
+					Entre esas dos cifras no estudié más. Entendí que cumplir la normativa no es defender una
+					programación.
+				</p>
+				<p>De eso va cada martes.</p>
+				<p class="signature">
+					<strong>Ginés</strong><br />
+					CódigoFP — Una programación didáctica que entiendes tú primero.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

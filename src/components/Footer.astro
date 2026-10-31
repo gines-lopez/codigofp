@@ -5,7 +5,10 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} {SITE_TITLE}. Todos los derechos reservados.
+	<p>&copy; {today.getFullYear()} {SITE_TITLE}. Todos los derechos reservados.</p>
+	<p>
+		<a href="/aviso-legal/">Aviso legal</a> · <a href="/politica-privacidad/">Política de privacidad</a>
+	</p>
 </footer>
 <style>
 	footer {
@@ -17,6 +20,12 @@ const today = new Date();
 		font-weight: 500;
 		letter-spacing: 0.01em;
 		line-height: 1.5;
+	}
+	footer p {
+		margin: 0;
+	}
+	footer p + p {
+		margin-top: 8px;
 	}
 	footer :global(a) {
 		color: var(--brand-accent-on-dark);

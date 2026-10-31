@@ -30,57 +30,26 @@ body {
 .pitch h1 {
 	margin: 0;
 }
-.lead {
+.brand-lead {
 	color: var(--brand-graphite);
-	font-size: 19px;
-	line-height: 1.6;
 }
 .proof {
 	flex: 1 1 320px;
 }
 
-.optin {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+.brand-optin {
 	max-width: 560px;
 	margin-top: 8px;
 }
-.optin label {
-	color: var(--brand-dark);
-	font-size: 16px;
-	font-weight: 600;
-}
-.optin-row {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-}
-.optin .brand-input {
-	flex: 1 1 260px;
-	min-width: 0;
-}
-.optin .brand-button {
-	flex: 0 0 auto;
-}
-.pitch .optin-note {
-	color: var(--brand-graphite);
-	font-size: 14px;
-	line-height: 1.5;
-}
 
-.deliverables-inner {
+.deliverables {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	max-width: 1040px;
-	margin: 0 auto;
-	box-sizing: border-box;
-	padding: 48px 16px 96px;
+	padding: 96px 0 48px;
 }
 .deliverables h2 {
 	margin: 0;
-	font-size: 32px;
 }
 .cards {
 	display: grid;
@@ -114,36 +83,33 @@ body {
 	font-weight: 500;
 }
 .card-title {
-	color: var(--brand-dark);
-	font-size: 19px;
-	font-weight: 600;
-	line-height: 1.35;
-}
-.card-text {
-	color: var(--brand-graphite);
-	font-size: 16px;
-	line-height: 1.6;
-}
-.card-body {
-	color: var(--brand-dark);
-	font-size: 16px;
-	line-height: 1.6;
-}
-.card-featured .card-text {
-	margin-bottom: 8px;
-}
-.closing {
-	max-width: 720px;
-	margin: 24px 0 0;
-	padding: 0;
-	border: none;
+	margin: 0;
 	color: var(--brand-dark);
 	font-size: 20px;
 	font-weight: 600;
 	letter-spacing: -0.01em;
 	line-height: 1.35;
 }
-.closing p {
+.card-text,
+.card-body {
+	color: var(--brand-graphite);
+	font-size: 17px;
+	line-height: 1.6;
+}
+.card-featured .card-text {
+	margin-bottom: 8px;
+	color: var(--brand-dark);
+}
+.closing {
+	max-width: 720px;
+	margin: 24px 0 0;
+	color: var(--brand-dark);
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.35;
+}
+.back-to-form {
 	margin: 0;
 }
 
@@ -160,17 +126,7 @@ body {
 	.hero {
 		gap: 48px;
 	}
-	.lead {
-		font-size: 17px;
-	}
-	.optin .brand-input,
-	.optin .brand-button {
-		flex: 1 1 100%;
-	}
-	.deliverables h2 {
-		font-size: 24px;
-	}
-	.deliverables-inner {
-		padding: 32px 16px 64px;
+	.deliverables {
+		padding: 64px 0 32px;
 	}
 }

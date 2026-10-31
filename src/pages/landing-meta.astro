@@ -14,8 +14,8 @@ const KIT_FORM_ID = '9943840';
 
 const deliverables = [
 	{
-		tag: 'VÍDEO · 6 MIN',
-		title: 'El mapa de una programación defendible',
+		tag: 'Vídeo · 6 min',
+		title: 'El orden, parte por parte',
 		text: 'Empieza en la sala, con la pregunta que me hicieron en mi defensa. Sin presentaciones.',
 		body: [
 			'Sabes qué has puesto. Lo que cuesta es explicar por qué está ahí y no en otro sitio.',
@@ -23,14 +23,14 @@ const deliverables = [
 		],
 	},
 	{
-		tag: 'PDF · 20 MIN',
+		tag: 'PDF · 20 min',
 		title: '¿Tu programación aguanta el por qué?',
 		text: 'Cada ítem es una pregunta del tribunal. Tres casillas, y la del medio es la que duele.',
 	},
 	{
-		tag: 'PDF · 1 PÁGINA',
+		tag: 'PDF · 1 página',
 		title: 'El mapa, para imprimir',
-		text: 'Ten a mano siempre la brújula de tu programación.',
+		text: 'Una página: cada parte, su decisión y la pregunta que aguanta.',
 	},
 ];
 const [video, ...pdfs] = deliverables;
@@ -42,7 +42,7 @@ const [video, ...pdfs] = deliverables;
 		<BaseHead title={title} description={description} noindex />
 	</head>
 	<body>
-		<Header />
+		<Header width={1008} />
 		<main class="landing">
 			<div class="hero">
 				<section class="pitch">
@@ -51,19 +51,20 @@ const [video, ...pdfs] = deliverables;
 						El orden en que se construye una programación de FP que aguanta cada «por qué» del
 						tribunal.
 					</h1>
-					<p class="lead">
+					<p class="brand-lead">
 						Te enseño cómo se hace una programación, parte por parte: qué decides en cada una y qué pregunta 
-						del tribunal tiene que aguantar. Después coges la tuya, le dedicas 20 minutos y ves qué a
-						partados defenderías y en cuáles acabarías citando la ley.
+						del tribunal tiene que aguantar. Después coges la tuya, le dedicas 20 minutos y ves qué
+						apartados defenderías y en cuáles acabarías citando la ley.
 					</p>
+					<p class="brand-label">9,6 · la mejor nota de mi especialidad en la Comunitat Valenciana, 2025</p>
 
 					<form
-						class="optin"
+						class="brand-optin"
 						action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
 						method="post"
 					>
 						<label for="email-a">¿A qué correo te lo mando?</label>
-						<div class="optin-row">
+						<div class="brand-optin-row">
 							<input
 								class="brand-input"
 								id="email-a"
@@ -75,23 +76,22 @@ const [video, ...pdfs] = deliverables;
 							/>
 							<button class="brand-button" type="submit">Mándamelo</button>
 						</div>
-						<p class="optin-note">
-							Te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
-							sirve, te das de baja con un clic.
+						<p class="brand-optin-note">
+							Confirmas tu email y te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
+							sirve, te das de baja con un
+							clic. <a href="/politica-privacidad/">Política de privacidad</a>.
 						</p>
 					</form>
 				</section>
 				<TrackRecord compact class="proof" />
 			</div>
-		</main>
 
-		<section class="deliverables">
-			<div class="deliverables-inner">
+			<section class="deliverables">
 				<h2>Lo que te llega al correo</h2>
 				<div class="cards">
 					<div class="card card-featured">
 						<p class="card-tag">{video.tag}</p>
-						<p class="card-title">{video.title}</p>
+						<h3 class="card-title">{video.title}</h3>
 						<p class="card-text">{video.text}</p>
 						{video.body?.map((paragraph) => <p class="card-body">{paragraph}</p>)}
 					</div>
@@ -100,21 +100,22 @@ const [video, ...pdfs] = deliverables;
 							pdfs.map((item) => (
 								<div class="card">
 									<p class="card-tag">{item.tag}</p>
-									<p class="card-title">{item.title}</p>
+									<h3 class="card-title">{item.title}</h3>
 									<p class="card-text">{item.text}</p>
 								</div>
 							))
 						}
 					</div>
 				</div>
-				<blockquote class="closing">
-					<p>
-						No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y
-						tiene que sonar a ti.
-					</p>
-				</blockquote>
-			</div>
-		</section>
+				<p class="closing">
+					No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y
+					tiene que sonar a ti.
+				</p>
+				<p class="back-to-form">
+					<a class="brand-button brand-button--secondary" href="#email-a">Quiero los tres <span aria-hidden="true">↑</span></a>
+				</p>
+			</section>
+		</main>
 		<Footer />
 	</body>
 </html>

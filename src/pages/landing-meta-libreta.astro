@@ -16,7 +16,7 @@ const KIT_FORM_ID = '9943840';
 const deliverables = [
 	{
 		tag: 'Vídeo · 6 min',
-		title: 'El mapa de una programación defendible',
+		title: 'El orden, parte por parte',
 		text: 'Empieza en la sala, con la pregunta que me hicieron en mi defensa. Sin presentaciones.',
 	},
 	{
@@ -44,7 +44,7 @@ const deliverables = [
 		<Font cssVariable="--font-kalam" />
 	</head>
 	<body>
-		<Header />
+		<Header width={1072} />
 		<main class="libreta">
 			<div class="margen">
 				<span class="nota" aria-hidden="true">¿y tu<br />respuesta?</span>
@@ -67,19 +67,20 @@ const deliverables = [
 							></span
 						> del tribunal.
 					</h1>
-					<p class="lead">
+					<p class="brand-lead">
 						Te enseño cómo se hace una programación, parte por parte: qué decides en cada una y qué pregunta 
-						del tribunal tiene que aguantar. Después coges la tuya, le dedicas 20 minutos y ves qué a
-						partados defenderías y en cuáles acabarías citando la ley.
+						del tribunal tiene que aguantar. Después coges la tuya, le dedicas 20 minutos y ves qué
+						apartados defenderías y en cuáles acabarías citando la ley.
 					</p>
+					<p class="brand-label">9,6 · la mejor nota de mi especialidad en la Comunitat Valenciana, 2025</p>
 
 					<form
-						class="optin"
+						class="brand-optin"
 						action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
 						method="post"
 					>
 						<label for="email-l">¿A qué correo te lo mando?</label>
-						<div class="optin-row">
+						<div class="brand-optin-row">
 							<input
 								class="brand-input"
 								id="email-l"
@@ -91,9 +92,10 @@ const deliverables = [
 							/>
 							<button class="brand-button" type="submit">Mándamelo</button>
 						</div>
-						<p class="optin-note">
-							Te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
-							sirve, te das de baja con un clic.
+						<p class="brand-optin-note">
+							Confirmas tu email y te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
+							sirve, te das de baja con un
+							clic. <a href="/politica-privacidad/">Política de privacidad</a>.
 						</p>
 					</form>
 				</section>
@@ -108,8 +110,11 @@ const deliverables = [
 								<li class="deliverable">
 									<p class="deliverable-tag">{item.tag}</p>
 									<div class="deliverable-body">
-										<p class="deliverable-title">{item.title}</p>
+										<h3 class="deliverable-title">{item.title}</h3>
 										<p class="deliverable-text">{item.text}</p>
+										{item.checks && (
+											<p class="brand-label">así se ve cada pregunta del autodiagnóstico</p>
+										)}
 										{item.checks && (
 											<ul class="checks">
 												{item.checks.map((check) => (
@@ -122,6 +127,7 @@ const deliverables = [
 															)}
 														</span>
 														{check.label}
+														{check.marked && <span class="sr-only"> (marcada)</span>}
 													</li>
 												))}
 											</ul>
@@ -134,6 +140,9 @@ const deliverables = [
 					<p class="closing">
 						No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y
 						tiene que sonar a ti.
+					</p>
+					<p class="back-to-form">
+						<a class="brand-button brand-button--secondary" href="#email-l">Quiero los tres <span aria-hidden="true">↑</span></a>
 					</p>
 				</section>
 			</div>

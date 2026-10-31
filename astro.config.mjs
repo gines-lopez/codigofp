@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
 // Pages kept out of the sitemap (they also set noindex via BaseHead).
-const SITEMAP_EXCLUDE = ['/landing/', '/landing-meta/', '/landing-meta-libreta/', '/aviso-legal/', '/politica-privacidad/'];
+const SITEMAP_EXCLUDE = ['/landing/', '/landing-meta/', '/landing-meta-libreta/', '/aviso-legal/', '/politica-privacidad/', '/gracias/'];
 
 // https://astro.build/config
 export default defineConfig({

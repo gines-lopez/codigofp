@@ -7,16 +7,29 @@ import '../styles/landing.css';
 
 const title = 'CódigoFP · Construye una programación de FP defendible';
 const description =
-	'Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué un 9,6 cambiando el orden en que la hice.';
+	'Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué un 9,6, la mejor nota de mi especialidad, cambiando el orden en que la hice.';
 
 // Kit form that receives the subscriptions (same one as the home for now).
 const KIT_FORM_ID = '9943840';
 
+// The opening sentence of each point is set in bold as its head.
 const points = [
-	'El error que hace que una programación cumpla con todo y aun así se caiga en la defensa. No está en cómo redactas. Está en cuándo empiezas a redactar.',
-	'La pregunta exacta que me hizo el tribunal en 2025 sobre unidades de programación y unidades de trabajo. En 2023 la habría contestado con un artículo. Esta vez no, y te cuento qué dije en su lugar.',
-	'Por qué la introducción y la justificación se escriben al final, aunque ocupen las primeras páginas. Y el orden completo de las decisiones, fase a fase, con la pregunta del tribunal que tiene que aguantar cada una.',
-	'Un autodiagnóstico de una página para hacer con tu programación delante. Tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes por dónde empezar.',
+	{
+		title: 'El error que hace que una programación cumpla con todo y aun así se caiga en la defensa.',
+		text: 'No está en cómo redactas. Está en cuándo empiezas a redactar.',
+	},
+	{
+		title: 'La pregunta exacta que me hizo el tribunal en 2025 sobre unidades de programación y unidades de trabajo.',
+		text: 'En 2023 la habría contestado con un artículo. Esta vez no, y te cuento qué dije en su lugar.',
+	},
+	{
+		title: 'Por qué la introducción y la justificación se escriben al final, aunque ocupen las primeras páginas.',
+		text: 'Y el orden completo de las decisiones, fase a fase, con la pregunta del tribunal que tiene que aguantar cada una.',
+	},
+	{
+		title: 'Un autodiagnóstico de 20 minutos para hacer con tu programación delante.',
+		text: 'Tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes por dónde empezar. Y el mapa del orden en una página, para imprimir.',
+	},
 ];
 ---
 
@@ -26,13 +39,10 @@ const points = [
 		<BaseHead title={title} description={description} noindex />
 	</head>
 	<body>
-		<Header />
+		<Header width={720} />
 		<main class="landing">
 			<p class="brand-label">para opositores de FP</p>
-			<h1>
-				Me quedé a 0,13 de la plaza con una programación que cumplía con todo. 
-				En 2025 saqué un 9,6 en esa parte y la plaza.
-			</h1>
+			<h1>Me quedé a 0,13 de la plaza con una programación que cumplía con todo.</h1>
 
 			<div class="story">
 				<p>
@@ -49,7 +59,13 @@ const points = [
 				</p>
 			</div>
 
-			<TrackRecord />
+			<TrackRecord showPast={false} />
+
+			<p>
+				<a class="brand-button brand-button--secondary" href="#email-r"
+					>Quiero el vídeo y los dos PDF <span aria-hidden="true">↓</span></a
+				>
+			</p>
 
 			<div class="story">
 				<p>
@@ -66,13 +82,15 @@ const points = [
 			</div>
 
 			<section class="points">
-				<h2>Lo que te mando para que tu programación aguante el por qué:</h2>
+				<h2>Lo que te mando para que tu programación aguante el por qué</h2>
 				<ol>
 					{
 						points.map((point, i) => (
 							<li>
 								<span class="point-number">{String(i + 1).padStart(2, '0')}</span>
-								<span>{point}</span>
+								<span>
+									<strong>{point.title}</strong> {point.text}
+								</span>
 							</li>
 						))
 					}
@@ -81,15 +99,15 @@ const points = [
 
 			<section class="cta">
 				<p class="cta-text">
-					Te lo mando ahora: un vídeo de 6 minutos y el autodiagnóstico para imprimir.
+					Te lo mando en cuanto confirmes tu email: un vídeo de 6 minutos, el autodiagnóstico y el mapa para imprimir.
 				</p>
 				<form
-					class="optin"
+					class="brand-optin"
 					action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
 					method="post"
 				>
 					<label for="email-r">¿A qué correo te lo mando?</label>
-					<div class="optin-row">
+					<div class="brand-optin-row">
 						<input
 							class="brand-input"
 							id="email-r"
@@ -101,12 +119,11 @@ const points = [
 						/>
 						<button class="brand-button" type="submit">Mándamelo</button>
 					</div>
-					<p class="optin-note">
+					<p class="brand-optin-note">
 						Después, cada martes, una de esas decisiones a fondo. Si no te sirve, te das de baja con un
-						clic.
+							clic. <a href="/politica-privacidad/">Política de privacidad</a>.
 					</p>
 				</form>
-				<p class="signature">Ginés · docente de FP y funcionario de carrera</p>
 			</section>
 		</main>
 		<Footer />
