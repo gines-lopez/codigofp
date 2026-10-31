@@ -1,0 +1,1 @@
+var e=document.querySelectorAll(`form.brand-optin`);for(let t of e){let e=t.querySelector(`button[type="submit"]`);if(!e)continue;let n=e.textContent??``;t.addEventListener(`submit`,()=>{e.disabled=!0,e.textContent=`Enviando…`}),window.addEventListener(`pageshow`,t=>{t.persisted&&(e.disabled=!1,e.textContent=n)})}
