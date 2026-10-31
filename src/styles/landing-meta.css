@@ -1,4 +1,10 @@
 /* Styles for /landing-meta only; imported from src/pages/landing-meta.astro. */
+/* «Quiero los tres» scrolls back up to the form; smooth unless the visitor asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
 body {
 	display: flex;
 	flex-direction: column;

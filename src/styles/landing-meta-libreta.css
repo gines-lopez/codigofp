@@ -9,6 +9,12 @@
 	/* Let the grid paper run under the header. */
 	--header-bg: transparent;
 }
+/* «Quiero los tres» scrolls back up to the form; smooth unless the visitor asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
 body {
 	display: flex;
 	flex-direction: column;
