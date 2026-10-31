@@ -43,6 +43,7 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
+	text-wrap: balance;
 	color: var(--brand-dark);
 	line-height: 1.2;
 }
@@ -83,6 +84,7 @@ button:focus-visible {
 }
 p {
 	margin-bottom: 1em;
+	text-wrap: pretty;
 }
 .prose p {
 	margin-bottom: 2em;
@@ -182,6 +184,7 @@ hr {
 a.brand-button {
 	display: inline-flex;
 	align-items: center;
+	gap: 8px;
 	box-sizing: border-box;
 	height: auto;
 	min-height: 48px;
@@ -189,6 +192,10 @@ a.brand-button {
 	padding-bottom: 12px;
 	line-height: 1.5;
 	text-decoration: none;
+}
+.brand-button:disabled {
+	background: var(--brand-accent-hover);
+	cursor: progress;
 }
 a.brand-button:hover {
 	color: var(--brand-light);

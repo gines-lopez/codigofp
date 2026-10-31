@@ -15,7 +15,7 @@ body {
 .hero {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: stretch;
+	align-items: flex-start;
 	gap: 48px;
 }
 .pitch {
@@ -35,6 +35,13 @@ body {
 }
 .proof {
 	flex: 1 1 320px;
+	max-width: 720px;
+}
+/* With the card beside the pitch, the 9,6 line above the form would say it twice. */
+@media (min-width: 960px) {
+	.proof-line {
+		display: none;
+	}
 }
 
 .brand-optin {

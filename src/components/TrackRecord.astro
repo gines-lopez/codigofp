@@ -13,7 +13,9 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
 <section class:list={['record', { compact }, className]} aria-label={head}>
-	<h2 class="record-head">{head} · Informática · Comunitat Valenciana</h2>
+	<h2 class="record-head">
+		<span>{head}</span> <span>· Informática</span> <span>· Comunitat Valenciana</span>
+	</h2>
 	{
 		showPast && (
 			<div class="record-row record-past">
@@ -61,9 +63,13 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 		letter-spacing: 0;
 		line-height: 1.4;
 	}
+	.record-head span {
+		white-space: nowrap;
+	}
 	.record-row {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: flex-start;
 		gap: 8px 24px;
 		padding: 24px;
 	}

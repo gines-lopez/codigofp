@@ -127,8 +127,8 @@ h1 {
 }
 .deliverable-list {
 	padding: 0;
-	border-top: 1px solid var(--brand-line);
-	border-bottom: 1px solid var(--brand-line);
+	border-top: 1px solid var(--brand-line-strong);
+	border-bottom: 1px solid var(--brand-line-strong);
 	list-style: none;
 }
 .deliverable {
@@ -138,7 +138,7 @@ h1 {
 	padding: 24px 0;
 }
 .deliverable + .deliverable {
-	border-top: 1px solid var(--brand-line);
+	border-top: 1px solid var(--brand-line-strong);
 }
 .deliverable-tag {
 	flex: 0 0 150px;
@@ -260,8 +260,15 @@ h1 {
 	}
 }
 @media (max-width: 600px) {
+	/* Margin line close to the edge so the text lines up with the wordmark. */
 	.libreta {
-		padding: 0 1rem;
+		padding: 0 16px 0 4px;
+	}
+	.ring {
+		top: -6px;
+		left: -8px;
+		width: calc(100% + 16px);
+		height: calc(100% + 12px);
 	}
 	.pitch {
 		padding-top: 32px;
