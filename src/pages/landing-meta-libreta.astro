@@ -18,6 +18,10 @@ const deliverables = [
 		tag: 'Vídeo · 6 min',
 		title: 'El orden, parte por parte',
 		text: 'Empieza en la sala, con la pregunta que me hicieron en mi defensa. Sin presentaciones.',
+		body: [
+			'Sabes qué has puesto. Lo que cuesta es explicar por qué está ahí y no en otro sitio.',
+			'En el vídeo te enseño el orden que hace que cada decisión tenga respuesta.',
+		],
 	},
 	{
 		tag: 'PDF · 20 min',
@@ -32,7 +36,7 @@ const deliverables = [
 	{
 		tag: 'PDF · 1 página',
 		title: 'El mapa, para imprimir',
-		text: 'Para la mesa.',
+		text: 'Una página: cada parte, su decisión y la pregunta que aguanta.',
 	},
 ];
 ---
@@ -44,7 +48,7 @@ const deliverables = [
 		<Font cssVariable="--font-kalam" />
 	</head>
 	<body>
-		<Header width={1072} />
+		<Header />
 		<main class="libreta">
 			<div class="margen">
 				<span class="nota" aria-hidden="true">¿y tu<br />respuesta?</span>
@@ -112,6 +116,7 @@ const deliverables = [
 									<div class="deliverable-body">
 										<h3 class="deliverable-title">{item.title}</h3>
 										<p class="deliverable-text">{item.text}</p>
+										{item.body?.map((paragraph) => <p class="deliverable-text">{paragraph}</p>)}
 										{item.checks && (
 											<p class="brand-label">así se ve cada pregunta del autodiagnóstico</p>
 										)}

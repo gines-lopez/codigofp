@@ -224,6 +224,17 @@ h1 {
 .back-to-form {
 	margin-top: 8px !important;
 }
+/* Solid ink so the grid paper doesn't show through the outlined button. */
+.back-to-form .brand-button--secondary,
+.back-to-form .brand-button--secondary:hover {
+	border-color: var(--brand-dark);
+	background: var(--brand-dark);
+	color: var(--brand-light);
+}
+.back-to-form .brand-button--secondary:hover {
+	border-color: var(--brand-graphite);
+	background: var(--brand-graphite);
+}
 .closing {
 	max-width: 640px;
 	margin-top: 16px !important;

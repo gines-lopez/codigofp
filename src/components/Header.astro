@@ -1,12 +1,3 @@
----
-// Max width of the nav, matched to the page's text column so the wordmark lines up with it.
-interface Props {
-	width?: number;
-}
-
-const { width = 1156 } = Astro.props;
----
-
 <header>
 	<nav>
 		<!-- Wordmark in text, never an image: "<Código" in ink, "FP>" in cobalt. -->
@@ -15,7 +6,7 @@ const { width = 1156 } = Astro.props;
 		>
 	</nav>
 </header>
-<style define:vars={{ navWidth: `${width}px` }}>
+<style>
 	header {
 		padding: 0 16px;
 		background: var(--header-bg, var(--brand-light));
@@ -26,7 +17,7 @@ const { width = 1156 } = Astro.props;
 		align-items: center;
 		justify-content: space-between;
 		gap: 8px 24px;
-		max-width: var(--navWidth);
+		max-width: 1156px;
 		margin: 0 auto;
 		padding: 16px 0;
 	}
