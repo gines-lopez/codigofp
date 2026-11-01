@@ -1,0 +1,143 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/dentro-claustro.css';
+
+// Lead magnet page. Reached only through the link in Kit's welcome email: never link to it from
+// the site. Private by obscurity: noindex here, excluded from the sitemap in astro.config.mjs, and
+// the PDFs get X-Robots-Tag from public/.htaccess. Do not add it to robots.txt (that would publish
+// the URL and hide the noindex from crawlers).
+const title = 'Tu material · CódigoFP';
+const description = 'El vídeo, el autodiagnóstico y el mapa del orden de CódigoFP.';
+
+// Unlisted YouTube video. Placeholder ID: replace it with the real video before sending the email.
+const YOUTUBE_ID = 'jNQXAC9IVRw';
+const VIDEO_TITLE = 'El orden en que se construye una programación defendible';
+const watchUrl = `https://www.youtube.com/watch?v=${YOUTUBE_ID}`;
+
+// Files live in public/dentro-claustro/. Update size and pages if a PDF changes.
+const files = {
+	diagnostico: { href: '/dentro-claustro/diagnostico-codigofp.pdf', meta: 'PDF · 8 páginas · 4,2 MB' },
+	mapa: { href: '/dentro-claustro/mapa-codigofp.pdf', meta: 'PDF · 1 página · 730 KB' },
+};
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} noindex />
+	</head>
+	<body>
+		<Header />
+		<main class="dentro">
+			<section class="intro">
+				<h1>Ya estás dentro</h1>
+				<p class="brand-lead">
+					Aquí tienes el vídeo y los dos PDF. Úsalos en este orden: primero el método, después tu
+					programación mirada con él y, al final, el mapa para tenerlo a la vista.
+				</p>
+			</section>
+
+			<ol class="steps">
+				<li class="step">
+					<h2><span class="step-number">01</span> Mira el vídeo</h2>
+					<p class="step-meta">6 minutos</p>
+					<div class="video" data-video-id={YOUTUBE_ID} data-video-title={VIDEO_TITLE}>
+						<a class="video-facade" href={watchUrl} target="_blank" rel="noopener">
+							<span class="video-title">{VIDEO_TITLE}</span>
+							<span class="video-play" aria-hidden="true">
+								<svg viewBox="0 0 24 24" width="24" height="24" focusable="false">
+									<path d="M8 5.5v13a.5.5 0 0 0 .77.42l10.2-6.5a.5.5 0 0 0 0-.84L8.77 5.08A.5.5 0 0 0 8 5.5Z" fill="currentColor"></path>
+								</svg>
+							</span>
+							<span class="video-duration" aria-hidden="true">6 min</span>
+							<span class="sr-only">. Reproducir vídeo, 6 minutos</span>
+						</a>
+					</div>
+					<p class="step-text">
+						Por qué una programación que cumple con todo se cae en la defensa, y el orden en que se
+						toman las decisiones para que no pase.
+					</p>
+					<p class="step-note">
+						¿No se reproduce? <a href={watchUrl} target="_blank" rel="noopener"
+							>Ábrelo en YouTube<span class="sr-only"> (se abre en otra pestaña)</span></a
+						>.
+					</p>
+				</li>
+
+				<li class="step">
+					<h2><span class="step-number">02</span> Haz el autodiagnóstico</h2>
+					<p class="step-meta">20 minutos, con tu programación delante</p>
+					<p class="step-text">
+						Tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas
+						muchas, ya sabes por dónde empezar.
+					</p>
+					<div class="download">
+						<a class="brand-button" href={files.diagnostico.href}>
+							<svg class="download-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+								<path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+							Descargar el autodiagnóstico<span class="sr-only">, {files.diagnostico.meta}</span>
+						</a>
+						<p class="download-meta" aria-hidden="true">{files.diagnostico.meta}</p>
+					</div>
+				</li>
+
+				<li class="step">
+					<h2><span class="step-number">03</span> Imprime el mapa</h2>
+					<p class="step-meta">Una hoja, siempre a la vista</p>
+					<p class="step-text">
+						El orden completo de las decisiones, fase a fase. Imprímelo en horizontal y úsalo mientras
+						trabajas en tu programación.
+					</p>
+					<div class="download">
+						<a class="brand-button brand-button--secondary" href={files.mapa.href}>
+							<svg class="download-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+								<path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+							Descargar el mapa<span class="sr-only">, {files.mapa.meta}</span>
+						</a>
+						<p class="download-meta" aria-hidden="true">{files.mapa.meta}</p>
+					</div>
+				</li>
+			</ol>
+
+			<section class="after">
+				<h2>Lo que llega después</h2>
+				<p>Cada martes, un correo con una de esas decisiones a fondo.</p>
+				<p>
+					Trata de una sola cosa: cómo construir tu programación didáctica de FP y cómo defenderla
+					ante el tribunal. Estructura, evaluación por RA y CE, defensa oral y baremo. No trata del
+					tema escrito ni del supuesto práctico.
+				</p>
+				<p>Si no te sirve, te das de baja con un clic.</p>
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			// Click-to-load: nothing is requested from YouTube until the visitor presses play.
+			// Without JS the facade stays a plain link to the video.
+			document.querySelectorAll<HTMLElement>('.video[data-video-id]').forEach((video) => {
+				const facade = video.querySelector<HTMLAnchorElement>('.video-facade');
+				if (!facade) return;
+				facade.removeAttribute('target');
+				facade.addEventListener('click', (event) => {
+					if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+					event.preventDefault();
+					const iframe = document.createElement('iframe');
+					iframe.src = `https://www.youtube-nocookie.com/embed/${video.dataset.videoId}?autoplay=1&rel=0&modestbranding=1`;
+					iframe.title = video.dataset.videoTitle ?? 'Vídeo';
+					iframe.allow =
+						'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+					iframe.allowFullscreen = true;
+					iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+					video.replaceChildren(iframe);
+					video.classList.add('is-playing');
+					iframe.focus();
+				});
+			});
+		</script>
+	</body>
+</html>
