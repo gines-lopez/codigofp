@@ -1,0 +1,65 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/gracias.css';
+
+// Landing page after confirming the email (Kit's post-confirmation redirect).
+// Flow: form → /gracias → confirmation email → this page → welcome email → /dentro-claustro (video + PDFs).
+// The welcome email is already on its way, so the only goal is sending the visitor back to the inbox.
+// Reached only through Kit's redirect: never link to it.
+const title = 'Suscripción confirmada · CódigoFP';
+const description = 'Suscripción a CódigoFP confirmada. El enlace al vídeo y a los PDF te espera en tu correo.';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} noindex />
+	</head>
+	<body>
+		<Header />
+		<main class="gracias">
+			<section class="intro">
+				<p class="brand-label">newsletter de CódigoFP</p>
+				<h1>Confirmado. Mira tu correo</h1>
+				<p class="brand-lead">
+					Te acabo de enviar un correo con el enlace al vídeo del roadmap y a los dos PDF. Ábrelo
+					ahora: termina con una pregunta.
+				</p>
+				<div class="mail-buttons">
+					<a class="brand-button" href="https://mail.google.com" target="_blank" rel="noopener"
+						>Abrir Gmail<span class="sr-only"> (se abre en otra pestaña)</span></a
+					>
+					<a
+						class="brand-button brand-button--secondary"
+						href="https://outlook.office.com/mail/"
+						target="_blank"
+						rel="noopener">Abrir Outlook<span class="sr-only"> (se abre en otra pestaña)</span></a
+					>
+				</div>
+			</section>
+
+			<section class="block">
+				<h2>Si no lo ves</h2>
+				<p>
+					Mira en Promociones o en spam. Si está ahí, muévelo a Principal: así el correo del martes
+					no se te pasa.
+				</p>
+			</section>
+
+			<section class="block">
+				<h2>A partir de ahora</h2>
+				<p>
+					Un correo cada martes sobre cómo construir tu programación didáctica y cómo defenderla
+					ante el tribunal. No trata del tema escrito ni del supuesto práctico.
+				</p>
+				<p class="signature">
+					<strong>Ginés</strong><br />
+					CódigoFP — Una programación didáctica que entiendes tú primero.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

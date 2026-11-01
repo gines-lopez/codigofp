@@ -1,4 +1,4 @@
-/* Styles for /gracias only; imported from src/pages/gracias.astro. */
+/* Styles for /gracias and /confirmacion-suscripcion (the pair around the double opt-in). */
 body {
 	display: flex;
 	flex-direction: column;
