@@ -154,6 +154,11 @@ body {
 	gap: 8px 16px;
 	margin-top: 8px;
 }
+/* Same width for every download button: sized to the longest label. */
+.download .brand-button {
+	width: 304px;
+	justify-content: center;
+}
 .download-icon {
 	flex: 0 0 auto;
 }
