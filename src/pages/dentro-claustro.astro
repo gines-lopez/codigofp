@@ -2,9 +2,10 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { NEWSLETTER_EXCLUSION, NEWSLETTER_SCOPE } from '../consts';
 import '../styles/dentro-claustro.css';
 
-// Lead magnet page. Reached only through the link in Kit's welcome email: never link to it from
+// Lead magnet page. Reached only through the link in MailerLite's welcome email: never link to it from
 // the site. Private by obscurity: noindex here, excluded from the sitemap in astro.config.mjs, and
 // the PDFs get X-Robots-Tag from public/.htaccess. Do not add it to robots.txt (that would publish
 // the URL and hide the noindex from crawlers).
@@ -13,7 +14,7 @@ const description = 'El vídeo, el autodiagnóstico y el mapa del orden de Códi
 
 // Unlisted YouTube video. Placeholder ID: replace it with the real video before sending the email.
 const YOUTUBE_ID = 'jNQXAC9IVRw';
-const VIDEO_TITLE = 'El orden en que se construye una programación defendible';
+const VIDEO_TITLE = 'El orden, parte por parte';
 const watchUrl = `https://www.youtube.com/watch?v=${YOUTUBE_ID}`;
 
 // Files live in public/dentro-claustro/. Update size and pages if a PDF changes.
@@ -34,18 +35,24 @@ const files = {
 			<section class="intro">
 				<h1>Ya estás dentro</h1>
 				<p class="brand-lead">
-					Aquí tienes el vídeo y los dos PDF. Úsalos en este orden: primero el método, después tu
-					programación mirada con él y, al final, el mapa para tenerlo a la vista.
+					Aquí tienes el vídeo y los dos PDF, en el orden en que se usan: primero el método, después
+					tu programación mirada con él y, al final, el mapa para tenerlo a la vista.
 				</p>
 			</section>
 
 			<ol class="steps">
 				<li class="step">
-					<h2><span class="step-number">01</span> Mira el vídeo</h2>
+					<h2><span class="step-number">01</span> El vídeo</h2>
 					<p class="step-meta">6 minutos</p>
 					<div class="video" data-video-id={YOUTUBE_ID} data-video-title={VIDEO_TITLE}>
 						<a class="video-facade" href={watchUrl} target="_blank" rel="noopener">
-							<span class="video-title">{VIDEO_TITLE}</span>
+							<span class="video-head">
+								<span class="video-title">{VIDEO_TITLE}</span>
+								<span class="video-question"
+									><span class="video-question-label">// la pregunta del tribunal, 2025</span>
+									«¿Por qué usas unidades de programación en lugar de unidades de trabajo?»</span
+								>
+							</span>
 							<span class="video-play" aria-hidden="true">
 								<svg viewBox="0 0 24 24" width="24" height="24" focusable="false">
 									<path d="M8 5.5v13a.5.5 0 0 0 .77.42l10.2-6.5a.5.5 0 0 0 0-.84L8.77 5.08A.5.5 0 0 0 8 5.5Z" fill="currentColor"></path>
@@ -67,7 +74,7 @@ const files = {
 				</li>
 
 				<li class="step">
-					<h2><span class="step-number">02</span> Haz el autodiagnóstico</h2>
+					<h2><span class="step-number">02</span> El autodiagnóstico</h2>
 					<p class="step-meta">20 minutos, con tu programación delante</p>
 					<p class="step-text">
 						Tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas
@@ -85,7 +92,7 @@ const files = {
 				</li>
 
 				<li class="step">
-					<h2><span class="step-number">03</span> Imprime el mapa</h2>
+					<h2><span class="step-number">03</span> El mapa del orden</h2>
 					<p class="step-meta">Una hoja, siempre a la vista</p>
 					<p class="step-text">
 						El orden completo de las decisiones, fase a fase. Imprímelo en horizontal y úsalo mientras
@@ -105,13 +112,12 @@ const files = {
 
 			<section class="after">
 				<h2>Lo que llega después</h2>
-				<p>Cada martes, un correo con una de esas decisiones a fondo.</p>
-				<p>
-					Trata de una sola cosa: cómo construir tu programación didáctica de FP y cómo defenderla
-					ante el tribunal. Estructura, evaluación por RA y CE, defensa oral y baremo. No trata del
-					tema escrito ni del supuesto práctico.
-				</p>
+				<p>{NEWSLETTER_SCOPE} {NEWSLETTER_EXCLUSION}</p>
 				<p>Si no te sirve, te das de baja con un clic.</p>
+				<p class="signature">
+					<strong>Ginés</strong><br />
+					CódigoFP — Una programación didáctica que entiendes tú primero.
+				</p>
 			</section>
 		</main>
 		<Footer />

@@ -2,8 +2,9 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import SubscribeForm from '../components/SubscribeForm.astro';
-import { SITE_TITLE } from '../consts';
+import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
+import LeadMagnet from '../components/LeadMagnet.astro';
+import { NEWSLETTER_SCOPE, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
@@ -22,18 +23,15 @@ import { SITE_TITLE } from '../consts';
 				<p class="brand-label">error 404</p>
 				<h1>Esta página no entraba en el temario</h1>
 				<p class="lead">
-					Es como sacar del bombo justo el tema que no te habías estudiado: te quedas en blanco
-					mirando al tribunal. Tranquilo, aquí nadie te va a puntuar. Ni la página existe, ni
-					cuenta para la nota.
+					Es como sacar del bombo el tema que no habías estudiado. Por suerte, esto no puntúa: la
+					página no existe. Puedes <a href="/">volver al inicio</a>.
 				</p>
-				<p class="lead">
-					Lo que sí cuenta es tu Programación Didáctica. Apúntate a la newsletter y que la próxima
-					bola te pille con los deberes hechos.
+				<p class="lead lead-offer">Lo que sí puntúa es tu programación didáctica. {NEWSLETTER_SCOPE}</p>
+				<SubscribeFormMailerLite />
+				<p class="brand-optin-note form-note">
+					Te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
 				</p>
-				<SubscribeForm />
-			</section>
-			<section class="back">
-				<p>O, si prefieres, <a href="/">vuelve al inicio</a> y haz como que esto no ha pasado.</p>
+				<LeadMagnet class="form-magnet" />
 			</section>
 		</main>
 		<Footer />
@@ -61,24 +59,19 @@ import { SITE_TITLE } from '../consts';
 	.lead {
 		margin: 0 0 16px;
 		color: var(--brand-graphite);
-		font-size: 19px;
-		line-height: 1.6;
 	}
-	.lead:last-of-type {
+	.form-note {
+		margin-top: 16px;
+	}
+	.hero :global(.form-magnet) {
+		margin-top: 32px;
+	}
+	.lead-offer {
 		margin-bottom: 32px;
-	}
-	.back {
-		margin-top: 64px;
 	}
 	@media (max-width: 600px) {
 		.not-found {
 			padding: 32px 16px 64px;
-		}
-		.lead {
-			font-size: 17px;
-		}
-		.back {
-			margin-top: 48px;
 		}
 	}
 </style>

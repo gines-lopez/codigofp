@@ -33,7 +33,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	margin-top: 24px;
+	margin-top: 64px;
 }
 .points ol {
 	display: flex;
@@ -48,6 +48,17 @@ body {
 	gap: 16px;
 	line-height: 1.6;
 }
+.point-title {
+	display: block;
+	margin-bottom: 4px;
+	color: var(--brand-dark);
+	font-weight: 600;
+	line-height: 1.45;
+}
+.point-text {
+	display: block;
+	color: var(--brand-graphite);
+}
 .point-number {
 	flex: 0 0 auto;
 	padding-top: 2px;
@@ -57,11 +68,21 @@ body {
 	font-weight: 500;
 }
 
+.early-cta {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
 .cta {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
 	margin-top: 48px;
+}
+/* Back to the first form instead of a second one. */
+.end-cta {
+	margin: 0;
 }
 
 @media (max-width: 600px) {

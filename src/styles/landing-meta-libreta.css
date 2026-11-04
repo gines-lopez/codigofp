@@ -9,12 +9,6 @@
 	/* Let the grid paper run under the header. */
 	--header-bg: transparent;
 }
-/* «Quiero los tres» scrolls back up to the form; smooth unless the visitor asked for less motion. */
-@media (prefers-reduced-motion: no-preference) {
-	html {
-		scroll-behavior: smooth;
-	}
-}
 body {
 	display: flex;
 	flex-direction: column;
@@ -73,7 +67,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	max-width: 860px;
+	max-width: 720px;
 	padding: 64px 0 48px;
 }
 h1 {
@@ -104,7 +98,7 @@ h1 {
 	animation: ring-draw 900ms cubic-bezier(0.65, 0.05, 0.35, 1) 550ms forwards;
 }
 .brand-lead {
-	max-width: 660px;
+	max-width: 720px;
 }
 
 .brand-optin {
@@ -118,7 +112,7 @@ h1 {
 
 /* Track record card (TrackRecord component), opaque over the grid. */
 .libreta-record {
-	max-width: 660px;
+	max-width: 720px;
 	margin-bottom: 48px;
 	background: var(--brand-light);
 }
@@ -128,7 +122,7 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	max-width: 860px;
+	max-width: 720px;
 	padding-bottom: 48px;
 }
 .deliverable-list {
@@ -221,22 +215,11 @@ h1 {
 	stroke-width: 2.6;
 	stroke-linecap: round;
 }
-.back-to-form {
-	margin-top: 8px !important;
-}
-/* Solid ink so the grid paper doesn't show through the outlined button. */
-.back-to-form .brand-button--secondary,
-.back-to-form .brand-button--secondary:hover {
-	border-color: var(--brand-dark);
-	background: var(--brand-dark);
-	color: var(--brand-light);
-}
-.back-to-form .brand-button--secondary:hover {
-	border-color: var(--brand-graphite);
-	background: var(--brand-graphite);
+.end-cta {
+	margin-top: 24px !important;
 }
 .closing {
-	max-width: 640px;
+	max-width: 720px;
 	margin-top: 16px !important;
 	color: var(--brand-dark);
 	font-size: 20px;
@@ -269,17 +252,33 @@ h1 {
 }
 
 @media (max-width: 760px) {
+	/* No room for a side margin: the note moves above the page, still in pen, still rotated. */
+	.libreta {
+		flex-direction: column;
+	}
 	.margen {
-		display: none;
+		flex: none;
+		justify-content: flex-end;
+		padding: 24px 8px 0 0;
+	}
+	.nota {
+		font-size: 24px;
 	}
 	.hoja {
 		padding-left: 12px;
 	}
 }
 @media (max-width: 600px) {
-	/* Margin line close to the edge so the text lines up with the wordmark. */
+	/* Margin line 8px in from the edge, text still on the wordmark's 18px axis. */
 	.libreta {
-		padding: 0 16px 0 4px;
+		padding: 0 16px 0 8px;
+	}
+	.hoja {
+		padding-left: 8px;
+	}
+	/* The note sits right on top of the sheet, next to where the H1 starts. */
+	.margen {
+		padding-top: 16px;
 	}
 	.ring {
 		top: -6px;
@@ -288,6 +287,6 @@ h1 {
 		height: calc(100% + 12px);
 	}
 	.pitch {
-		padding-top: 32px;
+		padding-top: 0;
 	}
 }

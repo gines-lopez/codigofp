@@ -1,0 +1,32 @@
+---
+// Landing opt-in form (.brand-optin), same markup and fields as the hero forms of the landings.
+// Submitted to MailerLite by src/scripts/mailerlite-optin.ts, which the page must import.
+// `id` must be unique on the page; the slot is the reassurance note under the row.
+import { MAILERLITE_FORM_ACTION } from '../consts';
+
+interface Props {
+	id: string;
+	class?: string;
+}
+
+const { id, class: className } = Astro.props;
+---
+
+<form class:list={['brand-optin', className]} action={MAILERLITE_FORM_ACTION} method="post">
+	<input type="hidden" name="ml-submit" value="1" />
+	<input type="hidden" name="anticsrf" value="true" />
+	<label for={id}>¿A qué correo te lo mando?</label>
+	<div class="brand-optin-row">
+		<input
+			class="brand-input"
+			id={id}
+			name="fields[email]"
+			type="email"
+			placeholder="tucorreo@ejemplo.com"
+			autocomplete="email"
+			required
+		/>
+		<button class="brand-button" type="submit">Mándamelo</button>
+	</div>
+	<p class="brand-optin-note"><slot /></p>
+</form>

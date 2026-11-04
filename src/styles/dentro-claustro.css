@@ -119,6 +119,27 @@ body {
 	line-height: 1.2;
 	text-wrap: balance;
 }
+.video-head {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+/* The question the video opens with: what the visitor is about to hear, not decoration. */
+.video-question {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	max-width: 44ch;
+	color: var(--brand-on-dark);
+	font-size: 17px;
+	line-height: 1.45;
+}
+.video-question-label {
+	color: var(--brand-accent-on-dark);
+	font-family: var(--font-mono);
+	font-size: 14px;
+	line-height: 1.4;
+}
 .video-play {
 	display: grid;
 	width: 64px;
@@ -174,6 +195,16 @@ body {
 	flex-direction: column;
 	gap: 16px;
 }
+.signature {
+	color: var(--brand-graphite);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.5;
+}
+.signature strong {
+	color: var(--brand-dark);
+	font-size: 17px;
+}
 
 @media (prefers-reduced-motion: reduce) {
 	.video-play {
@@ -203,6 +234,10 @@ body {
 	}
 	.video-title {
 		font-size: 20px;
+	}
+	/* No room for the question in a 16:9 poster on a phone; the step text below covers it. */
+	.video-question {
+		display: none;
 	}
 	.video-play {
 		width: 48px;

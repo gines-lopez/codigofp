@@ -1,0 +1,225 @@
+---
+// MailerLite inline form, used on the home and the 404. The landings post their own .brand-optin
+// forms to the same MailerLite form through src/scripts/mailerlite-optin.ts. The Kit version
+// (SubscribeForm.astro) is kept inactive.
+// The embed is kept in mailerlite-form.html so it can be replaced by pasting a new code
+// from MailerLite. Edits to the paste (redo them on a new one): the Open Sans @import is
+// removed (fonts are self-hosted), the buttons read «Mándamelo», the email input has
+// placeholder="tucorreo@ejemplo.com" and id="ml-email" (named by the visible label below), the loading text reads «Enviando…» and the
+// success title is a <p class="ml-success-title"> instead of an <h4>, so it never breaks the
+// page's heading order.
+import formHtml from './mailerlite-form.html?raw';
+---
+
+<div class="subscribe-ml">
+	<label class="ml-label" for="ml-email">¿A qué correo te lo mando?</label>
+	<Fragment set:html={formHtml} />
+	<p class="ml-error-text" id="ml-email-error" role="alert" hidden>
+		Ese email no parece válido. Revisa que esté bien escrito.
+	</p>
+</div>
+<script>
+	// MailerLite only marks an invalid email with .ml-error on the field group; say it in words too.
+	const group = document.querySelector('#mlb2-47974649 .ml-field-email');
+	const input = document.getElementById('ml-email');
+	const message = document.getElementById('ml-email-error');
+	if (group && input && message) {
+		const sync = () => {
+			const invalid = group.classList.contains('ml-error');
+			message.hidden = !invalid;
+			if (invalid) input.setAttribute('aria-describedby', 'ml-email-error');
+			else input.removeAttribute('aria-describedby');
+		};
+		new MutationObserver(sync).observe(group, { attributes: true, attributeFilter: ['class'] });
+	}
+</script>
+<style is:global>
+	/*
+	 * Brand look for MailerLite's embed. Its selectors start with the #mlb2-47974649 id and
+	 * use !important, so every override is prefixed with .subscribe-ml to win on specificity.
+	 */
+	/* Written error under the row, in ink like .brand-optin-error. */
+	.subscribe-ml .ml-error-text {
+		margin: 8px 0 0;
+		padding: 8px 16px;
+		border: 1px solid var(--brand-accent);
+		border-radius: 8px;
+		color: var(--brand-dark);
+		font-size: 14px;
+		line-height: 1.5;
+		text-align: left;
+	}
+	/* Visible label, as .brand-optin label on the landings. */
+	.subscribe-ml .ml-label {
+		display: block;
+		margin-bottom: 8px;
+		color: var(--brand-dark);
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.5;
+		text-align: left;
+	}
+	/* MailerLite paints error labels pure red; the brand marks errors in ink, never red. */
+	.subscribe-ml #mlb2-47974649 .ml-error .label-description,
+	.subscribe-ml #mlb2-47974649 .ml-error .label-description p,
+	.subscribe-ml #mlb2-47974649 .ml-error .label-description p a,
+	.subscribe-ml #mlb2-47974649 .ml-error label:first-child {
+		color: var(--brand-dark) !important;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer {
+		display: block;
+		max-width: 720px;
+		margin: 0;
+		font-family: var(--font-inter);
+	}
+	.subscribe-ml #mlb2-47974649 .ml-form-align-center {
+		text-align: left;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper.embedForm {
+		display: block !important;
+		max-width: 720px;
+		border-radius: 0;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody {
+		padding: 0;
+	}
+	.subscribe-ml #mlb2-47974649 .ml-form-embedContent {
+		display: none;
+	}
+	/* Flex instead of MailerLite's floats: input and button in a row on desktop. */
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent.horozintalForm {
+		/* !important: below 400px MailerLite forces float:left!important, which swallows the
+		   8px gap above the mobile button. */
+		float: none !important;
+		padding: 0 !important;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow {
+		display: flex;
+		float: none !important;
+		gap: 8px;
+	}
+	.subscribe-ml #mlb2-47974649 .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-input-horizontal {
+		flex: 1 1 auto;
+		width: auto !important;
+		float: none;
+	}
+	.subscribe-ml #mlb2-47974649 .ml-form-formContent.horozintalForm .ml-form-horizontalRow .horizontal-fields {
+		float: none;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	.subscribe-ml #mlb2-47974649 .ml-form-formContent.horozintalForm .ml-form-horizontalRow .ml-button-horizontal {
+		flex: 0 0 auto;
+		width: auto !important;
+		float: none;
+	}
+	/* Input */
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input {
+		height: 48px;
+		padding: 0 16px;
+		border: 1px solid var(--brand-line-strong) !important;
+		border-radius: 8px;
+		background: transparent;
+		color: var(--brand-dark);
+		font: 500 16px var(--font-inter);
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input::placeholder {
+		color: var(--brand-graphite);
+		opacity: 1;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus-visible {
+		/* 2px cobalt, as .brand-input: a 1px colour change alone is too weak a focus cue. */
+		border: 2px solid var(--brand-accent) !important;
+		padding: 0 15px;
+		outline: none;
+		box-shadow: var(--brand-focus-ring);
+	}
+	/*
+	 * Invalid email: 2px ink border, as .brand-input. No red. The selector repeats the base
+	 * input chain plus .ml-error so it outranks the !important border above.
+	 */
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .ml-error input {
+		border: 2px solid var(--brand-dark) !important;
+		padding: 0 15px;
+	}
+	/* Button (desktop and the mobile copy MailerLite ships) */
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button,
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-mobileButton-horizontal button {
+		height: 48px;
+		padding: 0 24px !important;
+		border: 0 !important;
+		border-radius: 8px !important;
+		background-color: var(--brand-accent) !important;
+		color: var(--brand-light) !important;
+		font: 500 16px/48px var(--font-inter) !important;
+		white-space: nowrap;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button:hover,
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-mobileButton-horizontal button:hover,
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer button.loading {
+		background-color: var(--brand-accent-hover) !important;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer button:focus-visible {
+		outline: 2px solid var(--brand-accent);
+		outline-offset: 2px;
+	}
+	.subscribe-ml #mlb2-47974649 button.loading {
+		align-items: center;
+		justify-content: center;
+		cursor: progress !important;
+	}
+	.subscribe-ml #mlb2-47974649 .ml-form-embedSubmitLoad::after {
+		border-color: var(--brand-light) var(--brand-light) var(--brand-light) transparent;
+	}
+	/* Success fallback (normally the form redirects to /gracias/). */
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent {
+		padding: 16px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent .ml-success-title,
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p {
+		color: var(--brand-dark);
+		font-family: var(--font-inter);
+		font-size: 17px;
+		line-height: 1.6;
+	}
+	.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent .ml-success-title {
+		font-weight: 600;
+	}
+	/* Desktop: input and button joined into one control, the shared edge squared off. */
+	@media (min-width: 601px) {
+		.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow {
+			gap: 0;
+		}
+		.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input {
+			border-right: 0 !important;
+			border-radius: 8px 0 0 8px;
+		}
+		.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button {
+			border-radius: 0 8px 8px 0 !important;
+		}
+		.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow .ml-error input {
+			border-right: 0 !important;
+			padding-right: 16px;
+		}
+	}
+	/* Mobile: stacked at full width, using MailerLite's mobile button (MailerLite does this at 400px; the site at 600px, like the landings). */
+	@media (max-width: 600px) {
+		.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow {
+			flex-direction: column;
+		}
+		.subscribe-ml #mlb2-47974649 .ml-form-formContent.horozintalForm .ml-button-horizontal {
+			display: none !important;
+		}
+		.subscribe-ml #mlb2-47974649 .ml-mobileButton-horizontal {
+			display: block !important;
+			width: 100%;
+			margin: 8px 0 0 !important;
+		}
+		.subscribe-ml #mlb2-47974649.ml-form-embedContainer .ml-mobileButton-horizontal button {
+			width: 100% !important;
+		}
+	}
+</style>

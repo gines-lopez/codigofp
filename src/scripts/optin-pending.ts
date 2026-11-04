@@ -1,3 +1,4 @@
+// INACTIVE: kept in case the site goes back to Kit; landings now use mailerlite-optin.ts.
 // Landing opt-in forms post straight to Kit: show that the tap registered and block a second
 // submit on slow connections. Restores the button if the visitor comes back with the back button.
 const forms = document.querySelectorAll<HTMLFormElement>('form.brand-optin');

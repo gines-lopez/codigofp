@@ -13,7 +13,6 @@
 	--brand-line-strong: #878a91; /* Niebla densa: borde de campos (3:1 sobre hueso) */
 	--brand-accent: #1e3a8a; /* Cobalto seco: acento, botón, links */
 	--brand-accent-hover: #172e6e;
-	--brand-secondary: #b45309; /* Ámbar tinta: sin uso por ahora */
 	--brand-accent-on-dark: #7b9bea; /* Solo sobre fondo tinta */
 	--brand-on-dark: rgba(250, 250, 247, 0.65); /* Texto secundario sobre tinta */
 	--brand-focus-ring: 0 0 0 3px rgba(30, 58, 138, 0.18);
@@ -118,9 +117,10 @@ pre {
 pre > code {
 	all: unset;
 }
+/* Quotes: a 1px niebla rule, as every other border in the system; no coloured stripe. */
 blockquote {
-	border-left: 4px solid var(--brand-accent);
-	padding: 0 0 0 20px;
+	border-left: 1px solid var(--brand-line-strong);
+	padding: 0 0 0 24px;
 	margin: 0;
 	font-size: 1.333em;
 }
@@ -164,7 +164,9 @@ hr {
 	padding: 0 15px;
 }
 .brand-input:focus-visible {
-	border-color: var(--brand-accent);
+	/* 2px cobalt: a 1px colour change alone is too weak a focus cue. */
+	border: 2px solid var(--brand-accent);
+	padding: 0 15px;
 	outline: none;
 	box-shadow: var(--brand-focus-ring);
 }
@@ -242,6 +244,15 @@ a.brand-button--secondary:hover {
 }
 .brand-optin .brand-button {
 	flex: 0 0 auto;
+}
+.brand-optin-error {
+	margin: 0;
+	padding: 8px 16px;
+	border: 1px solid var(--brand-accent);
+	border-radius: 8px;
+	color: var(--brand-dark);
+	font-size: 14px;
+	line-height: 1.5;
 }
 .brand-optin-note {
 	margin: 0;

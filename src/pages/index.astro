@@ -2,8 +2,56 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import SubscribeForm from '../components/SubscribeForm.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
+import { NEWSLETTER_SCOPE, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const figures = [
+	{ value: '0,13', text: 'puntos me separaron de la plaza en 2023.', accent: false },
+	{ value: '9,6', text: 'en la defensa de la programación didáctica, en 2025.', accent: true },
+	{
+		value: '1.º',
+		text: 'en la defensa: la mejor nota de mi tribunal y de mi especialidad.',
+		accent: false,
+	},
+	{
+		value: '4.º',
+		text: 'en el concurso-oposición completo: tema, práctico, defensa y méritos.',
+		accent: false,
+	},
+];
+
+const timeline = [
+	{
+		when: 'Antes de 2022',
+		title: 'Desarrollador web',
+		text: 'Más de diez años programando. Terminé DAW a los 32.',
+	},
+	{
+		when: '2022',
+		title: 'Docente de FP de Informática',
+		text: 'A los 37 dejé el desarrollo para dar clase. Soy hijo de docentes.',
+	},
+	{
+		when: '2023',
+		title: 'Primera oposición',
+		text: 'Me quedé fuera por centésimas. Esa noche monté cinco hojas de Excel para entender por qué.',
+	},
+	{
+		when: '2023–2025',
+		title: 'Cambio de método',
+		text: 'Un máster para subir baremo, preparadores nuevos y dos cursos cambiando el orden de trabajo.',
+	},
+	{
+		when: '2025',
+		title: 'Plaza y funcionario en prácticas',
+		text: 'Segunda oposición, con la programación hecha en otro orden. Esta vez, con plaza.',
+	},
+	{
+		when: '2026',
+		title: 'Funcionario de carrera y CódigoFP',
+		text: 'Cada martes escribo sobre normativa, programación didáctica, la oposición y lo que es vivir opositando.',
+	},
+];
 ---
 
 <!doctype html>
@@ -16,21 +64,85 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<main class="home">
 			<section class="hero">
 				<p class="brand-label">oposiciones de FP</p>
-				<h1>Cómo hacer una Programación Didáctica que te dé la plaza</h1>
-				<p class="lead">{SITE_DESCRIPTION}</p>
-				<SubscribeForm />
-				<p class="brand-optin-note home-note">
-					Cada martes, un correo. Te das de baja con un clic. <a href="/politica-privacidad/"
-						>Política de privacidad</a
-					>.
-				</p>
+				<h1>La programación didáctica que convence al tribunal es la que sabes defender</h1>
+				<p class="brand-lead lead">{SITE_DESCRIPTION}</p>
+				<div class="hero-form" id="suscripcion">
+					<SubscribeFormMailerLite />
+					<p class="brand-optin-note">
+						Te das de baja con un clic. <a href="/politica-privacidad/"
+							>Política de privacidad</a
+						>.
+					</p>
+					<p class="hero-story">
+						<strong>¿No sabes si tu programación está bien hecha?</strong> Al confirmar tu email te
+						llega con qué comprobarlo: un vídeo de seis minutos, <em>«El orden, parte por parte»</em>;
+						un autodiagnóstico de veinte minutos para ver si aguanta cada por qué
+						del tribunal, y <em>«El mapa del orden»</em> en una página.
+					</p>
+				</div>
 			</section>
-			<section class="pitch">
-				<h2>Deja de estudiar, <strong>oposita a FP</strong></h2>
-				<p>¿Puedes defender tu Programación Didáctica a un niño?</p>
+
+			<section class="figures" aria-labelledby="figures-title">
+				<h2 id="figures-title">Dos convocatorias, cuatro cifras</h2>
+				<p class="section-note">Especialidad de Informática, Comunitat Valenciana.</p>
+				<ul class="figure-grid">
+					{
+						figures.map((f) => (
+							<li class="figure">
+								<span class:list={['figure-value', { accent: f.accent }]}>{f.value}</span>
+								<span class="figure-text">{f.text}</span>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<section class="author" aria-labelledby="author-title">
+				<!-- Placeholder until the photo arrives: swap for <img src=… alt="Ginés" width="112" height="112">. -->
+				<div class="author-photo" aria-hidden="true"></div>
+				<div class="author-body">
+					<h2 id="author-title">¿Quién está detrás?</h2>
+					<p>
+						Soy Ginés, docente de FP de Informática y funcionario de carrera. Antes fui desarrollador
+						web durante más de diez años.
+					</p>
+					<p>
+						En 2023 tenía una programación que cumplía con todo y no supe defenderla. En 2025 no
+						estudié más: cambié el orden en que tomaba las decisiones. Desde entonces he ayudado a una
+						decena de compañeros a preparar su defensa, y casi todos fallan en lo mismo: no saben
+						interpretar la ley y contestan citándola.
+					</p>
+					<p class="author-line">Dejé de estudiar una oposición para empezar a opositar.</p>
+				</div>
+			</section>
+
+			<section class="path" aria-labelledby="path-title">
+				<h2 id="path-title">De desarrollador a funcionario de carrera</h2>
+				<ol class="timeline">
+					{
+						timeline.map((step, i) => (
+							<li class:list={['step', { current: i === timeline.length - 1 }]}>
+								<p class="step-when">{step.when}</p>
+								<div class="step-body">
+									<h3>{step.title}</h3>
+									<p>{step.text}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+
+			<section class="close" aria-labelledby="close-title">
+				<h2 id="close-title">Cumplir la normativa no es defender una programación.</h2>
+				<p class="section-note">{NEWSLETTER_SCOPE}</p>
+				<a class="brand-button" href="#suscripcion" data-scroll-to-form>Suscribirme</a>
 			</section>
 		</main>
 		<Footer />
+		<script>
+			import '../scripts/scroll-to-form';
+		</script>
 	</body>
 </html>
 <style>
@@ -44,52 +156,260 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		width: 752px;
 		max-width: 100%;
 		box-sizing: border-box;
-		padding: 48px 16px 96px;
+		padding: 64px 16px 96px;
+	}
+	.home h2 {
+		margin: 0;
+	}
+	.section-note {
+		margin: 8px 0 0;
+		color: var(--brand-graphite);
+	}
+
+	/* Hero: centered, fastlaunchr-style column. */
+	.hero {
+		text-align: center;
 	}
 	.hero .brand-label {
 		margin-bottom: 24px;
 	}
-	h1 {
-		margin: 0 0 24px;
+	.hero h1 {
+		margin: 0 auto 24px;
+		max-width: 680px;
 	}
 	.lead {
-		margin: 0 0 32px;
+		max-width: 600px;
+		margin: 0 auto 32px;
 		color: var(--brand-graphite);
-		font-size: 19px;
-		line-height: 1.6;
 	}
-	.home-note {
-		margin-top: 8px;
+	.hero-form {
+		max-width: 520px;
+		margin: 0 auto;
+		scroll-margin-top: 96px;
 	}
-	.pitch {
+	.hero-form .brand-optin-note {
+		margin-top: 16px;
+	}
+	/* Under the form: the pain, then what arrives. Running text, left-aligned to read. */
+	.hero-story {
+		margin: 32px 0 0;
+		color: var(--brand-graphite);
+		text-align: left;
+	}
+	.hero-story strong {
+		color: var(--brand-dark);
+		font-weight: 600;
+	}
+	.hero-story em {
+		color: var(--brand-dark);
+		font-style: normal;
+		font-weight: 500;
+	}
+
+	/* Figures: four real numbers in place of testimonial cards. */
+	.figures {
+		margin-top: 96px;
+		text-align: center;
+	}
+	.figure-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 16px;
+		margin: 32px 0 0;
+		padding: 0;
+		list-style: none;
+		text-align: left;
+	}
+	.figure {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 24px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+	}
+	.figure-value {
+		color: var(--brand-dark);
+		font-size: 48px;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: -0.02em;
+		line-height: 1;
+	}
+	.figure-value.accent {
+		color: var(--brand-accent);
+	}
+	.figure-text {
+		color: var(--brand-graphite);
+		font-size: 17px;
+		line-height: 1.5;
+	}
+
+	/* Author: photo slot beside a short first-person block. */
+	.author {
+		display: grid;
+		grid-template-columns: 112px minmax(0, 1fr);
+		gap: 32px;
+		align-items: start;
 		margin-top: 96px;
 	}
-	.pitch h2 {
+	.author-photo {
+		width: 112px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: var(--brand-accent);
+	}
+	.author-body h2 {
+		margin-bottom: 16px;
+	}
+	.author-body p {
 		margin: 0 0 16px;
-		font-weight: 400;
 	}
-	.pitch h2 strong {
-		font-weight: 700;
-	}
-	.pitch p {
-		margin: 0;
-		color: var(--brand-graphite);
+	.author-line {
+		margin: 24px 0 0 !important;
 		font-size: 26px;
+		font-weight: 400;
 		letter-spacing: -0.01em;
 		line-height: 1.35;
 	}
+
+	/* Timeline: years in mono, one axis, the present step in cobalt. */
+	.path {
+		margin-top: 96px;
+	}
+	.timeline {
+		margin: 32px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	.step {
+		display: grid;
+		grid-template-columns: 128px minmax(0, 1fr);
+		gap: 24px;
+	}
+	.step-when {
+		margin: 0;
+		padding-top: 2px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 14px;
+		line-height: 1.5;
+		text-align: right;
+	}
+	.step-body {
+		position: relative;
+		padding: 0 0 32px 32px;
+		border-left: 1px solid var(--brand-line);
+	}
+	.step:last-child .step-body {
+		padding-bottom: 0;
+		border-left-color: transparent;
+	}
+	.step-body::before {
+		content: '';
+		position: absolute;
+		top: 6px;
+		left: -6px;
+		width: 9px;
+		height: 9px;
+		box-sizing: border-box;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 50%;
+		background: var(--brand-light);
+	}
+	.step.current .step-body::before {
+		border-color: var(--brand-accent);
+		background: var(--brand-accent);
+	}
+	.step-body h3 {
+		margin: 0 0 4px;
+		font-size: 17px;
+		font-weight: 600;
+		letter-spacing: 0;
+		line-height: 1.4;
+	}
+	.step-body p {
+		margin: 0;
+		color: var(--brand-graphite);
+	}
+
+	/* Close: brand sentence and a button back to the hero form. */
+	.close {
+		margin-top: 96px;
+		text-align: center;
+	}
+	.close h2 {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+	.close .brand-button {
+		margin-top: 32px;
+	}
+
 	@media (max-width: 600px) {
 		.home {
-			padding: 32px 16px 64px;
+			padding: 40px 16px 64px;
 		}
-		.lead {
-			font-size: 17px;
+		/* One alignment on a phone: the label, form and magnet are left-aligned, so the text is too. */
+		.hero,
+		.figures,
+		.close {
+			text-align: left;
 		}
-		.pitch {
+		.hero h1,
+		.lead,
+		.hero-form,
+		.close h2 {
+			margin-left: 0;
+		}
+		.figures,
+		.author,
+		.path,
+		.close {
 			margin-top: 64px;
 		}
-		.pitch p {
+		.figure-grid {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 8px;
+		}
+		.figure {
+			flex-direction: row;
+			align-items: baseline;
+			gap: 16px;
+			padding: 16px;
+		}
+		.figure-value {
+			flex: 0 0 88px;
+			font-size: 36px;
+		}
+		.author {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 24px;
+		}
+		.author-photo {
+			width: 88px;
+		}
+		.author-line {
 			font-size: 20px;
+		}
+		.step {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 0;
+		}
+		.step-when {
+			padding: 0 0 4px 32px;
+			border-left: 1px solid var(--brand-line);
+			text-align: left;
+		}
+		.step:last-child .step-when {
+			border-left-color: var(--brand-line);
+		}
+		.step-body::before {
+			top: -22px;
+		}
+		.close .brand-button {
+			width: 100%;
+			justify-content: center;
 		}
 	}
 </style>

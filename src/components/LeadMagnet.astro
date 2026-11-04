@@ -1,0 +1,86 @@
+---
+// What a new subscriber receives after confirming the email. Sits under the embed form on the
+// 404 (the home tells it as running text); the landings describe the same three items in their own sections.
+import { LEAD_MAGNET } from '../consts';
+
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['magnet', className]}>
+	<p class="magnet-head">Al confirmar tu email te llega:</p>
+	<ul class="magnet-list">
+		{
+			LEAD_MAGNET.map((item) => (
+				<li>
+					<span class="magnet-tag">{item.tag}</span>
+					<span class="magnet-name">{item.name}</span>
+				</li>
+			))
+		}
+	</ul>
+</div>
+
+<style>
+	.magnet {
+		box-sizing: border-box;
+		padding: 16px 24px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+		text-align: left;
+	}
+	.magnet-head {
+		margin: 0 0 16px;
+		color: var(--brand-dark);
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.5;
+	}
+	.magnet-list {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 16px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.magnet-list li {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		min-width: 0;
+	}
+	.magnet-tag {
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 14px;
+		line-height: 1.4;
+	}
+	.magnet-name {
+		color: var(--brand-dark);
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.4;
+	}
+	@media (max-width: 600px) {
+		.magnet {
+			padding: 16px;
+		}
+		.magnet-list {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 8px;
+		}
+		.magnet-list li {
+			flex-direction: row;
+			align-items: baseline;
+			gap: 16px;
+		}
+		.magnet-tag {
+			flex: 0 0 112px;
+			font-size: 13px;
+		}
+	}
+</style>

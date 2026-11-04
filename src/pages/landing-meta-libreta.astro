@@ -3,6 +3,8 @@ import { Font } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { NEWSLETTER_TOPICS } from '../consts';
+import OptinForm from '../components/OptinForm.astro';
 import TrackRecord from '../components/TrackRecord.astro';
 import '../styles/landing-meta-libreta.css';
 
@@ -10,8 +12,6 @@ const title = 'CódigoFP · El orden de una programación defendible';
 const description =
 	'El orden en que se construye una programación de FP que aguanta cada «por qué» del tribunal.';
 
-// Kit form that receives the subscriptions (same one as the home for now).
-const KIT_FORM_ID = '9943840';
 
 const deliverables = [
 	{
@@ -25,7 +25,7 @@ const deliverables = [
 	},
 	{
 		tag: 'PDF · 20 min',
-		title: '¿Tu programación aguanta el por qué?',
+		title: 'El autodiagnóstico: ¿tu programación aguanta el por qué?',
 		text: 'Cada ítem es una pregunta del tribunal. Tres casillas, y la del medio es la que duele.',
 		checks: [
 			{ label: 'Lo tengo y sé por qué lo decidí' },
@@ -35,7 +35,7 @@ const deliverables = [
 	},
 	{
 		tag: 'PDF · 1 página',
-		title: 'El mapa, para imprimir',
+		title: 'El mapa del orden',
 		text: 'Una página: cada parte, su decisión y la pregunta que aguanta.',
 	},
 ];
@@ -72,36 +72,13 @@ const deliverables = [
 						> del tribunal.
 					</h1>
 					<p class="brand-lead">
-						Te enseño cómo se hace una programación, parte por parte: qué decides en cada una y qué pregunta 
-						del tribunal tiene que aguantar. Después coges la tuya, le dedicas 20 minutos y ves qué
-						apartados defenderías y en cuáles acabarías citando la ley.
+						Te enseño, parte por parte, qué decides en cada apartado y qué pregunta del tribunal tiene que
+						aguantar. Después, 20 minutos con la tuya bastan para ver dónde acabarías citando la ley.
 					</p>
-					<p class="brand-label">9,6 · la mejor nota de mi especialidad en la Comunitat Valenciana, 2025</p>
 
-					<form
-						class="brand-optin"
-						action={`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`}
-						method="post"
-					>
-						<label for="email-l">¿A qué correo te lo mando?</label>
-						<div class="brand-optin-row">
-							<input
-								class="brand-input"
-								id="email-l"
-								name="email_address"
-								type="email"
-								placeholder="tucorreo@ejemplo.com"
-								autocomplete="email"
-								required
-							/>
-							<button class="brand-button" type="submit">Mándamelo</button>
-						</div>
-						<p class="brand-optin-note">
-							Confirmas tu email y te llega en un minuto. Después, cada martes, una de esas decisiones a fondo. Si no te
-							sirve, te das de baja con un
-							clic. <a href="/politica-privacidad/">Política de privacidad</a>.
-						</p>
-					</form>
+					<OptinForm id="email-l">
+						Confirmas tu email y te llega en un par de minutos. Después, un correo cada martes sobre {NEWSLETTER_TOPICS}. Si no te sirve, te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
+					</OptinForm>
 				</section>
 
 				<TrackRecord class="libreta-record" />
@@ -146,15 +123,14 @@ const deliverables = [
 						No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y
 						tiene que sonar a ti.
 					</p>
-					<p class="back-to-form">
-						<a class="brand-button brand-button--secondary" href="#email-l">Quiero los tres <span aria-hidden="true">↑</span></a>
-					</p>
+					<p class="end-cta"><a class="brand-button" href="#email-l" data-scroll-to-form>Quiero los tres <span aria-hidden="true">↑</span></a></p>
 				</section>
 			</div>
 		</main>
 		<Footer />
 		<script>
-			import '../scripts/optin-pending';
+			import '../scripts/mailerlite-optin';
+			import '../scripts/scroll-to-form';
 		</script>
 	</body>
 </html>

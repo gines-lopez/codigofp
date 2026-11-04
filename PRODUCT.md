@@ -14,7 +14,7 @@ Su tarea es conseguir una programación que pueda defender ante el tribunal, y q
 
 ## Product Purpose
 
-CódigoFP enseña a construir y defender la Programación Didáctica de FP. Hoy el producto es una newsletter gratuita en Kit que sale cada martes y trata una decisión de la programación a fondo. Para captar suscriptores hay un lead magnet que se envía al confirmar el email: un vídeo de 6 minutos, un autodiagnóstico de 20 minutos y un mapa del orden de decisiones en una página para imprimir.
+CódigoFP enseña a construir y defender la Programación Didáctica de FP. Hoy el producto es una newsletter gratuita que sale cada martes y alterna cuatro pilares (ver «Alcance temático»). Para captar suscriptores hay un lead magnet que se envía al confirmar el email: un vídeo de 6 minutos, un autodiagnóstico de 20 minutos y un mapa del orden de decisiones en una página para imprimir.
 
 Las landings de pre-lanzamiento (`/landing`, `/landing-meta`, `/landing-meta-libreta`) y la home captan suscriptores. `/gracias` gestiona la confirmación del email.
 
@@ -31,16 +31,21 @@ Lo sostiene la trayectoria real de Ginés: en 2023 se quedó a 0,13 de la plaza 
 ## Operating Context
 
 - El visitante suele llegar desde anuncios de Meta o redes sociales a una landing, a menudo desde el móvil.
-- La suscripción se hace con formularios de Kit, que piden doble opt-in. Después viene `/gracias`, con accesos directos a Gmail y Outlook y ayuda para encontrar el correo en spam o en Promociones.
+- La suscripción se hace con MailerLite, con doble opt-in. Después viene `/gracias`, con accesos directos a Gmail y Outlook y ayuda para encontrar el correo en spam o en Promociones.
 - La newsletter sale un correo por semana, los martes, y se puede cancelar con un clic.
 - Contexto de la oposición: tribunal, defensa oral de la programación, evaluación por RA y CE, baremo y concurso-oposición.
 
 ## Capabilities and Constraints
 
 - Sitio Astro estático con MDX, RSS y sitemap.
-- Hay una integración de formularios de Kit (`SubscribeForm.astro`, `kit-form.html` y el formulario de `/landing`, id `9943840`). Al cambiar estilos nunca se toca la lógica de los formularios.
+- Todas las suscripciones van al mismo formulario de MailerLite (`MAILERLITE_FORM_ACTION` en `src/consts.ts`): la home y la 404 usan el embed (`SubscribeFormMailerLite.astro` + `mailerlite-form.html`), y las landings envían sus formularios `.brand-optin` con `src/scripts/mailerlite-optin.ts`. Al cambiar estilos nunca se toca la lógica de los formularios. La integración antigua de Kit (`SubscribeForm.astro`, `kit-form.html`, `optin-pending.ts`) se conserva inactiva por si se vuelve a Kit.
 - Páginas legales: `/aviso-legal` y `/politica-privacidad`.
-- Alcance temático: estructura de la programación, evaluación por RA y CE, defensa oral y baremo. **No** trata del tema escrito ni del supuesto práctico.
+- Alcance temático, en cuatro pilares:
+  - **Programación didáctica**: estructura, evaluación por RA y CE, defensa oral.
+  - **Normativa**: leer e interpretar la ley y los decretos de FP.
+  - **La oposición**: baremo, cómo leer una convocatoria, anuncios de plazas.
+  - **Vida del opositor**: cómo organizarte, cómo te sientes y lo que se vive durante el proceso.
+  - **Nunca** trata del tema escrito ni del supuesto práctico, tampoco dentro de «la oposición».
 - **Decisión abierta:** habrá un producto de pago (curso, mentoría u otro) que aún no está definido. No se inventan nombre, precio, formato ni promesas.
 - **Pendiente:** el blog (`/blog`) y `/about` se usarán más adelante con contenido real. Hoy tienen el contenido de ejemplo de Astro (lorem ipsum) y no son relevantes ni sirven como evidencia. Para trabajar en ellos, hay que pedir la información a Ginés.
 
@@ -57,6 +62,8 @@ Lo sostiene la trayectoria real de Ginés: en 2023 se quedó a 0,13 de la plaza 
 - Trayectoria de Ginés (componente `TrackRecord.astro`): especialidad de Informática, Comunitat Valenciana. En 2023 se quedó a 0,13 de la plaza. En 2025 sacó un 9,6, la mejor nota de su especialidad, con el cuarto puesto en el concurso-oposición.
 - La pregunta real del tribunal en 2025 sobre unidades de programación y unidades de trabajo.
 - Contenido del lead magnet: vídeo de 6 min, autodiagnóstico y mapa del orden.
+- Precisión de las cifras de 2025: el 9,6 es la nota de la defensa y fue la mejor de su tribunal y de toda su especialidad; el 4.º es el puesto en el concurso-oposición completo (tema, práctico, defensa y méritos).
+- Biografía verificada (fuente: `12_historia_autor.md` del proyecto de marca): más de 10 años como desarrollador web, terminó DAW a los 32, dejó el desarrollo a los 37 para ser docente de FP de Informática (2022), hijo de padres docentes, tras 2023 hizo un máster para subir baremo y cambió de preparadores, ha ayudado a una decena de compañeros a preparar su defensa (la cifra de «30 defensas» **no** se usa).
 - **No existen** y no se deben fabricar: testimonios de suscriptores o alumnos, número de suscriptores, tasas de aprobado, logos de prensa, precios ni casos de éxito ajenos.
 
 ## Product Principles
