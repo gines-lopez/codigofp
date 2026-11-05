@@ -2,7 +2,8 @@
 // "Mis dos convocatorias" card: 2023 near miss vs. 2025 score.
 // `compact` stacks every row while the card is narrower than 480px (side columns).
 // `showPast={false}` drops the 2023 row, for pages whose H1 already tells it.
-// `showSince` adds the «Desde entonces» row (PROOF_SINCE) under the 2025 one.
+// `showSince` adds the «Desde entonces» row (PROOF_SINCE) under the 2025 one; `sinceDetail` uses
+// its longer wording, with the specialties.
 // `photo` (a real photo of Ginés, imported from src/assets) shows next to the signature; without
 // it the signature stays text only.
 import type { ImageMetadata } from 'astro';
@@ -13,11 +14,12 @@ interface Props {
 	compact?: boolean;
 	showPast?: boolean;
 	showSince?: boolean;
+	sinceDetail?: boolean;
 	photo?: ImageMetadata;
 	class?: string;
 }
 
-const { compact = false, showPast = true, showSince = false, photo, class: className } = Astro.props;
+const { compact = false, showPast = true, showSince = false, sinceDetail = false, photo, class: className } = Astro.props;
 const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
@@ -51,7 +53,7 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 			<div class="record-row record-since">
 				<p class="record-year">{PROOF_SINCE.label}</p>
 				<p class="record-text">
-					<strong>{PROOF_SINCE.count}</strong> {PROOF_SINCE.text}
+					<strong>{PROOF_SINCE.count}</strong> {sinceDetail ? PROOF_SINCE.detail : PROOF_SINCE.text}
 				</p>
 			</div>
 		)

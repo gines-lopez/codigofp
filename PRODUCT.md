@@ -64,7 +64,8 @@ Lo sostiene la trayectoria real de Ginés: en 2023 se quedó a 0,13 de la plaza 
 - Contenido del lead magnet: vídeo de 6 min, autodiagnóstico y mapa del orden.
 - Precisión de las cifras de 2025: el 9,6 es la nota de la defensa y fue la mejor de su tribunal y de toda su especialidad; el 4.º es el puesto en el concurso-oposición completo (tema, práctico, defensa y méritos).
 - Biografía verificada (fuente: `12_historia_autor.md` del proyecto de marca): más de 10 años como desarrollador web, terminó DAW a los 32, dejó el desarrollo a los 37 para ser docente de FP de Informática (2022), hijo de padres docentes, tras 2023 hizo un máster para subir baremo y cambió de preparadores, ha ayudado a una decena de compañeros a preparar su defensa (la cifra de «30 defensas» **no** se usa).
-- **No existen** y no se deben fabricar: testimonios de suscriptores o alumnos, número de suscriptores, tasas de aprobado, logos de prensa, precios ni casos de éxito ajenos.
+- Desde 2025: 6 personas con plaza, de 4 especialidades distintas (dato dado por Ginés; `PROOF_SINCE` en `src/consts.ts`, fila «Desde entonces» de `TrackRecord.astro`, activa en `/landing/`). Se usa con esa redacción, sin redondear, ampliar ni convertir en porcentaje. No hay nombres ni frases de esas personas. Son personas a las que Ginés ayudó; especialidades: Procesos Comerciales, OGC, ADE y Valenciano (esta última no es de FP). En `/landing-meta` se usa la versión larga (`PROOF_SINCE.detail`), solo con especialidades, sin nombres, número por especialidad ni comunidades.
+- **No existen** y no se deben fabricar: testimonios de suscriptores o alumnos, número de suscriptores, tasas de aprobado, logos de prensa, precios ni otros casos de éxito ajenos aparte del dato anterior.
 
 ## Product Principles
 

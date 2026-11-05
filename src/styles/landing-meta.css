@@ -33,6 +33,32 @@ body {
 .brand-lead {
 	color: var(--brand-graphite);
 }
+/* Proof line under the subtitle, hidden once the card fits beside the pitch (560 + 48 + 320 + 32). */
+.proof-line {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	color: var(--brand-dark);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.5;
+}
+.proof-line strong {
+	color: var(--brand-accent);
+	font-weight: 700;
+}
+.proof-photo {
+	flex: 0 0 auto;
+	width: 40px;
+	height: 40px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+@media (min-width: 960px) {
+	.proof-line {
+		display: none;
+	}
+}
 .proof {
 	flex: 1 1 320px;
 	max-width: 720px;

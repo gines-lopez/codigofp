@@ -5,11 +5,12 @@ import Header from '../components/Header.astro';
 import { NEWSLETTER_TOPICS } from '../consts';
 import OptinForm from '../components/OptinForm.astro';
 import TrackRecord from '../components/TrackRecord.astro';
+import { Image } from 'astro:assets';
 import '../styles/landing-meta.css';
 
-const title = 'CódigoFP · El orden de una programación defendible';
+const title = 'CódigoFP · En qué orden se monta una programación que aguanta el «por qué»';
 const description =
-	'El orden en que se construye una programación de FP que aguanta cada «por qué» del tribunal.';
+	'En 6 minutos verás en qué orden se monta una programación de FP que aguanta cada «por qué» del tribunal. Luego pasas la tuya por el autodiagnóstico en 20 minutos.';
 
 
 const deliverables = [
@@ -34,6 +35,10 @@ const deliverables = [
 	},
 ];
 const [video, ...pdfs] = deliverables;
+
+// Photo of Ginés for the mobile proof line (none yet). When there is one, import it from
+// src/assets and assign it here; without it the line is text only.
+const photo = undefined;
 ---
 
 <!doctype html>
@@ -42,25 +47,38 @@ const [video, ...pdfs] = deliverables;
 		<BaseHead title={title} description={description} noindex />
 	</head>
 	<body>
-		<Header />
+		<Header linkLogo={false} />
 		<main class="landing">
 			<div class="hero">
 				<section class="pitch">
-					<p class="brand-label">para opositores de FP · vídeo de 6&nbsp;minutos</p>
 					<h1>
-						El orden en que se construye una programación de FP que aguanta cada «por qué» del
-						tribunal.
+						Opositor de FP: en 6&nbsp;minutos verás en qué orden se monta una programación que aguanta
+						cada «por qué» del tribunal.
 					</h1>
 					<p class="brand-lead">
-						Te enseño, parte por parte, qué decides en cada apartado y qué pregunta del tribunal tiene que
-						aguantar. Después, 20 minutos con la tuya bastan para ver dónde acabarías citando la ley.
+						Parte por parte: qué decides, por qué va ahí y qué te van a preguntar. Luego pasas la tuya por
+						el autodiagnóstico en 20 minutos.
+					</p>
+
+					<!-- Mobile and tablet only: on wide screens the TrackRecord card sits beside the pitch. -->
+					<p class="proof-line">
+						{photo && <Image class="proof-photo" src={photo} alt="Ginés" width={40} height={40} />}
+						<span>
+							Ginés · <strong>9,6</strong> en la defensa de 2025, la mejor nota de mi tribunal y de mi
+							especialidad.
+						</span>
 					</p>
 
 					<OptinForm id="email-a">
-						Confirmas tu email y te llega en un par de minutos. Después, un correo cada martes sobre {NEWSLETTER_TOPICS}. Si no te sirve, te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
+						Confirmas tu email y te llega en un par de minutos. Luego, un correo cada martes sobre
+						{NEWSLETTER_TOPICS}. Sin spam, y te das de baja con un clic.
+						<Fragment slot="legal">
+							Responsable: CódigoFP. Tus datos solo sirven para enviarte esto y se guardan en MailerLite.
+							<a href="/politica-privacidad/">Política de privacidad</a>.
+						</Fragment>
 					</OptinForm>
 				</section>
-				<TrackRecord compact class="proof" />
+				<TrackRecord compact showSince sinceDetail class="proof" />
 			</div>
 
 			<section class="deliverables">
