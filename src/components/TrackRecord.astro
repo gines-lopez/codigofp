@@ -2,15 +2,20 @@
 // "Mis dos convocatorias" card: 2023 near miss vs. 2025 score.
 // `compact` stacks every row while the card is narrower than 480px (side columns).
 // `showPast={false}` drops the 2023 row, for pages whose H1 already tells it.
+// `photo` (a real photo of Ginés, imported from src/assets) shows next to the signature; without
+// it the signature stays text only.
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { PROOF_2025 } from '../consts';
+
 interface Props {
 	compact?: boolean;
 	showPast?: boolean;
+	photo?: ImageMetadata;
 	class?: string;
 }
 
-import { PROOF_2025 } from '../consts';
-
-const { compact = false, showPast = true, class: className } = Astro.props;
+const { compact = false, showPast = true, photo, class: className } = Astro.props;
 const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
@@ -39,7 +44,10 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 			</p>
 		</div>
 	</div>
-	<p class="record-foot">Ginés · docente de FP y funcionario de carrera</p>
+	<div class="record-foot">
+		{photo && <Image class="record-photo" src={photo} alt="Ginés" width={48} height={48} />}
+		<p>Ginés · docente de FP y funcionario de carrera</p>
+	</div>
 </section>
 
 <style>
@@ -124,12 +132,22 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 		line-height: 1;
 	}
 	.record-foot {
+		display: flex;
+		align-items: center;
+		gap: 16px;
 		padding: 16px 24px;
 		border-top: 1px solid var(--brand-line);
 		color: var(--brand-graphite);
 		font-size: 14px;
 		font-weight: 500;
 		line-height: 1.5;
+	}
+	.record-photo {
+		flex: 0 0 auto;
+		width: 48px;
+		height: 48px;
+		border-radius: 8px;
+		object-fit: cover;
 	}
 
 	/* Narrow column: everything stacked, the 2025 row takes the leftover height. */

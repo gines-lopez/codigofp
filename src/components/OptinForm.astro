@@ -1,15 +1,19 @@
 ---
 // Landing opt-in form (.brand-optin), same markup and fields as the hero forms of the landings.
 // Submitted to MailerLite by src/scripts/mailerlite-optin.ts, which the page must import.
-// `id` must be unique on the page; the slot is the reassurance note under the row.
+// `id` must be unique on the page; the default slot is the reassurance note under the row and
+// the optional `legal` slot is the smaller first data-protection layer under that note.
 import { MAILERLITE_FORM_ACTION } from '../consts';
 
 interface Props {
 	id: string;
 	class?: string;
+	buttonText?: string;
 }
 
-const { id, class: className } = Astro.props;
+const { id, class: className, buttonText = 'Mándamelo' } = Astro.props;
+// A slot passed conditionally still counts as present: render it and keep it only if not empty.
+const legal = Astro.slots.has('legal') ? (await Astro.slots.render('legal')).trim() : '';
 ---
 
 <form class:list={['brand-optin', className]} action={MAILERLITE_FORM_ACTION} method="post">
@@ -26,7 +30,8 @@ const { id, class: className } = Astro.props;
 			autocomplete="email"
 			required
 		/>
-		<button class="brand-button" type="submit">Mándamelo</button>
+		<button class="brand-button" type="submit">{buttonText}</button>
 	</div>
 	<p class="brand-optin-note"><slot /></p>
+	{legal && <p class="brand-optin-legal" set:html={legal} />}
 </form>

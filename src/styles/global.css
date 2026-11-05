@@ -260,6 +260,13 @@ a.brand-button--secondary:hover {
 	font-size: 14px;
 	line-height: 1.5;
 }
+/* First data-protection layer under the note: smaller than the note. */
+.brand-optin-legal {
+	margin: 0;
+	color: var(--brand-graphite);
+	font-size: 13px;
+	line-height: 1.5;
+}
 @media (max-width: 600px) {
 	h1 {
 		font-size: 32px;

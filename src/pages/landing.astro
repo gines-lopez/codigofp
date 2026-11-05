@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import OptinForm from '../components/OptinForm.astro';
+import Testimonials from '../components/Testimonials.astro';
 import TrackRecord from '../components/TrackRecord.astro';
 import '../styles/landing.css';
 
@@ -10,9 +11,22 @@ const title = 'CódigoFP · Una programación de FP que puedes defender';
 const description =
 	'Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué un 9,6 en la defensa, la mejor nota de mi especialidad, cambiando el orden en que la hice.';
 
+// Same text on the form button and the final CTA.
+const CTA_TEXT = 'Mándame el autodiagnóstico';
 
-// Each point: a short head (8 words at most) and the detail under it.
-const points = [
+// First data-protection layer under the note. Hidden until the purpose text is legally reviewed:
+// while it is false the privacy policy link goes at the end of the note instead.
+const SHOW_LEGAL_LAYER = false;
+
+// Real testimonials only (none yet): while the list is empty the block is not rendered.
+const testimonials: { quote: string; name: string; specialty: string; region: string; year: number }[] = [];
+
+// Photo of Ginés for the 9,6 card (none yet). When there is one, import it from src/assets and
+// pass it here; without it the card signature stays text only.
+const photo = undefined;
+
+// What the video tells (01–03). Each point: a short head (8 words at most) and the detail under it.
+const videoPoints = [
 	{
 		title: 'Por qué se cae una programación que cumple.',
 		text: 'El error no está en cómo redactas. Está en cuándo empiezas a redactar.',
@@ -25,11 +39,11 @@ const points = [
 		title: 'Por qué la introducción se escribe al final.',
 		text: 'Y la justificación, aunque las dos ocupen las primeras páginas. Con el orden completo de las decisiones, fase a fase, y la pregunta del tribunal que tiene que aguantar cada una.',
 	},
-	{
-		title: 'El autodiagnóstico y el mapa del orden.',
-		text: 'El autodiagnóstico son 20 minutos con tu programación delante y tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes por dónde empezar. El mapa es una página para imprimir.',
-	},
 ];
+
+// What the reader downloads (the old point 04, without its head: the text already says what it is).
+const download =
+	'El autodiagnóstico son 20 minutos con tu programación delante y tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes por dónde empezar. El mapa es una página para imprimir.';
 ---
 
 <!doctype html>
@@ -38,10 +52,39 @@ const points = [
 		<BaseHead title={title} description={description} noindex />
 	</head>
 	<body>
-		<Header />
+		<Header linkLogo={false} />
 		<main class="landing">
-			<p class="brand-label">para opositores de FP</p>
-			<h1>Me quedé a 0,13 de la plaza con una programación que cumplía con todo.</h1>
+			<section class="hero" aria-label="Pedir el material">
+				<p class="brand-label">para opositores de FP</p>
+				<h1>Tu programación de FP puede cumplir con todo y aun así dejarte a centésimas de la plaza</h1>
+				<p class="brand-lead">
+					En 20 minutos, con tu programación delante, sabrás qué apartados aguantan una pregunta del
+					tribunal y cuáles contestarías con el artículo.
+				</p>
+				<p class="pack">Gratis: vídeo de 6 minutos + autodiagnóstico + mapa del orden</p>
+				<OptinForm id="email-r-early" buttonText={CTA_TEXT}>
+					Te llega en cuanto confirmes tu email. Después, cada martes un correo sobre programación y
+					defensa. Sin spam y te das de baja con un clic.{
+						!SHOW_LEGAL_LAYER && (
+							<>
+								{' '}
+								<a href="/politica-privacidad/">Política de privacidad</a>.
+							</>
+						)
+					}
+					{
+						SHOW_LEGAL_LAYER && (
+							<Fragment slot="legal">
+								Responsable: CódigoFP. Finalidad: enviarte este material, la newsletter y, a veces,
+								información de mis programas. <a href="/politica-privacidad/">Política de privacidad</a>
+							</Fragment>
+						)
+					}
+				</OptinForm>
+			</section>
+
+			<TrackRecord photo={photo} />
+			<Testimonials items={testimonials} />
 
 			<div class="story">
 				<p>
@@ -58,17 +101,6 @@ const points = [
 				</p>
 			</div>
 
-			<TrackRecord showPast={false} />
-
-			<section class="early-cta" aria-label="Pedir el material">
-				<p class="cta-text">
-					Gratis, en cuanto confirmes tu email: «El orden, parte por parte» (vídeo de 6 minutos), el
-					autodiagnóstico y el mapa del orden.
-				</p>
-				<OptinForm id="email-r-early">
-					Te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
-				</OptinForm>
-			</section>
 
 			<div class="story">
 				<p>
@@ -86,9 +118,10 @@ const points = [
 
 			<section class="points">
 				<h2>Lo que te mando para que tu programación aguante el por qué</h2>
+				<h3>Lo que cuenta el vídeo (6 minutos)</h3>
 				<ol>
 					{
-						points.map((point, i) => (
+						videoPoints.map((point, i) => (
 							<li>
 								<span class="point-number">{String(i + 1).padStart(2, '0')}</span>
 								<span>
@@ -99,13 +132,15 @@ const points = [
 						))
 					}
 				</ol>
+				<h3>Lo que te descargas</h3>
+				<p class="download">{download}</p>
 			</section>
 
 			<section class="cta">
 				<p class="cta-text">
 					Te lo mando en cuanto confirmes tu email: «El orden, parte por parte» (vídeo de 6 minutos), el autodiagnóstico y el mapa del orden.
 				</p>
-				<p class="end-cta"><a class="brand-button" href="#email-r-early" data-scroll-to-form>Quiero los tres <span aria-hidden="true">↑</span></a></p>
+				<p class="end-cta"><a class="brand-button" href="#email-r-early" data-scroll-to-form>{CTA_TEXT} <span aria-hidden="true">↑</span></a></p>
 			</section>
 		</main>
 		<Footer />

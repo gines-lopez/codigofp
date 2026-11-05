@@ -1,9 +1,22 @@
+---
+// `linkLogo={false}` shows the wordmark without the link to the home (ad landings).
+interface Props {
+	linkLogo?: boolean;
+}
+
+const { linkLogo = true } = Astro.props;
+---
+
 <header>
 	<nav>
 		<!-- Wordmark in text, never an image: "<Código" in ink, "FP>" in cobalt. -->
-		<a href="/" class="brand-wordmark" aria-label="CódigoFP, inicio"
-			>&lt;Código<span class="brand-wordmark__fp">FP&gt;</span></a
-		>
+		{
+			linkLogo ? (
+				<a href="/" class="brand-wordmark" aria-label="CódigoFP, inicio">&lt;Código<span class="brand-wordmark__fp">FP&gt;</span></a>
+			) : (
+				<span class="brand-wordmark" role="img" aria-label="CódigoFP">&lt;Código<span class="brand-wordmark__fp">FP&gt;</span></span>
+			)
+		}
 	</nav>
 </header>
 <style>
