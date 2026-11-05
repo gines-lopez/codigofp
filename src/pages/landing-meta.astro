@@ -5,7 +5,6 @@ import Header from '../components/Header.astro';
 import { NEWSLETTER_TOPICS } from '../consts';
 import OptinForm from '../components/OptinForm.astro';
 import TrackRecord from '../components/TrackRecord.astro';
-import { Image } from 'astro:assets';
 import '../styles/landing-meta.css';
 
 const title = 'CódigoFP · En qué orden se monta una programación que aguanta el «por qué»';
@@ -35,10 +34,6 @@ const deliverables = [
 	},
 ];
 const [video, ...pdfs] = deliverables;
-
-// Photo of Ginés for the mobile proof line (none yet). When there is one, import it from
-// src/assets and assign it here; without it the line is text only.
-const photo = undefined;
 ---
 
 <!doctype html>
@@ -58,15 +53,6 @@ const photo = undefined;
 					<p class="brand-lead">
 						Parte por parte: qué decides, por qué va ahí y qué te van a preguntar. Luego pasas la tuya por
 						el autodiagnóstico en 20 minutos.
-					</p>
-
-					<!-- Mobile and tablet only: on wide screens the TrackRecord card sits beside the pitch. -->
-					<p class="proof-line">
-						{photo && <Image class="proof-photo" src={photo} alt="Ginés" width={40} height={40} />}
-						<span>
-							Ginés · <strong>9,6</strong> en la defensa de 2025, la mejor nota de mi tribunal y de mi
-							especialidad.
-						</span>
 					</p>
 
 					<OptinForm id="email-a" label="¿A qué correo te mando el vídeo y el autodiagnóstico?">

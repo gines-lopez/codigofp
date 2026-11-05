@@ -16,7 +16,6 @@ Pendientes de los cambios de la landing (ya en `main`).
   1. Guarda el archivo en `src/assets/`.
   2. Impórtalo en `src/pages/landing.astro`.
   3. Asígnalo a `const photo`.
-- [ ] **Foto para la línea de prueba de `/landing-meta`** (solo móvil, 40×40, radio 8 px). Misma foto que la de la tarjeta: impórtala en `src/pages/landing-meta.astro` y asígnala a `const photo`.
 - [ ] **Testimonios reales.** Rellena el array `testimonials` en `src/pages/landing.astro`. Con la lista vacía, el bloque no se muestra.
   - Formato: «[Frase literal]» — [Nombre], [especialidad], [comunidad], plaza en [año]
 

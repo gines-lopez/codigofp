@@ -21,11 +21,11 @@ export const PROOF_2025 = {
 // What happened after 2025 (given by Ginés): third row of the TrackRecord card.
 export const PROOF_SINCE = {
 	label: 'Desde entonces',
-	count: '6',
-	text: 'personas con plaza, de 4 especialidades distintas.',
-	// Longer wording for /landing-meta (approved by Ginés): same count, with the specialties.
+	count: '5',
+	text: 'personas con plaza, de 3 especialidades distintas.',
+	// Longer wording for /landing-meta (approved by Ginés), same count, with the specialties.
 	detail:
-		'personas a las que ayudé sacaron plaza: Procesos Comerciales, OGC, ADE y Valenciano. Cambia la normativa de cada comunidad. El orden es el mismo.',
+		'personas a las que ayudé sacaron plaza: Procesos Comerciales, OGC y ADE. Cambia la normativa de cada comunidad. El orden es el mismo.',
 } as const;
 
 // One description of the newsletter for every page (PRODUCT.md, «Alcance temático»).
