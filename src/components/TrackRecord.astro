@@ -4,6 +4,7 @@
 // `showPast={false}` drops the 2023 row, for pages whose H1 already tells it.
 // `showSince` adds the «Desde entonces» row (PROOF_SINCE) under the 2025 one; `sinceDetail` uses
 // its longer wording, with the specialties.
+// `columns` keeps label | content in two columns at any width, with the 9,6 above its text.
 // `photo` (a real photo of Ginés, imported from src/assets) shows next to the signature; without
 // it the signature stays text only.
 import type { ImageMetadata } from 'astro';
@@ -15,15 +16,16 @@ interface Props {
 	showPast?: boolean;
 	showSince?: boolean;
 	sinceDetail?: boolean;
+	columns?: boolean;
 	photo?: ImageMetadata;
 	class?: string;
 }
 
-const { compact = false, showPast = true, showSince = false, sinceDetail = false, photo, class: className } = Astro.props;
+const { compact = false, showPast = true, showSince = false, sinceDetail = false, columns = false, photo, class: className } = Astro.props;
 const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
-<section class:list={['record', { compact, 'with-since': showSince }, className]} aria-label={head}>
+<section class:list={['record', { compact, columns, 'with-since': showSince }, className]} aria-label={head}>
 	<h2 class="record-head">
 		<span>{head}</span><span class="record-place"
 			><span class="record-sep" aria-hidden="true"> · </span>Informática · Comunitat Valenciana</span
@@ -139,6 +141,23 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 	.with-since .record-year {
 		flex-basis: 7.5em;
 	}
+	/* Too narrow for label + 9,6 + text on one line (180 + 24 + 360 + 48): every row stacks the same
+	   way, label on top, so no row is laid out differently from the others. */
+	@container (max-width: 619px) {
+		.with-since .record-row {
+			flex-direction: column;
+			flex-wrap: nowrap;
+		}
+		.with-since .record-year,
+		.with-since .record-text,
+		.with-since .record-result {
+			flex: none;
+		}
+		.with-since .record-result {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
 	.record-result {
 		display: flex;
 		flex: 1 1 360px;
@@ -216,6 +235,35 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 		.compact .record-result {
 			flex-direction: column;
 			align-items: flex-start;
+		}
+	}
+
+	/* `columns`: always two columns (label | content) at any width, the 9,6 above its text, and every
+	   text starting on the same vertical line. Goes after the stacking rules so it wins over them. */
+	.columns .record-row {
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+	.columns .record-year {
+		flex: 0 0 7.5em;
+	}
+	.columns .record-text,
+	.columns .record-result {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+	.columns .record-result {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+	.columns .record-now {
+		justify-content: flex-start;
+	}
+	/* Phone-width card: a narrower label column («Desde entonces» goes on two lines). */
+	@container (max-width: 479px) {
+		.columns .record-year {
+			flex-basis: 88px;
 		}
 	}
 
