@@ -30,6 +30,12 @@ body {
 .pitch h1 {
 	margin: 0;
 }
+/* Long H1 on this page: 40px from 601px instead of the global 48px (mobile keeps 32px). */
+@media (min-width: 601px) {
+	.pitch h1 {
+		font-size: 40px;
+	}
+}
 .brand-lead {
 	color: var(--brand-graphite);
 }
