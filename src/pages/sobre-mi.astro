@@ -1,13 +1,14 @@
 ---
 // «Sobre mí»: Ginés's story for readers who already get the newsletter. Copy from the long official
 // version in 12_historia_autor.md (brand project); every figure comes from src/consts.ts.
+// The page's spine is 0,13 → 9,6: the two big numerals, in ink (2023) and cobalt (2025).
 // No photo yet: TrackRecord takes `photo` when there is a real one in src/assets.
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
 import TrackRecord from '../components/TrackRecord.astro';
-import { NEWSLETTER_EXCLUSION, NEWSLETTER_TOPICS, SITE_TITLE } from '../consts';
+import { NEWSLETTER_EXCLUSION, NEWSLETTER_TOPICS, PROOF_SINCE, SITE_TITLE } from '../consts';
 
 const description =
 	'Soy Ginés: más de diez años como desarrollador web, docente de FP de Informática desde 2022 y funcionario de carrera. Me quedé a 0,13 de la plaza y así aprendí a opositar.';
@@ -29,9 +30,11 @@ const description =
 				</p>
 			</header>
 
+			<!-- The date sits inside each H2 with a hidden full stop, so a screen reader says
+			     «2023. Cinco hojas de Excel» instead of running both together. -->
 			<section class="chapter" aria-labelledby="ch-semilla">
 				<h2 id="ch-semilla">
-					<span class="chapter-when">Bachillerato</span>
+					<span class="chapter-when">Bachillerato<span class="sr-only">. </span></span>
 					<span class="chapter-title">Mi madre dando clase</span>
 				</h2>
 				<p>
@@ -40,37 +43,42 @@ const description =
 					y clases de repaso de matemáticas y de física y química.
 				</p>
 				<p>
-					Yo lo llamo la paradoja del bambú: pasa años echando raíces bajo tierra y, cuando por fin
-					sale, crece de golpe.
+					Es lo que yo llamo la paradoja del bambú. Pasa años echando raíces bajo tierra y, cuando por
+					fin sale, crece de golpe.
 				</p>
 			</section>
 
 			<section class="chapter" aria-labelledby="ch-desarrollo">
 				<h2 id="ch-desarrollo">
-					<span class="chapter-when">Hasta 2022</span>
+					<span class="chapter-when">Hasta 2022<span class="sr-only">. </span></span>
 					<span class="chapter-title">Más de diez años programando</span>
 				</h2>
 				<p>
-					Trabajé más de diez años como desarrollador web. Terminé DAW a los 32 y ahí supe que quería
-					estabilidad. A los 37 dejé una carrera asentada para dar clase en FP de Informática.
+					Trabajé más de diez años como desarrollador web. Terminé el ciclo de Desarrollo de
+					Aplicaciones Web (DAW) a los 32 y ahí supe que quería estabilidad. A los 37 dejé una carrera
+					asentada para dar clase en FP de Informática.
 				</p>
 				<p>
 					Me fui del desarrollo porque la vocación acabó saliendo, no por cansancio. La FP me dio una
-					profesión, y eso es lo que intento devolver: formar profesionales. No quiero que a un exalumno le pregunten quién le enseñó y
-					mi nombre quede en entredicho.
+					profesión, y lo que intento devolver es eso mismo, formar profesionales. No quiero que a un
+					exalumno le pregunten quién le enseñó y mi nombre quede en entredicho.
 				</p>
 			</section>
 
-			<section class="chapter" aria-labelledby="ch-excel">
+			<section class="chapter chapter--turn" aria-labelledby="ch-excel">
 				<h2 id="ch-excel">
-					<span class="chapter-when">2023</span>
+					<span class="chapter-when">2023<span class="sr-only">. </span></span>
 					<span class="chapter-title">Cinco hojas de Excel</span>
 				</h2>
+				<p class="score">
+					<span class="score-value">0,13</span>
+					<span class="score-text">puntos me separaron de la plaza en mi primera oposición.</span>
+				</p>
 				<p>
-					En mi primera oposición me quedé a <strong>0,13</strong> de la plaza, con una programación
-					que cumplía con todo. Esa noche estaba en casa con la que después sería mi mujer. No me
-					derrumbé: monté cinco hojas de Excel. Sumé méritos, los recalculé, conté las plazas de
-					diversidad funcional sin adjudicar y cómo se repartían entre tribunales. No hubo suerte.
+					Me quedé fuera con una programación que cumplía con todo. Esa noche estaba en casa con la que
+					después sería mi mujer. No me derrumbé. Monté cinco hojas de Excel, sumé méritos, los
+					recalculé y conté las plazas de diversidad funcional sin adjudicar y cómo se repartían entre
+					tribunales. No hubo suerte.
 				</p>
 				<p>
 					Al día siguiente me senté a ver qué había fallado. La respuesta fue incómoda: estaba
@@ -80,53 +88,64 @@ const description =
 
 			<section class="chapter" aria-labelledby="ch-plan">
 				<h2 id="ch-plan">
-					<span class="chapter-when">2023–2025</span>
-					<span class="chapter-title">Mejor es mejor</span>
+					<span class="chapter-when">2023–2025<span class="sr-only">. </span></span>
+					<span class="chapter-title">Dos cursos con otro sistema</span>
 				</h2>
 				<p>
 					Cambié tres cosas. Hice un máster para sumar el baremo que me faltaba. En septiembre cambié
 					de preparadores, gente que sabía lo que era opositar y que me dio un sistema y la confianza
 					de que era posible; uno de ellos es el mejor docente con el que me he cruzado. Y empezamos lo
-					que llamamos «El Plan»: dos cursos de preparación con un lema, «Mejor es mejor».
+					que llamamos «El Plan», dos cursos de preparación individual con un lema que repetíamos
+					mucho: «Mejor es mejor».
 				</p>
 				<p>
 					El que estudia intenta aprendérselo todo. El que oposita mira qué puntúa y qué mira el
 					tribunal, y deja fuera lo que no suma. En la programación eso significó cambiar el orden en
-					que tomaba las decisiones, darles a todas las unidades la misma estructura para defenderlas
-					igual y tomarme en serio la ley. Si dominas la ley, dominas la oposición.
+					que tomaba las decisiones y darles a todas las unidades la misma estructura, para
+					defenderlas igual.
 				</p>
-				<p>Dejé de mirar a los demás opositores. Solo tenía un rival: yo.</p>
+				<p>
+					Y me tomé en serio la ley, porque si dominas la ley, dominas la oposición. Dejé de mirar a los
+					demás opositores. Solo tenía un rival: yo.
+				</p>
 			</section>
 
-			<section class="chapter" aria-labelledby="ch-metodo">
+			<section class="chapter chapter--turn" aria-labelledby="ch-metodo">
 				<h2 id="ch-metodo">
-					<span class="chapter-when">2025</span>
-					<span class="chapter-title">La diferencia fue el método</span>
+					<span class="chapter-when">2025<span class="sr-only">. </span></span>
+					<span class="chapter-title">Plaza, con la programación en otro orden</span>
 				</h2>
 				<p>
-					Volví a presentarme con la programación hecha en otro orden y sin estudiar más que en
-					2023, y esta vez saqué plaza.
+					Volví a presentarme con la programación hecha en otro orden y sin estudiar más que en 2023,
+					y esta vez saqué plaza. Como el bambú, llevaba dos cursos echando raíces sin que se viera
+					nada.
 				</p>
-				<TrackRecord class="chapter-record" showSince sinceDetail />
+				<TrackRecord class="chapter-record" showPast={false} showFoot={false} headingLevel={3} />
 			</section>
 
 			<section class="chapter" aria-labelledby="ch-error">
 				<h2 id="ch-error">
-					<span class="chapter-when">Desde entonces</span>
+					<span class="chapter-when">Desde entonces<span class="sr-only">. </span></span>
 					<span class="chapter-title">El error que más veo</span>
 				</h2>
 				<p>
 					He ayudado a una decena de compañeros a preparar su defensa y he visto defensas de varias
-					especialidades. Casi todos fallan en lo mismo: no saben interpretar la ley. Arrastran errores
-					de leyes educativas anteriores y de academias desfasadas, y cuando el tribunal pregunta por
-					qué, contestan citando un artículo.
+					especialidades.
+				</p>
+				<p>
+					<strong>{PROOF_SINCE.count}</strong>{' '}{PROOF_SINCE.detail}
+				</p>
+				<p>
+					Lo que más se repite en las defensas es que no saben interpretar la ley. Arrastran errores de
+					leyes educativas anteriores y de academias desfasadas, y cuando el tribunal pregunta por qué,
+					contestan citando un artículo.
 				</p>
 				<p>Es justo lo que yo decidí hacer bien.</p>
 			</section>
 
 			<section class="chapter" aria-labelledby="ch-hoy">
 				<h2 id="ch-hoy">
-					<span class="chapter-when">Hoy</span>
+					<span class="chapter-when">Hoy<span class="sr-only">. </span></span>
 					<span class="chapter-title">Por qué escribo CódigoFP</span>
 				</h2>
 				<p>Mi tutora del máster de profesorado me lo resumió en una frase:</p>
@@ -135,7 +154,7 @@ const description =
 				</blockquote>
 				<p>
 					Sigo preguntando a los compañeros cómo hacen las cosas, porque se puede aprender de un
-					catedrático y de un interino por igual. No escribo desde la otra orilla: acabo de cruzar el
+					catedrático y de un interino por igual. No escribo desde la otra orilla. Acabo de cruzar el
 					puente y me doy la vuelta para contarte cómo se hace.
 				</p>
 				<p>
@@ -199,6 +218,10 @@ const description =
 	.intro + .chapter {
 		margin-top: 96px;
 	}
+	/* The two turning points (2023 and 2025) get more air before them than the rest. */
+	.chapter--turn {
+		margin-top: 96px;
+	}
 	.chapter h2 {
 		margin: 0 0 16px;
 	}
@@ -216,6 +239,10 @@ const description =
 		text-align: right;
 		font-variant-numeric: tabular-nums;
 	}
+	.chapter--turn .chapter-when {
+		color: var(--brand-dark);
+		font-weight: 500;
+	}
 	.chapter-title {
 		display: block;
 	}
@@ -230,6 +257,25 @@ const description =
 	}
 	.chapter :global(.chapter-record) {
 		margin-top: 32px;
+	}
+
+	/* 0,13: the "before" numeral, same size as the 9,6 in the card, in ink instead of cobalt. */
+	.score {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin: 24px 0 24px !important;
+	}
+	.score-value {
+		color: var(--brand-dark);
+		font-size: 88px;
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+	.score-text {
+		color: var(--brand-graphite);
 	}
 
 	/* The tutor's sentence: the one quotation on the page, at subtitle size. */
@@ -280,9 +326,10 @@ const description =
 
 	@media (max-width: 600px) {
 		.about {
-			padding: 40px 16px 64px;
+			padding: 40px 16px 48px;
 		}
-		.intro + .chapter {
+		.intro + .chapter,
+		.chapter--turn {
 			margin-top: 64px;
 		}
 		.chapter {
@@ -298,12 +345,15 @@ const description =
 			font-size: 13px;
 			text-align: left;
 		}
+		.score-value {
+			font-size: 72px;
+		}
 		.quote {
 			padding-left: 16px;
 			font-size: 20px;
 		}
 		.subscribe {
-			margin-top: 64px;
+			margin-top: 48px;
 			margin-left: 0;
 			padding: 24px 16px;
 		}

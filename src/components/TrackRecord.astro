@@ -7,6 +7,8 @@
 // `columns` keeps label | content in two columns at any width, with the 9,6 above its text.
 // `photo` (a real photo of Ginés, imported from src/assets) shows next to the signature; without
 // it the signature stays text only.
+// `showFoot={false}` drops the signature row, for pages that already sign at the end.
+// `headingLevel={3}` when the card sits inside a section that already has an H2.
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import { PROOF_2025, PROOF_SINCE } from '../consts';
@@ -18,19 +20,32 @@ interface Props {
 	sinceDetail?: boolean;
 	columns?: boolean;
 	photo?: ImageMetadata;
+	showFoot?: boolean;
+	headingLevel?: 2 | 3;
 	class?: string;
 }
 
-const { compact = false, showPast = true, showSince = false, sinceDetail = false, columns = false, photo, class: className } = Astro.props;
+const {
+	compact = false,
+	showPast = true,
+	showSince = false,
+	sinceDetail = false,
+	columns = false,
+	photo,
+	showFoot = true,
+	headingLevel = 2,
+	class: className,
+} = Astro.props;
+const Heading = headingLevel === 3 ? 'h3' : 'h2';
 const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
 <section class:list={['record', { compact, columns, 'with-since': showSince }, className]} aria-label={head}>
-	<h2 class="record-head">
+	<Heading class="record-head">
 		<span>{head}</span><span class="record-place"
 			><span class="record-sep" aria-hidden="true"> · </span>Informática · Comunitat Valenciana</span
 		>
-	</h2>
+	</Heading>
 	{
 		showPast && (
 			<div class="record-row record-past">
@@ -60,10 +75,14 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 			</div>
 		)
 	}
-	<div class="record-foot">
-		{photo && <Image class="record-photo" src={photo} alt="Ginés" width={48} height={48} />}
-		<p>Ginés · docente de FP y funcionario de carrera</p>
-	</div>
+	{
+		showFoot && (
+			<div class="record-foot">
+				{photo && <Image class="record-photo" src={photo} alt="Ginés" width={48} height={48} />}
+				<p>Ginés · docente de FP y funcionario de carrera</p>
+			</div>
+		)
+	}
 </section>
 
 <style>
@@ -77,7 +96,7 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 		color: var(--brand-dark);
 	}
 	.record p,
-	.record h2 {
+	.record-head {
 		margin: 0;
 	}
 	.record-head {

@@ -15,7 +15,7 @@
 	--brand-accent-hover: #172e6e;
 	--brand-accent-on-dark: #7b9bea; /* Solo sobre fondo tinta */
 	--brand-on-dark: rgba(250, 250, 247, 0.65); /* Texto secundario sobre tinta */
-	--brand-focus-ring: 0 0 0 3px rgba(30, 58, 138, 0.18);
+	--brand-focus-ring: 0 0 0 3px rgba(30, 58, 138, 0.55); /* ≥3:1 on hueso, so the ring alone reads as focus */
 }
 body {
 	font-family: var(--font-inter);

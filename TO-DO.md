@@ -30,6 +30,12 @@ Pendientes de los cambios de la landing (ya en `main`).
   - Quitado lo de escribir temas en condiciones de examen y el esquema del práctico, porque CódigoFP nunca trata el tema ni el supuesto práctico.
   - «La que después sería mi mujer» (la fuente dice «futura mujer»).
   - Frases reescritas: «Me fui del desarrollo porque la vocación acabó saliendo, no por cansancio» y «…sin estudiar más que en 2023, y esta vez saqué plaza».
+  - Tras la crítica del 2026-11-05:
+    - Nuevos títulos: «Dos cursos con otro sistema» y «Plaza, con la programación en otro orden».
+    - El bambú vuelve en 2025 («llevaba dos cursos echando raíces sin que se viera nada»).
+    - Menos frases con dos puntos.
+    - DAW desarrollado.
+    - «El Plan» explicado como «dos cursos de preparación individual».
 - [ ] **Foto de Ginés.** La misma foto real de la landing. Impórtala en `src/pages/sobre-mi.astro` y pásala como `photo={…}` a `<TrackRecord>`.
 - [ ] **Comprobar la redirección `/about` → `/sobre-mi/` en producción.** Ahora es una página estática con meta refresh (`redirects` en `astro.config.mjs`). Si el hosting admite redirecciones 301, conviene pasarla allí.
 - [ ] **Firma en un componente (opcional).** La firma está copiada en `/gracias`, `/confirmacion-suscripcion`, `/dentro-claustro` y `/sobre-mi`, cada una con su propio CSS. Si se cambia, hay que tocar las cuatro.
