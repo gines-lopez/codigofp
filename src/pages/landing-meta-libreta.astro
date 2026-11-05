@@ -8,9 +8,9 @@ import OptinForm from '../components/OptinForm.astro';
 import TrackRecord from '../components/TrackRecord.astro';
 import '../styles/landing-meta-libreta.css';
 
-const title = 'CódigoFP · El orden de una programación defendible';
+const title = 'CódigoFP · En qué orden se monta una programación que aguanta el «por qué»';
 const description =
-	'El orden en que se construye una programación de FP que aguanta cada «por qué» del tribunal.';
+	'En 6 minutos verás en qué orden se monta una programación de FP que aguanta cada «por qué» del tribunal. Luego pasas la tuya por el autodiagnóstico en 20 minutos.';
 
 
 const deliverables = [
@@ -48,7 +48,7 @@ const deliverables = [
 		<Font cssVariable="--font-kalam" />
 	</head>
 	<body>
-		<Header />
+		<Header linkLogo={false} />
 		<main class="libreta">
 			<div class="margen">
 				<span class="nota" aria-hidden="true">¿y tu<br />respuesta?</span>
@@ -56,9 +56,9 @@ const deliverables = [
 
 			<div class="hoja">
 				<section class="pitch">
-					<p class="brand-label">para opositores de FP · vídeo de 6&nbsp;minutos</p>
 					<h1>
-						El orden en que se construye una programación de FP que aguanta cada <span class="circled"
+						Opositor de FP: en 6&nbsp;minutos verás en qué orden se monta una programación que aguanta
+						cada <span class="circled"
 							>«por qué»<svg
 								class="ring"
 								aria-hidden="true"
@@ -72,16 +72,21 @@ const deliverables = [
 						> del tribunal.
 					</h1>
 					<p class="brand-lead">
-						Te enseño, parte por parte, qué decides en cada apartado y qué pregunta del tribunal tiene que
-						aguantar. Después, 20 minutos con la tuya bastan para ver dónde acabarías citando la ley.
+						Parte por parte: qué decides, por qué va ahí y qué te van a preguntar. Luego pasas la tuya por
+						el autodiagnóstico en 20 minutos.
 					</p>
 
-					<OptinForm id="email-l">
-						Confirmas tu email y te llega en un par de minutos. Después, un correo cada martes sobre {NEWSLETTER_TOPICS}. Si no te sirve, te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
+					<OptinForm id="email-l" label="¿A qué correo te mando el vídeo y el autodiagnóstico?">
+						Confirmas tu email y te llega en un par de minutos. Luego, un correo cada martes sobre
+						{NEWSLETTER_TOPICS}. Sin spam, y te das de baja con un clic.
+						<Fragment slot="legal">
+							Responsable: CódigoFP. Tus datos solo sirven para enviarte esto y se guardan en MailerLite.
+							<a href="/politica-privacidad/">Política de privacidad</a>.
+						</Fragment>
 					</OptinForm>
 				</section>
 
-				<TrackRecord class="libreta-record" />
+				<TrackRecord showSince sinceDetail class="libreta-record" />
 
 				<section class="deliverables">
 					<h2>Lo que te llega al correo</h2>
