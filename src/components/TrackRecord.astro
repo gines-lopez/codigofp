@@ -2,20 +2,22 @@
 // "Mis dos convocatorias" card: 2023 near miss vs. 2025 score.
 // `compact` stacks every row while the card is narrower than 480px (side columns).
 // `showPast={false}` drops the 2023 row, for pages whose H1 already tells it.
+// `showSince` adds the «Desde entonces» row (PROOF_SINCE) under the 2025 one.
 // `photo` (a real photo of Ginés, imported from src/assets) shows next to the signature; without
 // it the signature stays text only.
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
-import { PROOF_2025 } from '../consts';
+import { PROOF_2025, PROOF_SINCE } from '../consts';
 
 interface Props {
 	compact?: boolean;
 	showPast?: boolean;
+	showSince?: boolean;
 	photo?: ImageMetadata;
 	class?: string;
 }
 
-const { compact = false, showPast = true, photo, class: className } = Astro.props;
+const { compact = false, showPast = true, showSince = false, photo, class: className } = Astro.props;
 const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
@@ -44,6 +46,16 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 			</p>
 		</div>
 	</div>
+	{
+		showSince && (
+			<div class="record-row record-since">
+				<p class="record-year">{PROOF_SINCE.label}</p>
+				<p class="record-text">
+					<strong>{PROOF_SINCE.count}</strong> {PROOF_SINCE.text}
+				</p>
+			</div>
+		)
+	}
 	<div class="record-foot">
 		{photo && <Image class="record-photo" src={photo} alt="Ginés" width={48} height={48} />}
 		<p>Ginés · docente de FP y funcionario de carrera</p>
@@ -116,6 +128,13 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 	}
 	.record-past strong {
 		color: var(--brand-dark);
+	}
+	.record-since {
+		border-top: 1px solid var(--brand-line);
+	}
+	/* The label is longer than a year: it takes its own width instead of the 72px column. */
+	.record-since .record-year {
+		flex: 0 0 auto;
 	}
 	.record-result {
 		display: flex;

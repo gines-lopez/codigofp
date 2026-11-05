@@ -1,6 +1,6 @@
 # TO-DO · Landing de captación (`/landing/`)
 
-Pendientes de los cambios de la rama `landing-cambios-captacion`.
+Pendientes de los cambios de la landing (ya en `main`).
 
 ## Legal
 
@@ -21,7 +21,7 @@ Pendientes de los cambios de la rama `landing-cambios-captacion`.
 ## Comprobación
 
 - [ ] **Probar el formulario de principio a fin con un email de prueba**: envío, email de confirmación y correo de bienvenida. Falta decidir qué dirección de prueba se usa.
-- [ ] **Revisar la página en un móvil real.** En headless, la parte inferior del botón queda en el píxel 662 de 812.
+- [ ] **Revisar la página en un móvil real.** En headless, la parte inferior del botón queda en el píxel 693 de 812; hay que confirmar que se ve entero con las barras de Safari.
 
 ## Descartado
 

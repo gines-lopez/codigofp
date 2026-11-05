@@ -18,6 +18,13 @@ export const PROOF_2025 = {
 	rank: 'Cuarto puesto en el concurso-oposición completo',
 } as const;
 
+// What happened after 2025 (given by Ginés): third row of the TrackRecord card.
+export const PROOF_SINCE = {
+	label: 'Desde entonces',
+	count: '6',
+	text: 'personas con plaza, de 4 especialidades distintas.',
+} as const;
+
 // One description of the newsletter for every page (PRODUCT.md, «Alcance temático»).
 export const NEWSLETTER_TOPICS = 'programación didáctica, normativa, la oposición y la vida del opositor';
 export const NEWSLETTER_SCOPE = `Cada martes, un correo sobre ${NEWSLETTER_TOPICS}.`;
