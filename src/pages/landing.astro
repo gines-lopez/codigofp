@@ -5,11 +5,12 @@ import Header from '../components/Header.astro';
 import OptinForm from '../components/OptinForm.astro';
 import Testimonials from '../components/Testimonials.astro';
 import TrackRecord from '../components/TrackRecord.astro';
+import { LEAD_MAGNET } from '../consts';
 import '../styles/landing.css';
 
 const title = 'CódigoFP · Una programación de FP que puedes defender';
 const description =
-	'Me quedé a 0,13 de la plaza con una programación que cumplía con todo. Dos años después saqué un 9,6 en la defensa, la mejor nota de mi especialidad, cambiando el orden en que la hice.';
+	'Tu programación de FP puede cumplir con todo y aun así dejarte a centésimas de la plaza. En 20 minutos, con tu programación delante, sabrás qué apartados aguantan una pregunta del tribunal.';
 
 // Same text on the form button and the final CTA.
 const CTA_TEXT = 'Mándame el autodiagnóstico';
@@ -41,9 +42,14 @@ const videoPoints = [
 	},
 ];
 
-// What the reader downloads (the old point 04, without its head: the text already says what it is).
-const download =
-	'El autodiagnóstico son 20 minutos con tu programación delante y tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes por dónde empezar. El mapa es una página para imprimir.';
+// What the reader downloads (the old point 04, split in two): name and format from LEAD_MAGNET.
+const downloads = [
+	{
+		...LEAD_MAGNET[1],
+		text: 'El autodiagnóstico son 20 minutos con tu programación delante y tiene una casilla incómoda: «lo tengo, pero respondería con la normativa». Si marcas muchas, ya sabes por dónde empezar.',
+	},
+	{ ...LEAD_MAGNET[2], text: 'El mapa es una página para imprimir.' },
+];
 ---
 
 <!doctype html>
@@ -61,7 +67,10 @@ const download =
 					En 20 minutos, con tu programación delante, sabrás qué apartados aguantan una pregunta del
 					tribunal y cuáles contestarías con el artículo.
 				</p>
-				<p class="pack">Gratis: vídeo de 6 minutos + autodiagnóstico + mapa del orden</p>
+				<div class="pack">
+					<p class="pack-items">Gratis: vídeo de 6 minutos + autodiagnóstico + mapa del orden</p>
+					<p class="pack-scope">Sirve para cualquier especialidad de FP y cualquier comunidad.</p>
+				</div>
 				<OptinForm id="email-r-early" buttonText={CTA_TEXT}>
 					Te llega en cuanto confirmes tu email. Después, cada martes un correo sobre programación y
 					defensa. Sin spam y te das de baja con un clic.{
@@ -133,12 +142,23 @@ const download =
 					}
 				</ol>
 				<h3>Lo que te descargas</h3>
-				<p class="download">{download}</p>
+				<ul class="downloads">
+					{
+						downloads.map((item) => (
+							<li>
+								<strong class="point-title">
+									{item.name} <span class="download-tag">{item.tag}</span>
+								</strong>
+								<span class="point-text">{item.text}</span>
+							</li>
+						))
+					}
+				</ul>
 			</section>
 
 			<section class="cta">
 				<p class="cta-text">
-					Te lo mando en cuanto confirmes tu email: «El orden, parte por parte» (vídeo de 6 minutos), el autodiagnóstico y el mapa del orden.
+					Te lo mando en cuanto confirmes tu email: el vídeo de 6 minutos, el autodiagnóstico y el mapa del orden.
 				</p>
 				<p class="end-cta"><a class="brand-button" href="#email-r-early" data-scroll-to-form>{CTA_TEXT} <span aria-hidden="true">↑</span></a></p>
 			</section>
