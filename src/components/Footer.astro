@@ -1,13 +1,19 @@
 ---
 import { SITE_TITLE } from '../consts';
 
+// `showAbout` adds the «Sobre mí» link. Off by default so the ad landings keep a single way out.
+interface Props {
+	showAbout?: boolean;
+}
+
+const { showAbout = false } = Astro.props;
 const today = new Date();
 ---
 
 <footer>
 	<p>&copy; {today.getFullYear()} {SITE_TITLE}. Todos los derechos reservados.</p>
 	<p>
-		<a href="/aviso-legal/">Aviso legal</a> · <a href="/politica-privacidad/">Política de privacidad</a>
+		{showAbout && <><a href="/sobre-mi/">Sobre mí</a> · </>}<a href="/aviso-legal/">Aviso legal</a> · <a href="/politica-privacidad/">Política de privacidad</a>
 	</p>
 </footer>
 <style>

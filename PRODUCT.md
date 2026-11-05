@@ -47,7 +47,8 @@ Lo sostiene la trayectoria real de Ginés: en 2023 se quedó a 0,13 de la plaza 
   - **Vida del opositor**: cómo organizarte, cómo te sientes y lo que se vive durante el proceso.
   - **Nunca** trata del tema escrito ni del supuesto práctico, tampoco dentro de «la oposición».
 - **Decisión abierta:** habrá un producto de pago (curso, mentoría u otro) que aún no está definido. No se inventan nombre, precio, formato ni promesas.
-- **Pendiente:** el blog (`/blog`) y `/about` se usarán más adelante con contenido real. Hoy tienen el contenido de ejemplo de Astro (lorem ipsum) y no son relevantes ni sirven como evidencia. Para trabajar en ellos, hay que pedir la información a Ginés.
+- **Pendiente:** el blog (`/blog`) se usará más adelante con contenido real. Hoy tiene el contenido de ejemplo de Astro (lorem ipsum), no es relevante ni sirve como evidencia. Para trabajar en él, hay que pedir la información a Ginés.
+- `/sobre-mi/` cuenta la historia de Ginés para quien ya recibe la newsletter (`/about` redirige allí). El texto sale de la versión larga de `12_historia_autor.md`. El enlace «Sobre mí» va en el pie (`<Footer showAbout />`), salvo en las landings de anuncios.
 
 ## Brand Commitments
 
@@ -55,6 +56,7 @@ Lo sostiene la trayectoria real de Ginés: en 2023 se quedó a 0,13 de la plaza 
 - El logo es un wordmark de texto (`<Código` + `FP>`), nunca una imagen.
 - Lo escribe Ginés en primera persona: docente de FP y funcionario de carrera. El tono es directo y concreto, con cifras y anécdotas reales (la noche de las 13 centésimas y las cinco hojas de Excel), sin humo.
 - Lema en el pie de los correos: «Una programación didáctica que entiendes tú primero.»
+- Firma de las páginas en primera persona (`/gracias`, `/confirmacion-suscripcion`, `/dentro-claustro`, `/sobre-mi`): siempre la misma, nunca solo «Ginés». Va en `<p class="signature">`: «Ginés» en `<strong>` (tinta, 17px) y debajo, en grafito a 14px/500, «CódigoFP — Una programación didáctica que entiendes tú primero.»
 - El sistema visual vinculante está en `AGENTS.md` (sección «Visual system»), con sus excepciones para `/landing-meta-libreta` y `/landing-meta`.
 
 ## Evidence on Hand

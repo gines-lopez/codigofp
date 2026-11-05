@@ -1,0 +1,311 @@
+---
+// «Sobre mí»: Ginés's story for readers who already get the newsletter. Copy from the long official
+// version in 12_historia_autor.md (brand project); every figure comes from src/consts.ts.
+// No photo yet: TrackRecord takes `photo` when there is a real one in src/assets.
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
+import TrackRecord from '../components/TrackRecord.astro';
+import { NEWSLETTER_EXCLUSION, NEWSLETTER_TOPICS, SITE_TITLE } from '../consts';
+
+const description =
+	'Soy Ginés: más de diez años como desarrollador web, docente de FP de Informática desde 2022 y funcionario de carrera. Me quedé a 0,13 de la plaza y así aprendí a opositar.';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Sobre mí · ${SITE_TITLE}`} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main class="about">
+			<header class="intro">
+				<h1>Dejé de estudiar una oposición para empezar a opositar</h1>
+				<p class="brand-lead lead">
+					Soy Ginés, docente de FP de Informática en la Comunitat Valenciana y funcionario de carrera.
+					Esta es la historia de cómo llegué aquí y de por qué escribo CódigoFP.
+				</p>
+			</header>
+
+			<section class="chapter" aria-labelledby="ch-semilla">
+				<h2 id="ch-semilla">
+					<span class="chapter-when">Bachillerato</span>
+					<span class="chapter-title">Mi madre dando clase</span>
+				</h2>
+				<p>
+					Soy hijo de padres docentes. En segundo de Bachillerato vi a mi madre dar clase y supe que
+					yo también quería enseñar. Tardé años en hacerlo. Mientras tanto di extraescolares de inglés
+					y clases de repaso de matemáticas y de física y química.
+				</p>
+				<p>
+					Yo lo llamo la paradoja del bambú: pasa años echando raíces bajo tierra y, cuando por fin
+					sale, crece de golpe.
+				</p>
+			</section>
+
+			<section class="chapter" aria-labelledby="ch-desarrollo">
+				<h2 id="ch-desarrollo">
+					<span class="chapter-when">Hasta 2022</span>
+					<span class="chapter-title">Más de diez años programando</span>
+				</h2>
+				<p>
+					Trabajé más de diez años como desarrollador web. Terminé DAW a los 32 y ahí supe que quería
+					estabilidad. A los 37 dejé una carrera asentada para dar clase en FP de Informática.
+				</p>
+				<p>
+					Me fui del desarrollo porque la vocación acabó saliendo, no por cansancio. La FP me dio una
+					profesión, y eso es lo que intento devolver: formar profesionales. No quiero que a un exalumno le pregunten quién le enseñó y
+					mi nombre quede en entredicho.
+				</p>
+			</section>
+
+			<section class="chapter" aria-labelledby="ch-excel">
+				<h2 id="ch-excel">
+					<span class="chapter-when">2023</span>
+					<span class="chapter-title">Cinco hojas de Excel</span>
+				</h2>
+				<p>
+					En mi primera oposición me quedé a <strong>0,13</strong> de la plaza, con una programación
+					que cumplía con todo. Esa noche estaba en casa con la que después sería mi mujer. No me
+					derrumbé: monté cinco hojas de Excel. Sumé méritos, los recalculé, conté las plazas de
+					diversidad funcional sin adjudicar y cómo se repartían entre tribunales. No hubo suerte.
+				</p>
+				<p>
+					Al día siguiente me senté a ver qué había fallado. La respuesta fue incómoda: estaba
+					estudiando una oposición en lugar de opositar.
+				</p>
+			</section>
+
+			<section class="chapter" aria-labelledby="ch-plan">
+				<h2 id="ch-plan">
+					<span class="chapter-when">2023–2025</span>
+					<span class="chapter-title">Mejor es mejor</span>
+				</h2>
+				<p>
+					Cambié tres cosas. Hice un máster para sumar el baremo que me faltaba. En septiembre cambié
+					de preparadores, gente que sabía lo que era opositar y que me dio un sistema y la confianza
+					de que era posible; uno de ellos es el mejor docente con el que me he cruzado. Y empezamos lo
+					que llamamos «El Plan»: dos cursos de preparación con un lema, «Mejor es mejor».
+				</p>
+				<p>
+					El que estudia intenta aprendérselo todo. El que oposita mira qué puntúa y qué mira el
+					tribunal, y deja fuera lo que no suma. En la programación eso significó cambiar el orden en
+					que tomaba las decisiones, darles a todas las unidades la misma estructura para defenderlas
+					igual y tomarme en serio la ley. Si dominas la ley, dominas la oposición.
+				</p>
+				<p>Dejé de mirar a los demás opositores. Solo tenía un rival: yo.</p>
+			</section>
+
+			<section class="chapter" aria-labelledby="ch-metodo">
+				<h2 id="ch-metodo">
+					<span class="chapter-when">2025</span>
+					<span class="chapter-title">La diferencia fue el método</span>
+				</h2>
+				<p>
+					Volví a presentarme con la programación hecha en otro orden y sin estudiar más que en
+					2023, y esta vez saqué plaza.
+				</p>
+				<TrackRecord class="chapter-record" showSince sinceDetail />
+			</section>
+
+			<section class="chapter" aria-labelledby="ch-error">
+				<h2 id="ch-error">
+					<span class="chapter-when">Desde entonces</span>
+					<span class="chapter-title">El error que más veo</span>
+				</h2>
+				<p>
+					He ayudado a una decena de compañeros a preparar su defensa y he visto defensas de varias
+					especialidades. Casi todos fallan en lo mismo: no saben interpretar la ley. Arrastran errores
+					de leyes educativas anteriores y de academias desfasadas, y cuando el tribunal pregunta por
+					qué, contestan citando un artículo.
+				</p>
+				<p>Es justo lo que yo decidí hacer bien.</p>
+			</section>
+
+			<section class="chapter" aria-labelledby="ch-hoy">
+				<h2 id="ch-hoy">
+					<span class="chapter-when">Hoy</span>
+					<span class="chapter-title">Por qué escribo CódigoFP</span>
+				</h2>
+				<p>Mi tutora del máster de profesorado me lo resumió en una frase:</p>
+				<blockquote class="quote">
+					<p>«Eres tu madre explicando y la presencia en el aula de tu padre».</p>
+				</blockquote>
+				<p>
+					Sigo preguntando a los compañeros cómo hacen las cosas, porque se puede aprender de un
+					catedrático y de un interino por igual. No escribo desde la otra orilla: acabo de cruzar el
+					puente y me doy la vuelta para contarte cómo se hace.
+				</p>
+				<p>
+					Lo cuento cada martes, en un correo sobre {NEWSLETTER_TOPICS}. {NEWSLETTER_EXCLUSION}
+				</p>
+				<p class="signature">
+					<strong>Ginés</strong><br />
+					CódigoFP — Una programación didáctica que entiendes tú primero.
+				</p>
+			</section>
+
+			<aside class="subscribe" aria-labelledby="subscribe-title">
+				<h2 id="subscribe-title">¿Aún no te llega el correo de los martes?</h2>
+				<p class="subscribe-text">
+					Al confirmar tu email te mando un vídeo de seis minutos, un autodiagnóstico y el mapa del
+					orden en una página.
+				</p>
+				<SubscribeFormMailerLite />
+				<p class="brand-optin-note subscribe-note">
+					Te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
+				</p>
+			</aside>
+		</main>
+		<Footer showAbout />
+	</body>
+</html>
+<style>
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+	::selection {
+		background: var(--brand-accent);
+		color: var(--brand-light);
+	}
+	.about {
+		flex: 1;
+		width: 752px;
+		max-width: 100%;
+		box-sizing: border-box;
+		padding: 64px 16px 96px;
+	}
+
+	/* Intro: the phrase that sums up 2023 → 2025, then who is speaking. */
+	.intro h1 {
+		margin: 0 0 24px;
+	}
+	.lead {
+		margin: 0;
+		color: var(--brand-graphite);
+	}
+
+	/* Chapters: the year hangs in a left margin, the text keeps a ~65ch measure.
+	   Space separates chapters; no rules between them. */
+	.chapter {
+		position: relative;
+		margin-top: 64px;
+		padding-left: 152px;
+	}
+	.intro + .chapter {
+		margin-top: 96px;
+	}
+	.chapter h2 {
+		margin: 0 0 16px;
+	}
+	.chapter-when {
+		position: absolute;
+		top: 9px;
+		left: 0;
+		width: 120px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: 0;
+		line-height: 1.4;
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+	}
+	.chapter-title {
+		display: block;
+	}
+	.chapter p {
+		margin: 0 0 16px;
+	}
+	.chapter p:last-child {
+		margin-bottom: 0;
+	}
+	.chapter strong {
+		font-weight: 600;
+	}
+	.chapter :global(.chapter-record) {
+		margin-top: 32px;
+	}
+
+	/* The tutor's sentence: the one quotation on the page, at subtitle size. */
+	.quote {
+		margin: 24px 0;
+		font-size: 26px;
+		letter-spacing: -0.01em;
+		line-height: 1.35;
+	}
+	.quote p {
+		margin: 0;
+	}
+	/* Same sign-off as /gracias, /confirmacion-suscripcion and /dentro-claustro. */
+	.signature {
+		margin-top: 24px !important;
+		color: var(--brand-graphite);
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.5;
+	}
+	.signature strong {
+		color: var(--brand-dark);
+		font-size: 17px;
+	}
+
+	/* Subscribe: secondary, for readers who arrived without being on the list. */
+	.subscribe {
+		margin-top: 96px;
+		margin-left: 152px;
+		padding: 32px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+	}
+	.subscribe h2 {
+		margin: 0 0 8px;
+		font-size: 20px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		line-height: 1.35;
+	}
+	.subscribe-text {
+		margin: 0 0 24px;
+		color: var(--brand-graphite);
+	}
+	.subscribe-note {
+		margin-top: 16px;
+	}
+
+	@media (max-width: 600px) {
+		.about {
+			padding: 40px 16px 64px;
+		}
+		.intro + .chapter {
+			margin-top: 64px;
+		}
+		.chapter {
+			margin-top: 48px;
+			padding-left: 0;
+		}
+		/* On a phone the year goes inside the heading, on its own line above the title. */
+		.chapter-when {
+			position: static;
+			display: block;
+			width: auto;
+			margin-bottom: 8px;
+			font-size: 13px;
+			text-align: left;
+		}
+		.quote {
+			padding-left: 16px;
+			font-size: 20px;
+		}
+		.subscribe {
+			margin-top: 64px;
+			margin-left: 0;
+			padding: 24px 16px;
+		}
+	}
+</style>

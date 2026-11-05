@@ -10,6 +10,10 @@ const SITEMAP_EXCLUDE = ['/landing/', '/landing-meta/', '/landing-meta-libreta/'
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://codigofp.com',
+	// The old Astro placeholder route now lives at /sobre-mi/.
+	redirects: {
+		'/about': '/sobre-mi/',
+	},
 	integrations: [
 		mdx(),
 		sitemap({

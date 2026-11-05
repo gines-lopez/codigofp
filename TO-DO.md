@@ -24,6 +24,16 @@ Pendientes de los cambios de la landing (ya en `main`).
 - [ ] **Probar el formulario de principio a fin con un email de prueba**: envío, email de confirmación y correo de bienvenida. Falta decidir qué dirección de prueba se usa.
 - [ ] **Revisar la página en un móvil real.** En headless, la parte inferior del botón queda en el píxel 693 de 812; hay que confirmar que se ve entero con las barras de Safari.
 
+## Sobre mí (`/sobre-mi/`)
+
+- [ ] **Revisar el copy.** Sale de la versión larga de `12_historia_autor.md`, con estos cambios:
+  - Quitado lo de escribir temas en condiciones de examen y el esquema del práctico, porque CódigoFP nunca trata el tema ni el supuesto práctico.
+  - «La que después sería mi mujer» (la fuente dice «futura mujer»).
+  - Frases reescritas: «Me fui del desarrollo porque la vocación acabó saliendo, no por cansancio» y «…sin estudiar más que en 2023, y esta vez saqué plaza».
+- [ ] **Foto de Ginés.** La misma foto real de la landing. Impórtala en `src/pages/sobre-mi.astro` y pásala como `photo={…}` a `<TrackRecord>`.
+- [ ] **Comprobar la redirección `/about` → `/sobre-mi/` en producción.** Ahora es una página estática con meta refresh (`redirects` en `astro.config.mjs`). Si el hosting admite redirecciones 301, conviene pasarla allí.
+- [ ] **Firma en un componente (opcional).** La firma está copiada en `/gracias`, `/confirmacion-suscripcion`, `/dentro-claustro` y `/sobre-mi`, cada una con su propio CSS. Si se cambia, hay que tocar las cuatro.
+
 ## Descartado
 
 - Fase 5 (test A/B): `/landing/` se sustituye directamente.
