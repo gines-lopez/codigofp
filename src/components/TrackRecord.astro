@@ -23,7 +23,7 @@ const { compact = false, showPast = true, showSince = false, sinceDetail = false
 const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 ---
 
-<section class:list={['record', { compact }, className]} aria-label={head}>
+<section class:list={['record', { compact, 'with-since': showSince }, className]} aria-label={head}>
 	<h2 class="record-head">
 		<span>{head}</span><span class="record-place"
 			><span class="record-sep" aria-hidden="true"> · </span>Informática · Comunitat Valenciana</span
@@ -134,9 +134,10 @@ const head = showPast ? 'Mis dos convocatorias' : 'Mi última convocatoria';
 	.record-since {
 		border-top: 1px solid var(--brand-line);
 	}
-	/* The label is longer than a year: it takes its own width instead of the 72px column. */
-	.record-since .record-year {
-		flex: 0 0 auto;
+	/* «Desde entonces» is longer than a year: every row gets the wider label column, so all the
+	   texts start on the same vertical line. */
+	.with-since .record-year {
+		flex-basis: 7.5em;
 	}
 	.record-result {
 		display: flex;
