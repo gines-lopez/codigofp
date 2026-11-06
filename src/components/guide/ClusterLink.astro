@@ -1,0 +1,41 @@
+---
+// Link to a cluster (blog post, /blog/<slug>/) or to another pillar (/<slug>/). Until that page
+// is published it renders as plain text marked «próximamente», so the guide never ships a dead link.
+import { getGuides, getPosts } from '../../lib/posts';
+
+interface Props {
+	href: string;
+}
+
+const { href } = Astro.props;
+const slug = href.replace(/^\/(blog\/)?/, '').replace(/\/$/, '');
+const pool = href.startsWith('/blog/') ? await getPosts() : await getGuides();
+const exists = pool.some((entry) => entry.id === slug);
+---
+
+{
+	exists ? (
+		<a href={href}>
+			<slot />
+		</a>
+	) : (
+		<span class="pending">
+			<slot />
+			<span class="pending-note">(próximamente)</span>
+		</span>
+	)
+}
+
+<style>
+	.pending {
+		font-weight: 500;
+	}
+	.pending-note {
+		margin-left: 4px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 400;
+		white-space: nowrap;
+	}
+</style>

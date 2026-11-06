@@ -1,0 +1,54 @@
+---
+// Newsletter block inside a guide. Same MailerLite form and logic as the landings (OptinForm +
+// src/scripts/mailerlite-optin.ts, imported by the Guide layout). `full` adds the lead magnet list.
+import LeadMagnet from '../LeadMagnet.astro';
+import OptinForm from '../OptinForm.astro';
+
+interface Props {
+	id: string;
+	title: string;
+	full?: boolean;
+}
+
+const { id, title, full = false } = Astro.props;
+---
+
+<aside class:list={['optin', { full }]} aria-labelledby={`${id}-title`}>
+	<p class="optin-title" id={`${id}-title`}>{title}</p>
+	<div class="optin-text"><slot /></div>
+	{full && <LeadMagnet class="optin-magnet" />}
+	<OptinForm id={id} buttonText="Mándamelos">
+		Un correo cada martes. Te das de baja con un clic. <a href="/politica-privacidad/">Política de privacidad</a>.
+	</OptinForm>
+</aside>
+
+<style>
+	.optin {
+		margin: 48px 0;
+		padding: 32px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+	}
+	.optin-title {
+		margin: 0 0 8px;
+		font-size: 24px;
+		font-weight: 600;
+		letter-spacing: -0.015em;
+		line-height: 1.25;
+	}
+	.optin-text :global(p) {
+		margin: 0 0 24px;
+		color: var(--brand-graphite);
+	}
+	.optin :global(.optin-magnet) {
+		margin-bottom: 24px;
+	}
+	@media (max-width: 600px) {
+		.optin {
+			padding: 24px 16px;
+		}
+		.optin-title {
+			font-size: 20px;
+		}
+	}
+</style>

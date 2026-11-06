@@ -1,0 +1,110 @@
+---
+// The chain of norms that ends in the programación, top to bottom. Each step limits the next one;
+// the last step (decisions with a reason of your own) is the only one nobody gives you.
+const steps = [
+	{ name: 'Ley Orgánica 3/2022 de FP', note: 'El sistema de FP' },
+	{ name: 'Real Decreto 659/2023', note: 'La ordenación del sistema' },
+	{ name: 'Real decreto de tu título', note: 'Módulos, RA y CE' },
+	{ name: 'Currículo autonómico del ciclo', note: 'Horas y concreción', side: 'También: LOE, modificada por la LOMLOE' },
+	{ name: 'Orden de convocatoria', note: 'Extensión, formato y defensa', side: 'También: RD 276/2007 de ingreso' },
+	{ name: 'Tu programación', note: 'Lo que entregas' },
+	{ name: 'Tus decisiones justificadas', note: 'Lo que defiendes', own: true },
+];
+---
+
+<figure class="chain">
+	<ol>
+		{
+			steps.map((s) => (
+				<li class:list={['step', { own: s.own }]}>
+					<span class="name">{s.name}</span>
+					<span class="note">{s.note}</span>
+					{s.side && <span class="side">{s.side}</span>}
+				</li>
+			))
+		}
+	</ol>
+	<figcaption>Cada paso limita al siguiente. El último es el único que nadie te da hecho.</figcaption>
+</figure>
+
+<style>
+	.chain {
+		margin: 32px 0;
+	}
+	ol {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.chain .step {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 4px 16px;
+		margin-bottom: 24px;
+		padding: 12px 16px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+	}
+	/* Connector: a short vertical rule with an arrowhead into the next box. */
+	.step:not(:last-child)::after {
+		content: '';
+		position: absolute;
+		left: 32px;
+		bottom: -25px;
+		width: 1px;
+		height: 24px;
+		background: var(--brand-line-strong);
+	}
+	.step:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		left: 28px;
+		bottom: -3px;
+		border-top: 6px solid var(--brand-line-strong);
+		border-left: 4.5px solid transparent;
+		border-right: 4.5px solid transparent;
+		transform: translateY(100%);
+	}
+	.chain .step:last-child {
+		margin-bottom: 0;
+	}
+	.name {
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+	.note {
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+		line-height: 1.6;
+		text-align: right;
+	}
+	.side {
+		grid-column: 1 / -1;
+		color: var(--brand-graphite);
+		font-size: 14px;
+		line-height: 1.5;
+	}
+	.own {
+		border: 2px solid var(--brand-accent);
+	}
+	.own .name {
+		color: var(--brand-accent);
+	}
+	figcaption {
+		margin-top: 16px;
+		color: var(--brand-graphite);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	@media (max-width: 600px) {
+		.chain .step {
+			grid-template-columns: minmax(0, 1fr);
+		}
+		.note {
+			text-align: left;
+		}
+	}
+</style>

@@ -1,0 +1,65 @@
+---
+// Six-month plan, grouped in three stages. Orientative: it follows the build phases, not a norm.
+const stages = [
+	{ name: 'Base', months: [['Mes 1', 'Norma, título y currículo. Contexto y módulo.'], ['Mes 2', 'RA, CE y unidades. Matriz RA–UT.']] },
+	{ name: 'Núcleo', months: [['Mes 3', 'Evaluación y pesos. Temporalización.'], ['Mes 4', 'Metodología e inclusión.']] },
+	{ name: 'Cierre', months: [['Mes 5', 'Fundamentación e introducción. Revisión con la convocatoria.'], ['Mes 6', 'Ensayo de preguntas. Ajustes finales.']] },
+];
+---
+
+<figure class="months">
+	{
+		stages.map((s) => (
+			<div class="stage">
+				<p class="stage-name">{s.name}</p>
+				<dl>
+					{s.months.map(([m, text]) => (
+						<div class="row">
+							<dt>{m}</dt>
+							<dd>{text}</dd>
+						</div>
+					))}
+				</dl>
+			</div>
+		))
+	}
+</figure>
+
+<style>
+	.months {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 16px;
+		margin: 32px 0;
+	}
+	.stage {
+		padding: 16px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+	}
+	.stage-name {
+		margin: 0 0 12px;
+		font-weight: 600;
+	}
+	dl {
+		margin: 0;
+	}
+	.row + .row {
+		margin-top: 12px;
+	}
+	dt {
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	dd {
+		margin: 2px 0 0;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	@media (max-width: 600px) {
+		.months {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

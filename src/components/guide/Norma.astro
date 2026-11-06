@@ -1,0 +1,41 @@
+---
+// «Lo que dice la norma»: the legal frame of a section, set apart from Ginés's own recommendation,
+// which follows as ordinary text.
+---
+
+<div class="norma">
+	<p class="norma-label">Lo que dice la norma</p>
+	<div class="norma-body"><slot /></div>
+</div>
+
+<style>
+	.norma {
+		margin: 24px 0;
+		padding: 16px 24px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+	}
+	.norma-label {
+		margin: 0 0 8px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+		line-height: 1.4;
+	}
+	.norma-label::before {
+		content: '// ';
+	}
+	.norma-body :global(p) {
+		margin: 0 0 8px;
+		font-size: 16px;
+		line-height: 1.6;
+	}
+	.norma-body :global(p:last-child) {
+		margin-bottom: 0;
+	}
+	@media (max-width: 600px) {
+		.norma {
+			padding: 16px;
+		}
+	}
+</style>

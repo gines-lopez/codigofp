@@ -19,4 +19,19 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+// Pillar guides ("páginas madre"), published at the site root: /<file name>/. Their clusters are
+// blog posts (/blog/<slug>/), linked with <ClusterLink>, which shows plain text until the post exists.
+const guias = defineCollection({
+	loader: glob({ base: './src/content/guias', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		pubDate: z.coerce.date(),
+		updatedDate: z.coerce.date().optional(),
+		keyword: z.string().optional(),
+		keywords: z.array(z.string()).default([]),
+		draft: z.boolean().default(false),
+	}),
+});
+
+export const collections = { blog, guias };

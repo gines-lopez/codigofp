@@ -40,6 +40,41 @@ Pendientes de los cambios de la landing (ya en `main`).
 - [ ] **Comprobar la redirección `/about` → `/sobre-mi/` en producción.** Ahora es una página estática con meta refresh (`redirects` en `astro.config.mjs`). Si el hosting admite redirecciones 301, conviene pasarla allí.
 - [ ] **Firma en un componente (opcional).** La firma está copiada en `/gracias`, `/confirmacion-suscripcion`, `/dentro-claustro` y `/sobre-mi`, cada una con su propio CSS. Si se cambia, hay que tocar las cuatro.
 
+## Pilar «Cómo hacer una programación didáctica de FP»
+
+Borrador: `~/Downloads/como-hacer-programacion-didactica-fp.md` (unas 5.500 palabras, 10 clusters).
+
+Decisiones (2026-11-06):
+- **URL en la raíz** (`/como-hacer-programacion-didactica-fp/`). Colección nueva `guias`, aparte del blog. Los clusters van en la misma colección.
+- **Newsletter:** «la newsletter de CódigoFP», cada martes, sin hora ni nombre propio.
+- **Lead magnet en las CTA:** los tres materiales, con los nombres de `LEAD_MAGNET`.
+- **Normativa estatal:** la verifica Claude en el BOE y entrega una tabla de citas. Lo autonómico pasa a «compruébalo en tu convocatoria».
+
+Pasos:
+- [x] Colección `guias`, plantilla de lectura (índice, firma, fechas, «Resumen rápido»), componentes «norma / recomendación» y «Cómo lo aplico yo», tabla de errores y FAQ. JSON-LD `Article` + `BreadcrumbList`.
+- [x] Diagramas sin Mermaid, como componentes de marca:
+  - Cadena de normas.
+  - Las cinco fases.
+  - Diálogo tribunal 2023 / 2025.
+  - Meses.
+  - Cuadrante 2×2, o quitarlo.
+  - El mapa mental se quita.
+- [x] Suscripción: dos `OptinForm` (uno a media página y uno al final). Se quita la CTA del principio.
+- [x] Enlaces a clusters sin publicar: se muestran como texto hasta que exista la página.
+- [x] Correcciones de copy:
+  - Precisión del 9,6 (`PROOF_2025`).
+  - Lead magnet: «El mapa del orden», no «El orden de una programación defendible».
+  - Quitar la mención a los temas.
+  - Añadir `PROOF_SINCE`.
+  - Repaso anti-IA (fórmulas repetidas en las 12 secciones).
+- [x] Verificar en el BOE los `[VERIFICAR]` estatales y entregar tabla con artículo y enlace.
+- [ ] `[COMPLETAR]` de Ginés (en `Contestar.md`): anécdota de revisión, contextualización 2025, matriz RA–UT, reparto de horas, metodología concreta, alumnado y medidas de diversidad, si partió de un modelo, plan de 6 meses, tiempo dentro de «El Plan», cómo ensayó la defensa. Lo que no se cuente, se quita (no se inventa).
+- [ ] Escribir los clusters de normativa y calendario (2026-11-07 y 2026-11-08). Los clusters son artículos del blog (`/blog/<slug>/`).
+- [x] Publicado en local en `/como-hacer-programacion-didactica-fp/`, con «Hacer PD» y «Blog» en el menú.
+- [ ] Crítica y pulido en móvil y escritorio.
+- [ ] El índice de `/blog/` sigue con los artículos de ejemplo de Astro y ya está enlazado desde el menú.
+- [ ] Normativa sin artículo confirmado: lo de no suprimir RA en las adaptaciones (se cita sin artículo).
+
 ## Descartado
 
 - Fase 5 (test A/B): `/landing/` se sustituye directamente.

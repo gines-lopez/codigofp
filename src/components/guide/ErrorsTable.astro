@@ -1,0 +1,92 @@
+---
+// Frequent errors: a table on wide screens, one card per error on a phone (no sideways scroll).
+const rows = [
+	['Responder con la normativa a cada «por qué»', 'La respuesta es correcta, pero no demuestra criterio propio', 'Preparar para cada decisión un motivo didáctico, además de su base legal'],
+	['Usar términos y estructuras de normativas anteriores', 'El tribunal ve que el documento no está actualizado', 'Revisar la terminología con la LO 3/2022, el RD 659/2023 y el real decreto del título'],
+	['Adoptar una programación de academia sin rehacerla', 'No sabes sostener decisiones que no tomaste tú', 'Usar los modelos para ver decisiones y volver a tomarlas con tu módulo'],
+	['Diseñar las actividades antes que la evaluación', 'Pesos sin motivo y CE que se quedan sin evaluar', 'Diseño inverso: la evidencia de cada CE antes que las actividades'],
+	['No poder trazar la relación entre RA y unidades', 'No tienes respuesta para la pregunta más frecuente', 'Construir la matriz RA–UT aunque no vaya en el documento'],
+	['Contextualización decorativa', 'Ocupa espacio y no justifica nada', 'Comprobar que cada dato del contexto cambia alguna decisión'],
+	['Temporalización que no cuadra con el currículo', 'Un error que se ve a simple vista', 'Sumar las horas contra el currículo autonómico del ciclo'],
+	['Medidas de diversidad que rebajan RA', 'Contradice la lógica de cualificación de la FP', 'Adaptar acceso, tiempos, metodología e instrumentos, nunca los RA del título'],
+	['Leer la orden de convocatoria al final', 'Te arriesgas a incumplir extensión o formato', 'Revisar la convocatoria publicada antes de cerrar el documento'],
+];
+const heads = ['Error', 'Qué provoca en la oposición', 'Cómo evitarlo'];
+---
+
+<table class="errors">
+	<thead>
+		<tr>{heads.map((h) => <th scope="col">{h}</th>)}</tr>
+	</thead>
+	<tbody>
+		{
+			rows.map((r) => (
+				<tr>
+					<th scope="row">{r[0]}</th>
+					<td data-label={heads[1]}>{r[1]}</td>
+					<td data-label={heads[2]}>{r[2]}</td>
+				</tr>
+			))
+		}
+	</tbody>
+</table>
+
+<style>
+	.errors {
+		width: 100%;
+		margin: 24px 0;
+		border-collapse: collapse;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	th,
+	td {
+		padding: 12px 12px 12px 0;
+		border-bottom: 1px solid var(--brand-line);
+		text-align: left;
+		vertical-align: top;
+	}
+	thead th {
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 400;
+	}
+	tbody th {
+		width: 32%;
+		font-weight: 600;
+	}
+	@media (max-width: 600px) {
+		thead {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip-path: inset(50%);
+		}
+		tr {
+			display: block;
+			margin-bottom: 8px;
+			padding: 16px;
+			border: 1px solid var(--brand-line);
+			border-radius: 8px;
+		}
+		tbody th,
+		td {
+			display: block;
+			width: auto;
+			padding: 0;
+			border: 0;
+		}
+		td {
+			margin-top: 12px;
+		}
+		td::before {
+			content: attr(data-label);
+			display: block;
+			color: var(--brand-graphite);
+			font-family: var(--font-mono);
+			font-size: 13px;
+		}
+	}
+</style>

@@ -5,3 +5,8 @@ import { getCollection } from 'astro:content';
 export function getPosts() {
 	return getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft);
 }
+
+// Same rule for the pillar guides published at the site root.
+export function getGuides() {
+	return getCollection('guias', ({ data }) => import.meta.env.DEV || !data.draft);
+}

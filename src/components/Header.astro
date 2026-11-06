@@ -1,10 +1,16 @@
 ---
-// `linkLogo={false}` shows the wordmark without the link to the home (ad landings).
+// `linkLogo={false}` shows the wordmark without the link to the home and without the menu (ad
+// landings: a single way out). Everywhere else the menu shows the pillar guide and the blog.
 interface Props {
 	linkLogo?: boolean;
 }
 
 const { linkLogo = true } = Astro.props;
+const path = Astro.url.pathname;
+const menu = [
+	{ href: '/como-hacer-programacion-didactica-fp/', label: 'Hacer PD' },
+	{ href: '/blog/', label: 'Blog' },
+];
 ---
 
 <header>
@@ -15,6 +21,19 @@ const { linkLogo = true } = Astro.props;
 				<a href="/" class="brand-wordmark" aria-label="CódigoFP, inicio">&lt;Código<span class="brand-wordmark__fp">FP&gt;</span></a>
 			) : (
 				<span class="brand-wordmark" role="img" aria-label="CódigoFP">&lt;Código<span class="brand-wordmark__fp">FP&gt;</span></span>
+			)
+		}
+		{
+			linkLogo && (
+				<ul class="menu">
+					{menu.map((m) => (
+						<li>
+							<a href={m.href} aria-current={path.startsWith(m.href) ? 'page' : undefined}>
+								{m.label}
+							</a>
+						</li>
+					))}
+				</ul>
 			)
 		}
 	</nav>
@@ -48,6 +67,31 @@ const { linkLogo = true } = Astro.props;
 	}
 	.brand-wordmark__fp {
 		color: var(--brand-accent);
+	}
+	.menu {
+		display: flex;
+		gap: 24px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.menu a {
+		display: inline-block;
+		padding: 8px 0;
+		color: var(--brand-graphite);
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.5;
+		text-decoration: none;
+	}
+	.menu a:hover {
+		color: var(--brand-dark);
+	}
+	.menu a[aria-current='page'] {
+		color: var(--brand-dark);
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 6px;
 	}
 	@media (max-width: 600px) {
 		.brand-wordmark {

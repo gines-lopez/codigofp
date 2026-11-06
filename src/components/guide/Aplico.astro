@@ -1,0 +1,39 @@
+---
+// «Cómo lo aplico yo»: Ginés in first person, the part of the guide nobody else can write.
+// Only real experience goes here; a section without it simply has no box.
+---
+
+<aside class="aplico">
+	<p class="aplico-title">Cómo lo aplico yo</p>
+	<div class="aplico-body"><slot /></div>
+	<p class="aplico-sign">Ginés</p>
+</aside>
+
+<style>
+	.aplico {
+		margin: 32px 0;
+		padding: 24px;
+		border: 1px solid var(--brand-dark);
+		border-radius: 8px;
+	}
+	.aplico-title {
+		margin: 0 0 12px;
+		font-size: 17px;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+	.aplico-body :global(p) {
+		margin: 0 0 12px;
+	}
+	.aplico-sign {
+		margin: 16px 0 0;
+		color: var(--brand-graphite);
+		font-size: 14px;
+		font-weight: 500;
+	}
+	@media (max-width: 600px) {
+		.aplico {
+			padding: 16px;
+		}
+	}
+</style>

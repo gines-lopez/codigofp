@@ -1,0 +1,19 @@
+---
+// Pillar guides at the site root (/<file name>/). Static pages in src/pages always take precedence.
+import { type CollectionEntry, render } from 'astro:content';
+import Guide from '../layouts/Guide.astro';
+import { getGuides } from '../lib/posts';
+
+export async function getStaticPaths() {
+	const guides = await getGuides();
+	return guides.map((guide) => ({ params: { guia: guide.id }, props: guide }));
+}
+type Props = CollectionEntry<'guias'>;
+
+const guide = Astro.props;
+const { Content, headings } = await render(guide);
+---
+
+<Guide {...guide.data} headings={headings}>
+	<Content />
+</Guide>

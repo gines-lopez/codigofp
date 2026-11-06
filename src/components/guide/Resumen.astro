@@ -1,0 +1,37 @@
+---
+// «Resumen rápido» right under the intro: the guide in six lines for the reader in a hurry.
+---
+
+<section class="resumen" aria-labelledby="resumen-rapido">
+	<h2 id="resumen-rapido">Resumen rápido</h2>
+	<slot />
+</section>
+
+<style>
+	.resumen {
+		margin: 40px 0;
+		padding: 24px 32px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+	}
+	.resumen h2 {
+		margin: 0 0 16px !important;
+		font-size: 20px !important;
+		letter-spacing: -0.01em;
+	}
+	.resumen :global(ul) {
+		margin: 0;
+		padding-left: 20px;
+	}
+	.resumen :global(li) {
+		margin-bottom: 8px;
+	}
+	.resumen :global(li:last-child) {
+		margin-bottom: 0;
+	}
+	@media (max-width: 600px) {
+		.resumen {
+			padding: 16px;
+		}
+	}
+</style>
