@@ -108,6 +108,13 @@ const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '
 
 <script>
 	import '../../scripts/mailerlite-optin';
+
+	// Phones: bring the active topic into view inside the sideways row (scrolling is not a layout shift).
+	const row = document.querySelector<HTMLElement>('.topics-nav ul');
+	const current = row?.querySelector<HTMLElement>('[aria-current="page"]');
+	if (row && current && row.scrollWidth > row.clientWidth) {
+		row.scrollLeft = current.parentElement!.offsetLeft - 16;
+	}
 </script>
 
 <style>
@@ -299,8 +306,28 @@ const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '
 		.grid :global(.meta) {
 			font-size: 12px;
 		}
+		/* Phones: the topics run in one row that scrolls sideways, edge to edge. A fixed height
+		   means the late web font can't re-wrap them and push the page down (layout shift). */
+		.topics-nav ul {
+			flex-wrap: nowrap;
+			margin: 0 -16px;
+			padding: 0 16px 4px;
+			overflow-x: auto;
+			scroll-padding-inline: 16px;
+			scroll-snap-type: x proximity;
+			scrollbar-width: none;
+			-webkit-overflow-scrolling: touch;
+		}
+		.topics-nav ul::-webkit-scrollbar {
+			display: none;
+		}
+		.topics-nav li {
+			flex: none;
+			scroll-snap-align: start;
+		}
 		.topics-nav a {
 			padding: 8px 12px;
+			white-space: nowrap;
 		}
 	}
 </style>
