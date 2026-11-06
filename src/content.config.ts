@@ -33,6 +33,8 @@ const guias = defineCollection({
 		description: z.string(),
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
+		// Line shown in the header band, next to the title (the description is for search results).
+		lead: z.string().optional(),
 		keyword: z.string().optional(),
 		keywords: z.array(z.string()).default([]),
 		draft: z.boolean().default(false),

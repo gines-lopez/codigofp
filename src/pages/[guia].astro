@@ -1,8 +1,9 @@
 ---
 // Pillar guides at the site root (/<file name>/). Static pages in src/pages always take precedence.
+// Same reading layout as the blog posts; the guide ends with its own form, so the layout adds none.
 import { type CollectionEntry, render } from 'astro:content';
-import Guide from '../layouts/Guide.astro';
-import { getGuides } from '../lib/posts';
+import Article from '../layouts/Article.astro';
+import { byDate, getGuides, getPosts, readingTime } from '../lib/posts';
 
 export async function getStaticPaths() {
 	const guides = await getGuides();
@@ -12,8 +13,23 @@ type Props = CollectionEntry<'guias'>;
 
 const guide = Astro.props;
 const { Content, headings } = await render(guide);
+const related = byDate(await getPosts())
+	.filter((p) => p.data.category === 'programacion-didactica')
+	.slice(0, 3);
 ---
 
-<Guide {...guide.data} headings={headings}>
+<Article
+	kind="guía"
+	{...guide.data}
+	headings={headings}
+	minutes={readingTime(guide.body)}
+	section="Programación didáctica"
+	related={related}
+	endOptin={false}
+	crumbs={[
+		{ label: 'Inicio', href: '/' },
+		{ label: 'Programación didáctica', href: '/blog/tema/programacion-didactica/' },
+	]}
+>
 	<Content />
-</Guide>
+</Article>
