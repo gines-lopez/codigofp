@@ -14,6 +14,10 @@ export default defineConfig({
 	redirects: {
 		'/about': '/sobre-mi/',
 	},
+	// Light code blocks on hueso, framed in niebla (styled in src/layouts/Guide.astro).
+	markdown: {
+		shikiConfig: { theme: 'github-light' },
+	},
 	integrations: [
 		mdx(),
 		sitemap({

@@ -1,0 +1,274 @@
+---
+// The blog listing, shared by /blog/ and /blog/tema/<tema>/: intro with the topic filter, lead post,
+// the ink band to the pillar guide, the grid of posts, the newsletter and the four topics.
+import type { CollectionEntry } from 'astro:content';
+import { BLOG_CATEGORIES } from '../../consts';
+import GuideOptin from '../guide/GuideOptin.astro';
+import GuideBand from './GuideBand.astro';
+import PostCard from './PostCard.astro';
+
+interface Props {
+	title: string;
+	lead: string;
+	posts: CollectionEntry<'blog'>[]; // newest first
+	allPosts: CollectionEntry<'blog'>[];
+	active?: string; // topic slug
+}
+
+const { title, lead, posts, allPosts, active } = Astro.props;
+const [first, ...rest] = posts;
+const count = (slug: string) => allPosts.filter((p) => p.data.category === slug).length;
+const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '1 artículo' : `${n} artículos`);
+---
+
+<main class="blog">
+	<header class="intro">
+		<h1>{title}</h1>
+		<p class="brand-lead lead">{lead}</p>
+		<nav class="topics-nav" aria-label="Temas del blog">
+			<ul>
+				<li><a href="/blog/" aria-current={!active ? 'page' : undefined}>Todos</a></li>
+				{
+					BLOG_CATEGORIES.map((c) => (
+						<li>
+							<a href={`/blog/tema/${c.slug}/`} aria-current={active === c.slug ? 'page' : undefined}>
+								{c.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</header>
+
+	{
+		first ? (
+			<section class="lead-post" aria-label="Último artículo">
+				<PostCard post={first} featured />
+			</section>
+		) : (
+			<section class="empty">
+				<h2>{active ? 'Todavía no hay artículos de este tema' : 'El primer artículo sale pronto'}</h2>
+				<p>
+					Mientras tanto, la guía de abajo tiene todo el método, y cada martes te llega una decisión de la programación por
+					correo.
+				</p>
+			</section>
+		)
+	}
+
+	<GuideBand />
+
+	{
+		rest.length > 0 && (
+			<section class="more" aria-labelledby="more-title">
+				<h2 id="more-title">Más artículos</h2>
+				<div class="grid">
+					{rest.map((post) => (
+						<PostCard post={post} />
+					))}
+				</div>
+			</section>
+		)
+	}
+
+	<div class="newsletter">
+		<GuideOptin id="optin-blog" title="Una decisión de la programación, cada martes" full>
+			<p>
+				Para opositores de FP de cualquier especialidad que ya tienen su programación y quieren saber defenderla. Nunca
+				trata del tema escrito ni del supuesto práctico.
+			</p>
+		</GuideOptin>
+	</div>
+
+	<section class="topics" aria-labelledby="topics-title">
+		<h2 id="topics-title">Temas</h2>
+		<ul class="topics-grid">
+			{
+				BLOG_CATEGORIES.map((c) => (
+					<li class:list={['topic', { current: active === c.slug }]}>
+						<h3>
+							<a href={`/blog/tema/${c.slug}/`}>{c.name}</a>
+						</h3>
+						<p>{c.text}</p>
+						<p class="topic-count">{plural(count(c.slug))}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</main>
+
+<script>
+	import '../../scripts/mailerlite-optin';
+</script>
+
+<style>
+	.blog {
+		flex: 1;
+		width: 1188px;
+		max-width: 100%;
+		box-sizing: border-box;
+		padding: 48px 16px 96px;
+	}
+	.blog h2 {
+		margin: 0 0 24px;
+	}
+
+	/* Intro: title, one line of what the blog is, and the topic filter. */
+	.intro h1 {
+		margin: 0 0 16px;
+	}
+	.lead {
+		max-width: 720px;
+		margin: 0 0 32px;
+		color: var(--brand-graphite);
+	}
+	.topics-nav ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.topics-nav a {
+		display: inline-block;
+		padding: 8px 16px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+		color: var(--brand-dark);
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.5;
+		text-decoration: none;
+	}
+	.topics-nav a:hover {
+		border-color: var(--brand-dark);
+	}
+	.topics-nav a[aria-current='page'] {
+		border-color: var(--brand-dark);
+		background: var(--brand-dark);
+		color: var(--brand-light);
+	}
+
+	.lead-post,
+	.empty {
+		margin: 48px 0;
+	}
+	.empty {
+		padding: 40px;
+		border: 1px dashed var(--brand-line-strong);
+		border-radius: 8px;
+	}
+	.empty h2 {
+		margin-bottom: 8px;
+		font-size: 24px;
+	}
+	.empty p {
+		max-width: 640px;
+		margin: 0;
+		color: var(--brand-graphite);
+	}
+
+	.more {
+		margin-top: 96px;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 24px;
+	}
+
+	.newsletter {
+		max-width: 720px;
+		margin: 96px auto 0;
+	}
+	.newsletter :global(.optin) {
+		margin: 0;
+	}
+
+	.topics {
+		margin-top: 96px;
+	}
+	.topics-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 24px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.topic {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: 24px;
+		border: 1px solid var(--brand-line);
+		border-radius: 8px;
+	}
+	.topic:hover,
+	.topic.current {
+		border-color: var(--brand-dark);
+	}
+	.topic h3 {
+		margin: 0 0 8px;
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+	.topic h3 a {
+		color: var(--brand-dark);
+		text-decoration: none;
+	}
+	.topic h3 a::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+	.topic p {
+		margin: 0 0 16px;
+		color: var(--brand-graphite);
+		font-size: 16px;
+		line-height: 1.5;
+	}
+	.topic .topic-count {
+		margin: auto 0 0;
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+
+	@media (max-width: 1024px) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.topics-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	@media (max-width: 600px) {
+		.blog {
+			padding: 32px 16px 64px;
+		}
+		.lead-post,
+		.empty {
+			margin: 32px 0;
+		}
+		.empty {
+			padding: 24px 20px;
+		}
+		.more,
+		.newsletter,
+		.topics {
+			margin-top: 64px;
+		}
+		.grid,
+		.topics-grid {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 16px;
+		}
+		.topics-nav a {
+			padding: 8px 12px;
+		}
+	}
+</style>

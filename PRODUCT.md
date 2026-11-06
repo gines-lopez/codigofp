@@ -47,7 +47,7 @@ Lo sostiene la trayectoria real de Ginés: en 2023 se quedó a 0,13 de la plaza 
   - **Vida del opositor**: cómo organizarte, cómo te sientes y lo que se vive durante el proceso.
   - **Nunca** trata del tema escrito ni del supuesto práctico, tampoco dentro de «la oposición».
 - **Decisión abierta:** habrá un producto de pago (curso, mentoría u otro) que aún no está definido. No se inventan nombre, precio, formato ni promesas.
-- **Pendiente:** el blog (`/blog`) se usará más adelante con contenido real. Hoy tiene el contenido de ejemplo de Astro (lorem ipsum), no es relevante ni sirve como evidencia. Para trabajar en él, hay que pedir la información a Ginés.
+- **Blog** (`/blog/`): listado con último artículo destacado, franja a la guía, cuadrícula y suscripción. Cada artículo lleva un `category` con uno de los cuatro pilares (`BLOG_CATEGORIES` en `src/consts.ts`, páginas `/blog/tema/<tema>/`), y usa la plantilla de lectura de las guías. Los artículos de ejemplo de Astro siguen como borradores (`draft: true`, solo en local) y no sirven como evidencia: el contenido real se pide a Ginés. Los clusters del pilar son artículos del blog.
 - `/sobre-mi/` cuenta la historia de Ginés para quien ya recibe la newsletter (`/about` redirige allí). El texto sale de la versión larga de `12_historia_autor.md`. El enlace «Sobre mí» va en el pie (`<Footer showAbout />`), salvo en las landings de anuncios.
 
 ## Brand Commitments

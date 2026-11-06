@@ -39,3 +39,13 @@ export const LEAD_MAGNET = [
 	{ tag: 'PDF · 20 min', name: 'El autodiagnóstico' },
 	{ tag: 'PDF · 1 página', name: 'El mapa del orden' },
 ] as const;
+
+// Blog topics: the four pillars of the newsletter (PRODUCT.md, «Alcance temático»). The slug is the
+// URL (/blog/tema/<slug>/) and the value stored in each post's `category`.
+export const BLOG_CATEGORIES = [
+	{ slug: 'programacion-didactica', name: 'Programación didáctica', text: 'Estructura, evaluación por RA y CE y defensa oral.' },
+	{ slug: 'normativa', name: 'Normativa', text: 'Leer e interpretar la ley y los decretos de FP.' },
+	{ slug: 'oposicion', name: 'La oposición', text: 'El baremo, cómo leer una convocatoria y los anuncios de plazas.' },
+	{ slug: 'vida-opositor', name: 'Vida del opositor', text: 'Cómo organizarte, cómo te sientes y lo que se vive durante el proceso.' },
+] as const;
+export type BlogCategory = (typeof BLOG_CATEGORIES)[number]['slug'];

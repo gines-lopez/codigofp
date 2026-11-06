@@ -1,6 +1,9 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { BLOG_CATEGORIES } from './consts';
+
+const categorySlugs = BLOG_CATEGORIES.map((c) => c.slug) as [string, ...string[]];
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -14,6 +17,8 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
+			// One of the four pillars (BLOG_CATEGORIES in src/consts.ts).
+			category: z.enum(categorySlugs).default('programacion-didactica'),
 			// Drafts are only visible in `astro dev`; they are never published.
 			draft: z.boolean().default(false),
 		}),
