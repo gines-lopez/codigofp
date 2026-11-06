@@ -6,8 +6,8 @@ import { NEWSLETTER_EXCLUSION, NEWSLETTER_SCOPE } from '../consts';
 import '../styles/dentro-claustro.css';
 
 // Lead magnet page. Reached only through the link in MailerLite's welcome email: never link to it from
-// the site. Private by obscurity: noindex here, excluded from the sitemap in astro.config.mjs, and
-// the PDFs get X-Robots-Tag from public/.htaccess. Do not add it to robots.txt (that would publish
+// the site. Private by obscurity: noindex here and excluded from the sitemap in astro.config.mjs.
+// The PDFs are served from Google Drive (shared by link). Do not add it to robots.txt (that would publish
 // the URL and hide the noindex from crawlers).
 const title = 'Tu material · CódigoFP';
 const description = 'El vídeo, el autodiagnóstico y el mapa del orden de CódigoFP.';
@@ -17,10 +17,17 @@ const YOUTUBE_ID = 'jNQXAC9IVRw';
 const VIDEO_TITLE = 'El orden, parte por parte';
 const watchUrl = `https://www.youtube.com/watch?v=${YOUTUBE_ID}`;
 
-// Files live in public/dentro-claustro/. Update size and pages if a PDF changes.
+// PDFs on Google Drive, as direct downloads (uc?export=download&id=<file id>). The copies in
+// public/dentro-claustro/ are kept as a backup only; nothing links to them. Update size and pages if a PDF changes.
 const files = {
-	diagnostico: { href: '/dentro-claustro/diagnostico-codigofp.pdf', meta: 'PDF · 8 páginas · 4,2 MB' },
-	mapa: { href: '/dentro-claustro/mapa-codigofp.pdf', meta: 'PDF · 1 página · 730 KB' },
+	diagnostico: {
+		href: 'https://drive.google.com/uc?export=download&id=1QWNyBD7WnJxboPty90edD2GRE3SS6fZy',
+		meta: 'PDF · 8 páginas · 4,2 MB',
+	},
+	mapa: {
+		href: 'https://drive.google.com/uc?export=download&id=12GK6WoK1PelLa0PNZ05GT85NOqgixbD0',
+		meta: 'PDF · 1 página · 730 KB',
+	},
 };
 ---
 
