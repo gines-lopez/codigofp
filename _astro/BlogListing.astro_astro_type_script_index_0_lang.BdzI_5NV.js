@@ -1,0 +1,1 @@
+import"./mailerlite-optin._C-V4TP0.js";var e=document.querySelector(`.topics-nav ul`),t=e?.querySelector(`[aria-current="page"]`);e&&t&&e.scrollWidth>e.clientWidth&&(e.scrollLeft=t.parentElement.offsetLeft-16);
