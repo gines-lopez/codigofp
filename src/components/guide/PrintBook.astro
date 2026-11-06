@@ -1,0 +1,155 @@
+---
+// Print stylesheet for the pillar guides: one continuous article to read and correct on paper.
+// Title block at the top of page 1, the text running without forced page breaks, running title
+// and page numbers, wide A4 margins, and nothing of the web chrome (menu, footer, sidebar,
+// subscription forms, related posts). Only diagrams and table rows are kept whole, so pages don't
+// end in blank gaps. Rules are scoped to body.is-guide; the running title comes from `title`.
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const running = `@page { @top-center { content: ${JSON.stringify(title)}; } }`;
+---
+
+<style is:inline set:html={`@media print { ${running} }`}></style>
+
+<style is:global>
+	@media print {
+		@page {
+			size: A4;
+			margin: 22mm 24mm 24mm;
+			@top-center {
+				color: #5b5f66;
+				font-family: var(--font-inter), sans-serif;
+				font-size: 8.5pt;
+			}
+			@bottom-center {
+				content: counter(page);
+				color: #5b5f66;
+				font-family: var(--font-mono), monospace;
+				font-size: 9pt;
+			}
+		}
+		/* Page 1 already shows the title. */
+		@page :first {
+			@top-center {
+				content: none;
+			}
+		}
+
+		body.is-guide {
+			background: none;
+			color: #0f1115;
+			font-size: 11pt;
+			print-color-adjust: exact;
+			-webkit-print-color-adjust: exact;
+		}
+
+		/* Out: everything that only makes sense on screen, subscription blocks included. */
+		body.is-guide > header,
+		body.is-guide > footer,
+		.is-guide .layout > aside,
+		.is-guide .toc-inline,
+		.is-guide .print-toc,
+		.is-guide .related,
+		.is-guide .optin,
+		.is-guide .end-box,
+		.is-guide form.brand-optin,
+		.is-guide .magnet,
+		.is-guide astro-dev-toolbar {
+			display: none !important;
+		}
+
+		.is-guide main,
+		.is-guide .layout,
+		.is-guide .band-inner {
+			display: block !important;
+			width: auto !important;
+			max-width: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+
+		/* Title block at the top of the first page, then straight into the text. */
+		.is-guide .band {
+			margin-bottom: 10mm;
+			padding-bottom: 8mm;
+			border-bottom: 1px solid #878a91;
+			background: none !important;
+		}
+		.is-guide .band .crumbs {
+			display: none;
+		}
+		.is-guide .band h1 {
+			margin: 0 0 6mm;
+			font-size: 24pt;
+			line-height: 1.15;
+		}
+		.is-guide .band .meta {
+			font-size: 9pt;
+		}
+		.is-guide .band-lead {
+			margin: 6mm 0 0 !important;
+			font-size: 13pt;
+		}
+		.is-guide .monogram {
+			border: 1px solid #0f1115;
+		}
+
+		/* Running text. */
+		.is-guide .prose > p,
+		.is-guide .prose > ul,
+		.is-guide .prose > ol {
+			font-size: 11pt;
+			line-height: 1.6;
+			orphans: 3;
+			widows: 3;
+		}
+		.is-guide .prose h2 {
+			margin: 10mm 0 4mm;
+			font-size: 16pt;
+			line-height: 1.2;
+			break-after: avoid;
+		}
+		.is-guide .prose > h2:first-child {
+			margin-top: 0;
+		}
+		.is-guide .prose h3 {
+			font-size: 12.5pt;
+			break-after: avoid;
+		}
+		.is-guide .prose a {
+			color: inherit;
+		}
+		.is-guide .norma,
+		.is-guide .aplico,
+		.is-guide .resumen {
+			margin-top: 5mm;
+			margin-bottom: 5mm;
+		}
+
+		/* A box may split across pages, but never leaving its title alone at the bottom. */
+		.is-guide .aplico-title,
+		.is-guide .norma-label,
+		.is-guide .resumen h2 {
+			break-after: avoid;
+		}
+		.is-guide .aplico-body > :first-child,
+		.is-guide .norma-body > :first-child {
+			break-before: avoid;
+			orphans: 3;
+		}
+
+		/* Only diagrams and table rows are kept whole. */
+		.is-guide .chain,
+		.is-guide .phases,
+		.is-guide .dialog,
+		.is-guide .months,
+		.is-guide .prio,
+		.is-guide .errors tr,
+		.is-guide pre {
+			break-inside: avoid;
+		}
+	}
+</style>

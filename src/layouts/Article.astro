@@ -11,6 +11,7 @@ import PostCard from '../components/blog/PostCard.astro';
 import Footer from '../components/Footer.astro';
 import GuideOptin from '../components/guide/GuideOptin.astro';
 import Header from '../components/Header.astro';
+import PrintBook from '../components/guide/PrintBook.astro';
 import { PROOF_2025, SITE_TITLE } from '../consts';
 
 interface Props {
@@ -83,8 +84,9 @@ const jsonLd = {
 	<head>
 		<BaseHead title={`${title} · ${SITE_TITLE}`} description={description} image={heroImage} noindex={draft} />
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+		{guide && <PrintBook title={title} />}
 	</head>
-	<body>
+	<body class:list={{ 'is-guide': guide }}>
 		<Header />
 		<main>
 			<header class="band">
@@ -221,6 +223,18 @@ const jsonLd = {
 									))}
 								</ol>
 							</details>
+						)
+					}
+					{
+						guide && (
+							<nav class="print-toc" aria-hidden="true">
+								<h2>Índice</h2>
+								<ol>
+									{toc.map((h) => (
+										<li>{h.text}</li>
+									))}
+								</ol>
+							</nav>
 						)
 					}
 					<div class="prose">
@@ -540,7 +554,8 @@ const jsonLd = {
 	.article {
 		min-width: 0;
 	}
-	.toc-inline {
+	.toc-inline,
+	.print-toc {
 		display: none;
 	}
 	.prose > :global(*:first-child) {

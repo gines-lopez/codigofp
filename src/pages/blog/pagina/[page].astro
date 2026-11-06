@@ -1,0 +1,41 @@
+---
+// /blog/pagina/<n>/ for n ≥ 2: the grid only (page 1 is /blog/).
+import BaseHead from '../../../components/BaseHead.astro';
+import BlogListing from '../../../components/blog/BlogListing.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { NEWSLETTER_TOPICS, SITE_TITLE } from '../../../consts';
+import { byDate, getPosts, paginate } from '../../../lib/posts';
+
+export async function getStaticPaths() {
+	const all = byDate(await getPosts());
+	const pages = paginate(all);
+	return pages.slice(1).map((posts, i) => ({
+		params: { page: String(i + 2) },
+		props: { posts, all, page: i + 2, total: pages.length },
+	}));
+}
+
+const { posts, all, page, total } = Astro.props;
+const lead = `Artículos sobre ${NEWSLETTER_TOPICS}, escritos por alguien que acaba de pasar por ella.`;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Blog, página ${page} · ${SITE_TITLE}`} description={lead} />
+	</head>
+	<body>
+		<Header />
+		<BlogListing title="Blog" lead={lead} posts={posts} allPosts={all} base="/blog/" page={page} totalPages={total} />
+		<Footer showAbout />
+	</body>
+</html>
+
+<style>
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+</style>

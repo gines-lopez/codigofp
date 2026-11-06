@@ -1,11 +1,12 @@
 ---
-// One page per blog topic: /blog/tema/<slug>/ (BLOG_CATEGORIES in src/consts.ts).
+// One page per blog topic: /blog/tema/<slug>/ (BLOG_CATEGORIES in src/consts.ts). Later pages live
+// in /blog/tema/<slug>/pagina/<n>/.
 import BaseHead from '../../../components/BaseHead.astro';
 import BlogListing from '../../../components/blog/BlogListing.astro';
 import Footer from '../../../components/Footer.astro';
 import Header from '../../../components/Header.astro';
 import { BLOG_CATEGORIES, SITE_TITLE } from '../../../consts';
-import { byDate, getPosts } from '../../../lib/posts';
+import { byDate, getPosts, paginate } from '../../../lib/posts';
 
 export function getStaticPaths() {
 	return BLOG_CATEGORIES.map((c) => ({ params: { tema: c.slug }, props: { category: c } }));
@@ -13,7 +14,7 @@ export function getStaticPaths() {
 
 const { category } = Astro.props;
 const all = byDate(await getPosts());
-const posts = all.filter((p) => p.data.category === category.slug);
+const pages = paginate(all.filter((p) => p.data.category === category.slug));
 ---
 
 <!doctype html>
@@ -23,7 +24,16 @@ const posts = all.filter((p) => p.data.category === category.slug);
 	</head>
 	<body>
 		<Header />
-		<BlogListing title={category.name} lead={category.text} posts={posts} allPosts={all} active={category.slug} />
+		<BlogListing
+			title={category.name}
+			lead={category.text}
+			posts={pages[0]}
+			allPosts={all}
+			active={category.slug}
+			base={`/blog/tema/${category.slug}/`}
+			page={1}
+			totalPages={pages.length}
+		/>
 		<Footer showAbout />
 	</body>
 </html>

@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 .impeccable/
+
+# personal page inventory, regenerated on every build (integrations/links.mjs)
+Links.md

@@ -1,22 +1,28 @@
 ---
-// The blog listing, shared by /blog/ and /blog/tema/<tema>/: intro with the topic filter, lead post,
-// the ink band to the pillar guide, the grid of posts, the newsletter and the four topics.
+// The blog listing, shared by /blog/, /blog/tema/<tema>/ and their /pagina/<n>/ pages: intro with the
+// topic filter, lead post and the ink band to the pillar guide (page 1 only), the grid of posts with
+// its pagination, the newsletter and the four topics.
 import type { CollectionEntry } from 'astro:content';
 import { BLOG_CATEGORIES } from '../../consts';
 import GuideOptin from '../guide/GuideOptin.astro';
 import GuideBand from './GuideBand.astro';
+import Pagination from './Pagination.astro';
 import PostCard from './PostCard.astro';
 
 interface Props {
 	title: string;
 	lead: string;
-	posts: CollectionEntry<'blog'>[]; // newest first
+	posts: CollectionEntry<'blog'>[]; // this page's posts, newest first
 	allPosts: CollectionEntry<'blog'>[];
 	active?: string; // topic slug
+	base: string; // URL of page 1 of this listing
+	page?: number;
+	totalPages?: number;
 }
 
-const { title, lead, posts, allPosts, active } = Astro.props;
-const [first, ...rest] = posts;
+const { title, lead, posts, allPosts, active, base, page = 1, totalPages = 1 } = Astro.props;
+const firstPage = page === 1;
+const [first, ...rest] = firstPage ? posts : [undefined, ...posts];
 const count = (slug: string) => allPosts.filter((p) => p.data.category === slug).length;
 const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '1 artículo' : `${n} artículos`);
 ---
@@ -42,7 +48,7 @@ const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '
 	</header>
 
 	{
-		first ? (
+		!firstPage ? null : first ? (
 			<section class="lead-post" aria-label="Último artículo">
 				<PostCard post={first} featured />
 			</section>
@@ -57,17 +63,18 @@ const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '
 		)
 	}
 
-	<GuideBand />
+	{firstPage && <GuideBand />}
 
 	{
 		rest.length > 0 && (
-			<section class="more" aria-labelledby="more-title">
-				<h2 id="more-title">Más artículos</h2>
+			<section class:list={['more', { later: !firstPage }]} aria-labelledby="more-title">
+				<h2 id="more-title">{firstPage ? 'Más artículos' : `Página ${page} de ${totalPages}`}</h2>
 				<div class="grid">
 					{rest.map((post) => (
 						<PostCard post={post} />
 					))}
 				</div>
+				<Pagination base={base} current={page} total={totalPages} />
 			</section>
 		)
 	}
@@ -174,6 +181,9 @@ const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '
 	.more {
 		margin-top: 96px;
 	}
+	.more.later {
+		margin-top: 48px;
+	}
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -262,10 +272,32 @@ const plural = (n: number) => (n === 0 ? 'Todavía sin artículos' : n === 1 ? '
 		.topics {
 			margin-top: 64px;
 		}
-		.grid,
 		.topics-grid {
 			grid-template-columns: minmax(0, 1fr);
 			gap: 16px;
+		}
+		/* Phones: two cards per row, with a tighter card. */
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 12px;
+		}
+		.grid :global(.body) {
+			padding: 16px;
+		}
+		.grid :global(.title) {
+			margin-bottom: 8px;
+			font-size: 17px;
+			line-height: 1.3;
+			hyphens: auto;
+		}
+		.grid :global(.excerpt) {
+			margin-bottom: 16px;
+			font-size: 14px;
+			line-height: 1.5;
+			-webkit-line-clamp: 3;
+		}
+		.grid :global(.meta) {
+			font-size: 12px;
 		}
 		.topics-nav a {
 			padding: 8px 12px;

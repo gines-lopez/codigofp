@@ -4,9 +4,10 @@ import BlogListing from '../../components/blog/BlogListing.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { NEWSLETTER_TOPICS, SITE_TITLE } from '../../consts';
-import { byDate, getPosts } from '../../lib/posts';
+import { byDate, getPosts, paginate } from '../../lib/posts';
 
-const posts = byDate(await getPosts());
+const all = byDate(await getPosts());
+const pages = paginate(all);
 const lead = `Artículos sobre ${NEWSLETTER_TOPICS}, escritos por alguien que acaba de pasar por ella.`;
 ---
 
@@ -17,7 +18,7 @@ const lead = `Artículos sobre ${NEWSLETTER_TOPICS}, escritos por alguien que ac
 	</head>
 	<body>
 		<Header />
-		<BlogListing title="Blog" lead={lead} posts={posts} allPosts={posts} />
+		<BlogListing title="Blog" lead={lead} posts={pages[0]} allPosts={all} base="/blog/" page={1} totalPages={pages.length} />
 		<Footer showAbout />
 	</body>
 </html>

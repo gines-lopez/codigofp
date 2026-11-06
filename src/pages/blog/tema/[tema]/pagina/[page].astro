@@ -1,0 +1,51 @@
+---
+// /blog/tema/<slug>/pagina/<n>/ for n ≥ 2.
+import BaseHead from '../../../../../components/BaseHead.astro';
+import BlogListing from '../../../../../components/blog/BlogListing.astro';
+import Footer from '../../../../../components/Footer.astro';
+import Header from '../../../../../components/Header.astro';
+import { BLOG_CATEGORIES, SITE_TITLE } from '../../../../../consts';
+import { byDate, getPosts, paginate } from '../../../../../lib/posts';
+
+export async function getStaticPaths() {
+	const all = byDate(await getPosts());
+	return BLOG_CATEGORIES.flatMap((category) => {
+		const pages = paginate(all.filter((p) => p.data.category === category.slug));
+		return pages.slice(1).map((posts, i) => ({
+			params: { tema: category.slug, page: String(i + 2) },
+			props: { category, posts, all, page: i + 2, total: pages.length },
+		}));
+	});
+}
+
+const { category, posts, all, page, total } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`${category.name}, página ${page} · Blog · ${SITE_TITLE}`} description={category.text} />
+	</head>
+	<body>
+		<Header />
+		<BlogListing
+			title={category.name}
+			lead={category.text}
+			posts={posts}
+			allPosts={all}
+			active={category.slug}
+			base={`/blog/tema/${category.slug}/`}
+			page={page}
+			totalPages={total}
+		/>
+		<Footer showAbout />
+	</body>
+</html>
+
+<style>
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+</style>

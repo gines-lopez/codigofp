@@ -3,6 +3,7 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
+import links from './integrations/links.mjs';
 
 // Pages kept out of the sitemap (they also set noindex via BaseHead).
 const SITEMAP_EXCLUDE = ['/landing/', '/landing-meta/', '/landing-meta-libreta/', '/aviso-legal/', '/politica-privacidad/', '/gracias/', '/confirmacion-suscripcion/', '/dentro-claustro/'];
@@ -20,6 +21,8 @@ export default defineConfig({
 	},
 	integrations: [
 		mdx(),
+		// Regenerates Links.md (git-ignored page inventory) after every build.
+		links(),
 		sitemap({
 			filter: (page) => !SITEMAP_EXCLUDE.includes(new URL(page).pathname),
 		}),

@@ -1,0 +1,111 @@
+---
+// Numbered pagination under the blog grid: «Más recientes» (previous page), the page numbers and
+// «Anteriores» (next page, older posts). Every page has its own URL so search engines can crawl it.
+import { pageUrl } from '../../lib/posts';
+
+interface Props {
+	base: string;
+	current: number;
+	total: number;
+}
+
+const { base, current, total } = Astro.props;
+const numbers = Array.from({ length: total }, (_, i) => i + 1);
+---
+
+{
+	total > 1 && (
+		<nav class="pagination" aria-label="Páginas del blog">
+			{current > 1 ? (
+				<a class="step" href={pageUrl(base, current - 1)} rel="prev">
+					Más recientes
+				</a>
+			) : (
+				<span class="step disabled" aria-hidden="true">
+					Más recientes
+				</span>
+			)}
+			<ol>
+				{numbers.map((n) => (
+					<li>
+						<a href={pageUrl(base, n)} aria-current={n === current ? 'page' : undefined} aria-label={`Página ${n}`}>
+							{n}
+						</a>
+					</li>
+				))}
+			</ol>
+			{current < total ? (
+				<a class="step" href={pageUrl(base, current + 1)} rel="next">
+					Anteriores
+				</a>
+			) : (
+				<span class="step disabled" aria-hidden="true">
+					Anteriores
+				</span>
+			)}
+		</nav>
+	)
+}
+
+<style>
+	.pagination {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 8px 16px;
+		margin-top: 48px;
+	}
+	ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	a,
+	.step {
+		display: inline-grid;
+		place-items: center;
+		min-width: 44px;
+		height: 44px;
+		box-sizing: border-box;
+		padding: 0 12px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+		color: var(--brand-dark);
+		font-size: 15px;
+		font-weight: 500;
+		text-decoration: none;
+	}
+	ol a {
+		font-family: var(--font-mono);
+		font-variant-numeric: tabular-nums;
+	}
+	a:hover {
+		border-color: var(--brand-dark);
+	}
+	a[aria-current='page'] {
+		border-color: var(--brand-dark);
+		background: var(--brand-dark);
+		color: var(--brand-light);
+	}
+	.disabled {
+		border-color: var(--brand-line);
+		color: var(--brand-line-strong);
+	}
+	@media (max-width: 600px) {
+		.pagination {
+			gap: 8px;
+		}
+		ol {
+			order: -1;
+			justify-content: center;
+			width: 100%;
+		}
+		.step {
+			flex: 1;
+		}
+	}
+</style>
