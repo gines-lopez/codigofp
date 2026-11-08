@@ -88,6 +88,16 @@ Borrador: `~/Downloads/evaluacion-resultados-aprendizaje-fp.md`. Publicado en lo
 - [ ] Clusters S2.1–S2.7 (slugs ya puestos en la guía): `ra-y-ce-fp`, `ponderacion-resultados-aprendizaje-fp`, `calificacion-final-modulo-fp`, `instrumentos-evaluacion-fp`, `rubrica-fp-ejemplo`, `recuperacion-resultados-aprendizaje-fp`, `evaluacion-formacion-empresa-fp`.
 - [ ] Sin respaldo estatal expreso: si un módulo se aprueba con un RA suspenso (se presenta como decisión que depende de la orden autonómica).
 
+## Pilar «Defensa de la programación didáctica»
+
+Borrador: `~/Downloads/defensa-programacion-didactica-oposiciones-fp.md`. Publicado en local en `/defensa-programacion-didactica-fp/` (2026-11-08), con «Defender una PD» en el menú. Se usa esa URL porque las otras guías y el footer ya enlazaban ahí.
+
+- [x] Misma plantilla que los otros pilares. Diagramas: tipos de pregunta (`QuestionTypes`, nuevo), recorrido de la prueba (`NormChain`), diálogo del tribunal 2023/2025 (`TribunalDialog`), plan por meses y cuadrante. Fuera el mapa mental, el índice y el diagrama de secuencia, que repetía el de tipos de pregunta.
+- [x] RD 276/2007 comprobado en el BOE: art. 21.2 (programación + unidad; en FP, unidades de trabajo ligadas a RA; una de tres extraídas al azar; material auxiliar y guion que se entrega al tribunal; prueba de 0 a 10, se supera con 5).
+- [x] Correcciones: 9,6 «en la defensa»; fuera las menciones a temas y al práctico (paquetizar, ensayo de temas); recuadros con las respuestas ya dadas por Ginés (ensayo con 4 compañeros, competencias transversales); fuera el bloque «Después» sin cluster.
+- [x] `[COMPLETAR]` de Ginés: respondido el 2026-11-08 e integrado. La unidad que expuso y su orden no salen en la guía (decisión de Ginés: es parte del método).
+- [ ] Clusters S3.1–S3.7: `preguntas-tribunal-programacion-didactica`, `guion-defensa-programacion-didactica`, `como-empezar-defensa-programacion`, `errores-defensa-programacion-didactica`, `exponer-unidad-de-trabajo-oposicion-fp`, `ensayar-defensa-programacion`, `defender-programacion-sin-leer`.
+
 ## Descartado
 
 - Fase 5 (test A/B): `/landing/` se sustituye directamente.

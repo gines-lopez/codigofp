@@ -10,7 +10,8 @@ const path = Astro.url.pathname;
 const menu = [
 	{ href: '/como-hacer-programacion-didactica-fp/', label: 'Hacer una PD de FP' },
 	{ href: '/como-evaluar-en-fp/', label: 'Evaluar en FP' },
-	{ href: '/landing/', label: 'Newsletter' },
+	{ href: '/defensa-programacion-didactica-fp/', label: 'Defender una PD' },
+	{ href: '/landing/', label: 'Newsletter', hideOnPhone: true },
 	{ href: '/blog/', label: 'Blog' },
 ];
 ---
@@ -29,7 +30,7 @@ const menu = [
 			linkLogo && (
 				<ul class="menu">
 					{menu.map((m) => (
-						<li>
+						<li class:list={{ 'hide-phone': m.hideOnPhone }}>
 							<a href={m.href} aria-current={path.startsWith(m.href) ? 'page' : undefined}>
 								{m.label}
 							</a>
@@ -70,9 +71,11 @@ const menu = [
 	.brand-wordmark__fp {
 		color: var(--brand-accent);
 	}
+	/* Labels never break inside; when they don't fit, whole items wrap to the next line. */
 	.menu {
 		display: flex;
-		gap: 24px;
+		flex-wrap: wrap;
+		gap: 0 24px;
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -85,6 +88,7 @@ const menu = [
 		font-weight: 500;
 		line-height: 1.5;
 		text-decoration: none;
+		white-space: nowrap;
 	}
 	.menu a:hover {
 		color: var(--brand-dark);
@@ -98,6 +102,10 @@ const menu = [
 	@media (max-width: 600px) {
 		.brand-wordmark {
 			font-size: 22px;
+		}
+		/* Phones: the newsletter stays in the footer only, to keep the menu short. */
+		.hide-phone {
+			display: none;
 		}
 	}
 </style>

@@ -1,0 +1,95 @@
+---
+// The four kinds of tribunal question: what each one is after and the answer structure to switch
+// on. Ginés's classification, not a norm.
+const types = [
+	{ name: 'Fundamentación', seeks: '¿Por qué esto y no aquello?', answer: ['Decisión', 'Alternativa descartada', 'Consecuencia en el alumnado'], key: true },
+	{ name: 'Coherencia', seeks: '¿Cómo encaja esta actividad con ese RA?', answer: ['RA', 'CE', 'Actividad', 'Instrumento'] },
+	{ name: 'Aplicación', seeks: '¿Qué harías si un alumno no alcanza este CE?', answer: ['Caso', 'Medida', 'Cómo lo evalúas'] },
+	{ name: 'Normativa', seeks: '¿Dónde se recoge esto?', answer: ['Norma', 'Artículo', 'Cómo la interpretas'] },
+];
+---
+
+<figure class="types">
+	<div class="grid">
+		{
+			types.map((t) => (
+				<div class:list={['type', { key: t.key }]}>
+					<p class="name">{t.name}</p>
+					<p class="seeks">{t.seeks}</p>
+					<p class="label">Estructura de la respuesta</p>
+					<ol>
+						{t.answer.map((a) => (
+							<li>{a}</li>
+						))}
+					</ol>
+				</div>
+			))
+		}
+	</div>
+	<figcaption>
+		En la sala, la pregunta que te haces es qué busca quien pregunta. Con el tipo identificado, la estructura de la respuesta
+		ya está ensayada.
+	</figcaption>
+</figure>
+
+<style>
+	.types {
+		margin: 32px 0;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 8px;
+	}
+	.type {
+		padding: 16px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+	}
+	.key {
+		border: 2px solid var(--brand-accent);
+	}
+	.name {
+		margin: 0;
+		font-weight: 600;
+	}
+	.key .name {
+		color: var(--brand-accent);
+	}
+	.seeks {
+		margin: 4px 0 12px;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	.label {
+		margin: 0 0 4px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 15px;
+	}
+	li:not(:last-child)::after {
+		content: '→';
+		margin: 0 8px;
+		color: var(--brand-graphite);
+	}
+	figcaption {
+		margin-top: 16px;
+		color: var(--brand-graphite);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	@media (max-width: 600px) {
+		.grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>
