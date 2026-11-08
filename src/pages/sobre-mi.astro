@@ -8,6 +8,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
 import TrackRecord from '../components/TrackRecord.astro';
+import VideoFacade from '../components/VideoFacade.astro';
 import { NEWSLETTER_EXCLUSION, NEWSLETTER_TOPICS, PROOF_SINCE, SITE_TITLE } from '../consts';
 
 const description =
@@ -28,6 +29,8 @@ const description =
 					Soy Ginés, docente de FP de Informática en la Comunitat Valenciana y funcionario de carrera.
 					Esta es la historia de cómo llegué aquí y de por qué escribo CódigoFP.
 				</p>
+				<!-- Same click-to-load poster as the lead magnet video: YouTube loads only on play. -->
+				<VideoFacade class="intro-video" id="u8449WLkUHQ" title="Quién soy, en 38 segundos" duration="38 s" durationLabel="38 segundos" />
 			</header>
 
 			<!-- The date sits inside each H2 with a hidden full stop, so a screen reader says
@@ -206,6 +209,9 @@ const description =
 	.lead {
 		margin: 0;
 		color: var(--brand-graphite);
+	}
+	.intro :global(.intro-video) {
+		margin-top: 48px;
 	}
 
 	/* Chapters: the year hangs in a left margin, the text keeps a ~65ch measure.

@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import VideoFacade from '../components/VideoFacade.astro';
 import { NEWSLETTER_EXCLUSION, NEWSLETTER_SCOPE } from '../consts';
 import '../styles/dentro-claustro.css';
 
@@ -51,24 +52,14 @@ const files = {
 				<li class="step">
 					<h2><span class="step-number">01</span> El vídeo</h2>
 					<p class="step-meta">6 minutos</p>
-					<div class="video" data-video-id={YOUTUBE_ID} data-video-title={VIDEO_TITLE}>
-						<a class="video-facade" href={watchUrl} target="_blank" rel="noopener">
-							<span class="video-head">
-								<span class="video-title">{VIDEO_TITLE}</span>
-								<span class="video-question"
-									><span class="video-question-label">// la pregunta del tribunal, 2025</span>
-									«¿Por qué usas unidades de programación en lugar de unidades de trabajo?»</span
-								>
-							</span>
-							<span class="video-play" aria-hidden="true">
-								<svg viewBox="0 0 24 24" width="24" height="24" focusable="false">
-									<path d="M8 5.5v13a.5.5 0 0 0 .77.42l10.2-6.5a.5.5 0 0 0 0-.84L8.77 5.08A.5.5 0 0 0 8 5.5Z" fill="currentColor"></path>
-								</svg>
-							</span>
-							<span class="video-duration" aria-hidden="true">6 min</span>
-							<span class="sr-only">. Reproducir vídeo, 6 minutos</span>
-						</a>
-					</div>
+					<VideoFacade
+						id={YOUTUBE_ID}
+						title={VIDEO_TITLE}
+						duration="6 min"
+						durationLabel="6 minutos"
+						label="// la pregunta del tribunal, 2025"
+						question="«¿Por qué usas unidades de programación en lugar de unidades de trabajo?»"
+					/>
 					<p class="step-text">
 						Por qué una programación que cumple con todo se cae en la defensa, y el orden en que se
 						toman las decisiones para que no pase.
@@ -129,28 +120,5 @@ const files = {
 		</main>
 		<Footer />
 
-		<script>
-			// Click-to-load: nothing is requested from YouTube until the visitor presses play.
-			// Without JS the facade stays a plain link to the video.
-			document.querySelectorAll<HTMLElement>('.video[data-video-id]').forEach((video) => {
-				const facade = video.querySelector<HTMLAnchorElement>('.video-facade');
-				if (!facade) return;
-				facade.removeAttribute('target');
-				facade.addEventListener('click', (event) => {
-					if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-					event.preventDefault();
-					const iframe = document.createElement('iframe');
-					iframe.src = `https://www.youtube-nocookie.com/embed/${video.dataset.videoId}?autoplay=1&rel=0&modestbranding=1`;
-					iframe.title = video.dataset.videoTitle ?? 'Vídeo';
-					iframe.allow =
-						'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-					iframe.allowFullscreen = true;
-					iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-					video.replaceChildren(iframe);
-					video.classList.add('is-playing');
-					iframe.focus();
-				});
-			});
-		</script>
 	</body>
 </html>
