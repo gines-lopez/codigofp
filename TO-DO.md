@@ -68,12 +68,25 @@ Pasos:
   - Añadir `PROOF_SINCE`.
   - Repaso anti-IA (fórmulas repetidas en las 12 secciones).
 - [x] Verificar en el BOE los `[VERIFICAR]` estatales y entregar tabla con artículo y enlace.
-- [ ] `[COMPLETAR]` de Ginés (en `Contestar.md`): anécdota de revisión, contextualización 2025, matriz RA–UT, reparto de horas, metodología concreta, alumnado y medidas de diversidad, si partió de un modelo, plan de 6 meses, tiempo dentro de «El Plan», cómo ensayó la defensa. Lo que no se cuente, se quita (no se inventa).
+- [x] `[COMPLETAR]` de Ginés (respondido el 2026-11-08 e integrado): anécdota de revisión, contextualización 2025, matriz RA–UT, reparto de horas, metodología concreta, alumnado y medidas de diversidad, si partió de un modelo, plan de 6 meses, tiempo dentro de «El Plan», cómo ensayó la defensa. Lo que no se cuente, se quita (no se inventa).
 - [ ] Escribir los clusters de normativa y calendario (2026-11-07 y 2026-11-08). Los clusters son artículos del blog (`/blog/<slug>/`).
 - [x] Publicado en local en `/como-hacer-programacion-didactica-fp/`, con «Hacer PD» y «Blog» en el menú.
 - [ ] Crítica y pulido en móvil y escritorio.
 - [ ] El índice de `/blog/` sigue con los artículos de ejemplo de Astro y ya está enlazado desde el menú.
 - [ ] Normativa sin artículo confirmado: lo de no suprimir RA en las adaptaciones (se cita sin artículo).
+
+## Pilar «Cómo evaluar en FP»
+
+Borrador: `~/Downloads/evaluacion-resultados-aprendizaje-fp.md`. Publicado en local en `/como-evaluar-en-fp/` (2026-11-08), con «Evaluar en FP» en el menú.
+
+- [x] Misma plantilla que el primer pilar: «Lo que dice la norma», «Cómo lo aplico yo», resumen, dos formularios (medio y final), errores en tabla y FAQ.
+- [x] Diagramas sin Mermaid: cadena RA → CE → instrumento → nota (`NormChain` con datos propios), ejemplo de nota final (`NotaFinal`), cuadrante (`Priorities`), preguntas encadenadas (`QuestionChain`) y plan de cinco meses (`MonthsPlan`). Fuera el mapa mental y el índice.
+- [x] Normativa estatal comprobada en el BOE (RD 659/2023): arts. 18.3, 18.8, 18.9, 18.13 (modificado por el RD 658/2024), 106, 107, 157.2, 159 y 163. El art. 123 del borrador era de cursos de especialización y se quitó.
+- [x] Correcciones: la media del ejemplo es 6,4 (el borrador decía 6,5); 9,6 «en la defensa»; sin nombre ni hora de la newsletter; lead magnet con los nombres de `LEAD_MAGNET`; módulos y títulos de ejemplo genéricos donde no estaban confirmados.
+- [x] El primer pilar enlaza ahora a `/como-evaluar-en-fp/`.
+- [x] `[COMPLETAR]` de Ginés: respondido el 2026-11-08 e integrado en los recuadros.
+- [ ] Clusters S2.1–S2.7 (slugs ya puestos en la guía): `ra-y-ce-fp`, `ponderacion-resultados-aprendizaje-fp`, `calificacion-final-modulo-fp`, `instrumentos-evaluacion-fp`, `rubrica-fp-ejemplo`, `recuperacion-resultados-aprendizaje-fp`, `evaluacion-formacion-empresa-fp`.
+- [ ] Sin respaldo estatal expreso: si un módulo se aprueba con un RA suspenso (se presenta como decisión que depende de la orden autonómica).
 
 ## Descartado
 

@@ -1,11 +1,26 @@
 ---
 // Effort vs. impact on the defence, as a 2×2. Ginés's judgement, not a measurement.
-const quads = [
+// Each guide passes its own `quads` and `caption`; the defaults are the programación guide's.
+interface Quad {
+	title: string;
+	axis: string;
+	items: string[];
+	key?: boolean;
+}
+interface Props {
+	quads?: Quad[];
+	caption?: string;
+}
+const defaultQuads: Quad[] = [
 	{ title: 'Primero', axis: 'Poco esfuerzo · mucho impacto', items: ['Secuencia de unidades', 'Contextualización útil', 'Fundamentación', 'Medidas de inclusión'], key: true },
 	{ title: 'Planificar con tiempo', axis: 'Mucho esfuerzo · mucho impacto', items: ['Matriz RA–UT', 'Pesos de los CE'] },
 	{ title: 'Resolver rápido', axis: 'Poco esfuerzo · poco impacto', items: ['Listado de recursos'] },
 	{ title: 'Limitar el tiempo', axis: 'Mucho esfuerzo · poco impacto', items: ['Actividades detalladas', 'Maquetación'] },
 ];
+const {
+	quads = defaultQuads,
+	caption = 'Dónde poner el tiempo según lo que pide cada apartado y lo que aporta a la defensa. Es mi criterio, no una medición.',
+} = Astro.props;
 ---
 
 <figure class="prio">
@@ -15,16 +30,20 @@ const quads = [
 				<div class:list={['quad', { key: q.key }]}>
 					<p class="title">{q.title}</p>
 					<p class="axis">{q.axis}</p>
-					<ul>
-						{q.items.map((i) => (
-							<li>{i}</li>
-						))}
-					</ul>
+					{q.items.length ? (
+						<ul>
+							{q.items.map((i) => (
+								<li>{i}</li>
+							))}
+						</ul>
+					) : (
+						<p class="none">Nada en este apartado.</p>
+					)}
 				</div>
 			))
 		}
 	</div>
-	<figcaption>Dónde poner el tiempo según lo que pide cada apartado y lo que aporta a la defensa. Es mi criterio, no una medición.</figcaption>
+	<figcaption>{caption}</figcaption>
 </figure>
 
 <style>
@@ -60,6 +79,11 @@ const quads = [
 	ul {
 		margin: 0;
 		padding-left: 20px;
+		font-size: 15px;
+	}
+	.none {
+		margin: 0;
+		color: var(--brand-graphite);
 		font-size: 15px;
 	}
 	figcaption {

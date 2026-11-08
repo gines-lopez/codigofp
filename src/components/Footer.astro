@@ -1,29 +1,100 @@
 ---
 import { SITE_TITLE } from '../consts';
+import { getGuides } from '../lib/posts';
 
-// `showAbout` adds the «Sobre mí» link. Off by default so the ad landings keep a single way out.
+// The same footer on every page, in three columns: the pillar guides; Sobre mí and the legal
+// pages; the wordmark, the newsletter and the copyright. `landing` (ad landings only) keeps just
+// the third column, in the same place on desktop, plus «Aviso legal» (LSSI: on every page).
 interface Props {
-	showAbout?: boolean;
+	landing?: boolean;
 }
 
-const { showAbout = false } = Astro.props;
+const { landing = false } = Astro.props;
 const today = new Date();
 const path = Astro.url.pathname.replace(/\/?$/, '/');
 const current = (href: string) => (path === href ? 'page' : undefined);
+
+// A guide that isn't published yet shows as plain text with «próximamente», never a dead link.
+const published = new Set((await getGuides()).map((g) => `/${g.id}/`));
+const guides = [
+	{ href: '/como-hacer-programacion-didactica-fp/', label: 'Cómo hacer una programación didáctica' },
+	{ href: '/como-evaluar-en-fp/', label: 'Cómo evaluar en FP' },
+	{ href: '/defensa-programacion-didactica-fp/', label: 'Cómo defender la programación' },
+];
+const site = [
+	{ href: '/sobre-mi/', label: 'Sobre mí' },
+	{ href: '/aviso-legal/', label: 'Aviso legal' },
+	{ href: '/politica-privacidad/', label: 'Política de privacidad' },
+];
+const copyright = `© ${today.getFullYear()} ${SITE_TITLE}. Todos los derechos reservados.`;
 ---
 
 <footer>
-	<p>&copy; {today.getFullYear()} {SITE_TITLE}. Todos los derechos reservados.</p>
-	<p>
-		{showAbout && <><a href="/sobre-mi/" aria-current={current('/sobre-mi/')}>Sobre mí</a> · </>}<a href="/aviso-legal/" aria-current={current('/aviso-legal/')}>Aviso legal</a> · <a href="/politica-privacidad/" aria-current={current('/politica-privacidad/')}>Política de privacidad</a>
-	</p>
+	<div class="cols">
+		{
+			!landing && (
+				<nav class="col" aria-labelledby="footer-guias">
+					<p class="col-label" id="footer-guias">guías</p>
+					<ul>
+						{guides.map((g) => (
+							<li>
+								{published.has(g.href) ? (
+									<a href={g.href} aria-current={current(g.href)}>
+										{g.label}
+									</a>
+								) : (
+									<span class="pending">
+										{g.label} <span class="pending-note">(próximamente)</span>
+									</span>
+								)}
+							</li>
+						))}
+					</ul>
+				</nav>
+			)
+		}
+		{
+			!landing && (
+				<nav class="col" aria-labelledby="footer-sitio">
+					<p class="col-label" id="footer-sitio">el sitio</p>
+					<ul>
+						{site.map((s) => (
+							<li>
+								<a href={s.href} aria-current={current(s.href)}>
+									{s.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			)
+		}
+		<div class="col brand">
+			<a href="/" class="wordmark" aria-label="CódigoFP, inicio">
+				&lt;Código<span class="wordmark-fp">FP&gt;</span>
+			</a>
+			{!landing && <p class="tagline">una decisión de la programación, cada martes</p>}
+			<p class="links">
+				<a href="/landing/" aria-current={current('/landing/')}>Newsletter</a>
+				{
+					landing && (
+						<>
+							{' · '}
+							<a href="/aviso-legal/">Aviso legal</a>
+						</>
+					)
+				}
+			</p>
+			<p class="copy">{copyright}</p>
+		</div>
+	</div>
 </footer>
+
 <style>
 	footer {
-		padding: 32px 16px;
+		padding: 48px 16px;
 		background: var(--brand-dark);
 		color: var(--brand-on-dark);
-		text-align: center;
 		font-size: 14px;
 		font-weight: 500;
 		letter-spacing: 0.01em;
@@ -32,22 +103,127 @@ const current = (href: string) => (path === href ? 'page' : undefined);
 	footer p {
 		margin: 0;
 	}
-	footer p + p {
-		margin-top: 8px;
-	}
 	/* Inline-block with 4px of padding: every link is at least 24px tall (WCAG 2.2 target size). */
-	footer :global(a) {
+	footer a {
 		display: inline-block;
 		padding: 4px 0;
 		color: var(--brand-accent-on-dark);
 	}
-	footer :global(a[aria-current='page']) {
+	footer a:hover {
+		color: var(--brand-light);
+	}
+	footer a:focus-visible {
+		outline-color: var(--brand-accent-on-dark);
+	}
+	footer a[aria-current='page'] {
 		color: var(--brand-light);
 		text-decoration: none;
 	}
-	@media (max-width: 600px) {
+
+	/* Three columns on wide screens, stacked on a phone. */
+	.cols {
+		display: grid;
+		/* The third column takes the width of its longest line, so the tagline stays on one line. */
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+		gap: 32px;
+		max-width: 1156px;
+		margin: 0 auto;
+	}
+	.col-label {
+		margin-bottom: 16px !important;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 400;
+		letter-spacing: 0;
+	}
+	.col-label::before {
+		content: '// ';
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	li + li {
+		margin-top: 8px;
+	}
+	.pending {
+		display: inline-block;
+		padding: 4px 0;
+	}
+	.pending-note {
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 400;
+		white-space: nowrap;
+	}
+	/* Always the third column, also when it is the only one (landings). */
+	.brand {
+		grid-column: 3;
+		justify-self: end;
+		text-align: right;
+	}
+	footer .wordmark {
+		padding: 0;
+		color: var(--brand-light);
+		font-family: var(--font-inter);
+		font-size: 22px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 32px;
+		text-decoration: none;
+	}
+	footer .wordmark:hover {
+		color: var(--brand-light);
+	}
+	.wordmark-fp {
+		color: var(--brand-accent-on-dark);
+	}
+	.tagline {
+		margin-top: 8px !important;
+		white-space: nowrap;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 400;
+		letter-spacing: 0;
+	}
+	.tagline::before {
+		content: '// ';
+	}
+	.links {
+		margin-top: 12px !important;
+	}
+	.copy {
+		margin-top: 12px !important;
+	}
+
+	/* Tablet: the guide and site columns keep each link on one line; the third column takes the
+	   rest of the width, so the tagline wraps there instead. */
+	@media (min-width: 721px) and (max-width: 1199px) {
+		.cols {
+			grid-template-columns: auto auto minmax(0, 1fr);
+		}
+		.col li {
+			white-space: nowrap;
+		}
+		.tagline {
+			white-space: normal;
+		}
+	}
+	@media (max-width: 720px) {
 		footer {
 			font-size: 13px;
+		}
+		.cols {
+			grid-template-columns: minmax(0, 1fr);
+		}
+		.tagline {
+			white-space: normal;
+		}
+		.brand {
+			grid-column: auto;
+			justify-self: start;
+			text-align: left;
 		}
 	}
 </style>

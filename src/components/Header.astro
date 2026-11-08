@@ -1,6 +1,6 @@
 ---
 // `linkLogo={false}` shows the wordmark without the link to the home and without the menu (ad
-// landings: a single way out). Everywhere else the menu shows the pillar guide and the blog.
+// landings: a single way out). Everywhere else the menu shows the pillar guides and the blog.
 interface Props {
 	linkLogo?: boolean;
 }
@@ -9,6 +9,8 @@ const { linkLogo = true } = Astro.props;
 const path = Astro.url.pathname;
 const menu = [
 	{ href: '/como-hacer-programacion-didactica-fp/', label: 'Hacer una PD de FP' },
+	{ href: '/como-evaluar-en-fp/', label: 'Evaluar en FP' },
+	{ href: '/landing/', label: 'Newsletter' },
 	{ href: '/blog/', label: 'Blog' },
 ];
 ---

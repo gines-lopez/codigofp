@@ -1,6 +1,11 @@
 ---
 // Frequent errors: a table on wide screens, one card per error on a phone (no sideways scroll).
-const rows = [
+// Each guide passes its own `rows`; the defaults are the programación guide's.
+interface Props {
+	rows?: string[][];
+	heads?: string[];
+}
+const defaultRows = [
 	['Responder con la normativa a cada «por qué»', 'La respuesta es correcta, pero no demuestra criterio propio', 'Preparar para cada decisión un motivo didáctico, además de su base legal'],
 	['Usar términos y estructuras de normativas anteriores', 'El tribunal ve que el documento no está actualizado', 'Revisar la terminología con la LO 3/2022, el RD 659/2023 y el real decreto del título'],
 	['Adoptar una programación de academia sin rehacerla', 'No sabes sostener decisiones que no tomaste tú', 'Usar los modelos para ver decisiones y volver a tomarlas con tu módulo'],
@@ -11,7 +16,7 @@ const rows = [
 	['Medidas de diversidad que rebajan RA', 'Contradice la lógica de cualificación de la FP', 'Adaptar acceso, tiempos, metodología e instrumentos, nunca los RA del título'],
 	['Leer la orden de convocatoria al final', 'Te arriesgas a incumplir extensión o formato', 'Revisar la convocatoria publicada antes de cerrar el documento'],
 ];
-const heads = ['Error', 'Qué provoca en la oposición', 'Cómo evitarlo'];
+const { rows = defaultRows, heads = ['Error', 'Qué provoca en la oposición', 'Cómo evitarlo'] } = Astro.props;
 ---
 
 <table class="errors">

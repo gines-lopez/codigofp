@@ -1,7 +1,18 @@
 ---
 // The chain of norms that ends in the programación, top to bottom. Each step limits the next one;
 // the last step (decisions with a reason of your own) is the only one nobody gives you.
-const steps = [
+// Other guides reuse it for their own chain with `steps` and `caption`; `own` marks your decisions.
+interface Step {
+	name: string;
+	note: string;
+	side?: string;
+	own?: boolean;
+}
+interface Props {
+	steps?: Step[];
+	caption?: string;
+}
+const defaultSteps: Step[] = [
 	{ name: 'Ley Orgánica 3/2022 de FP', note: 'El sistema de FP' },
 	{ name: 'Real Decreto 659/2023', note: 'La ordenación del sistema' },
 	{ name: 'Real decreto de tu título', note: 'Módulos, RA y CE' },
@@ -10,6 +21,7 @@ const steps = [
 	{ name: 'Tu programación', note: 'Lo que entregas' },
 	{ name: 'Tus decisiones justificadas', note: 'Lo que defiendes', own: true },
 ];
+const { steps = defaultSteps, caption = 'Cada paso limita al siguiente. El último es el único que nadie te da hecho.' } = Astro.props;
 ---
 
 <figure class="chain">
@@ -24,7 +36,7 @@ const steps = [
 			))
 		}
 	</ol>
-	<figcaption>Cada paso limita al siguiente. El último es el único que nadie te da hecho.</figcaption>
+	<figcaption>{caption}</figcaption>
 </figure>
 
 <style>

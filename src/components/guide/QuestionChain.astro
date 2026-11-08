@@ -1,0 +1,87 @@
+---
+// The evaluation questions of a defence as a chain: each answer opens the next question.
+// A preparation model, not a transcript of a real tribunal.
+const steps = [
+	{ q: '¿Por qué el RA3 pesa más que los demás?', a: 'El motivo en una frase y su consecuencia en el aula.' },
+	{ q: '¿Y si el alumno suspende solo ese RA?', a: 'La recuperación de ese RA, tal como está programada.' },
+	{ q: '¿Con qué instrumento lo vuelves a evaluar?', a: 'El que pide el verbo de sus CE, y por qué ese.' },
+];
+---
+
+<figure class="chain">
+	<p class="label">Preguntas encadenadas sobre la evaluación</p>
+	<ol>
+		{
+			steps.map((s, i) => (
+				<li class="step">
+					<span class="n">{i + 1}</span>
+					<div>
+						<p class="q">{s.q}</p>
+						<p class="a">{s.a}</p>
+					</div>
+				</li>
+			))
+		}
+	</ol>
+	<figcaption>
+		Cada respuesta abre la siguiente pregunta. Si la evaluación está encadenada, la réplica es un recorrido por tu propia
+		tabla.
+	</figcaption>
+</figure>
+
+<style>
+	.chain {
+		margin: 32px 0;
+	}
+	.label {
+		margin: 0 0 12px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	.label::before {
+		content: '// ';
+	}
+	ol {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.step {
+		display: grid;
+		grid-template-columns: 24px minmax(0, 1fr);
+		gap: 16px;
+		padding: 16px 0;
+		border-bottom: 1px solid var(--brand-line);
+	}
+	.step:first-child {
+		padding-top: 0;
+	}
+	.n {
+		color: var(--brand-accent);
+		font-family: var(--font-mono);
+		font-size: 14px;
+		line-height: 1.6;
+	}
+	.q {
+		margin: 0 0 4px;
+		font-size: 17px;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+	.a {
+		margin: 0;
+		color: var(--brand-graphite);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	.a::before {
+		content: '→ ';
+	}
+	figcaption {
+		margin-top: 16px;
+		color: var(--brand-graphite);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+</style>

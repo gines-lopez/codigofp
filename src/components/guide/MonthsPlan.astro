@@ -1,10 +1,15 @@
 ---
-// Six-month plan, grouped in three stages. Orientative: it follows the build phases, not a norm.
-const stages = [
+// Month plan, grouped in stages. Orientative: it follows the build phases, not a norm.
+// Each guide passes its own `stages`; the defaults are the programación guide's six months.
+interface Props {
+	stages?: { name: string; months: string[][] }[];
+}
+const defaultStages = [
 	{ name: 'Base', months: [['Mes 1', 'Norma, título y currículo. Contexto y módulo.'], ['Mes 2', 'RA, CE y unidades. Matriz RA–UT.']] },
 	{ name: 'Núcleo', months: [['Mes 3', 'Evaluación y pesos. Temporalización.'], ['Mes 4', 'Metodología e inclusión.']] },
 	{ name: 'Cierre', months: [['Mes 5', 'Fundamentación e introducción. Revisión con la convocatoria.'], ['Mes 6', 'Ensayo de preguntas. Ajustes finales.']] },
 ];
+const { stages = defaultStages } = Astro.props;
 ---
 
 <figure class="months">

@@ -1,0 +1,148 @@
+---
+// Worked example of the final mark of a module: four RA with their weight and mark, the weighted
+// mean, and the two outcomes depending on whether the programación requires every RA passed.
+// The figures are an example, not a norm.
+const ra = [
+	{ code: 'RA1', weight: 20, mark: 7 },
+	{ code: 'RA2', weight: 30, mark: 6 },
+	{ code: 'RA3', weight: 30, mark: 8 },
+	{ code: 'RA4', weight: 20, mark: 4 },
+];
+const mean = ra.reduce((sum, r) => sum + (r.weight * r.mark) / 100, 0);
+const fmt = (n: number) => n.toLocaleString('es-ES', { maximumFractionDigits: 2 });
+---
+
+<figure class="nota">
+	<p class="label">Ejemplo · un módulo con cuatro RA</p>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">RA</th>
+				<th scope="col">Peso</th>
+				<th scope="col">Nota</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				ra.map((r) => (
+					<tr class:list={{ fail: r.mark < 5 }}>
+						<th scope="row">{r.code}</th>
+						<td>{r.weight} %</td>
+						<td>
+							{r.mark}
+							{r.mark < 5 && <span class="flag">no superado</span>}
+						</td>
+					</tr>
+				))
+			}
+		</tbody>
+		<tfoot>
+			<tr>
+				<th scope="row">Media ponderada</th>
+				<td></td>
+				<td>{fmt(mean)}</td>
+			</tr>
+		</tfoot>
+	</table>
+	<div class="outcomes">
+		<div class="outcome key">
+			<p class="when">Si la programación exige superar todos los RA</p>
+			<p>El módulo no está superado. El alumno recupera el RA4 y conserva los demás.</p>
+		</div>
+		<div class="outcome">
+			<p class="when">Si tu comunidad permite compensar</p>
+			<p>Aprueba con un 6 si redondeas al entero más próximo, y tienes que explicar por qué se titula sin un RA del título.</p>
+		</div>
+	</div>
+	<figcaption>
+		La media es la misma en los dos casos. Lo que cambia la nota es la regla que hayas escrito, y esa regla es la que te
+		van a preguntar.
+	</figcaption>
+</figure>
+
+<style>
+	.nota {
+		margin: 32px 0;
+	}
+	.label {
+		margin: 0 0 12px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	.label::before {
+		content: '// ';
+	}
+	table {
+		width: 100%;
+		max-width: 420px;
+		border-collapse: collapse;
+		font-size: 15px;
+		font-variant-numeric: tabular-nums;
+	}
+	th,
+	td {
+		padding: 8px 12px 8px 0;
+		border-bottom: 1px solid var(--brand-line);
+		text-align: left;
+	}
+	thead th {
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+		font-weight: 400;
+	}
+	tbody th {
+		font-family: var(--font-mono);
+		font-weight: 500;
+	}
+	tfoot th,
+	tfoot td {
+		border-bottom: 0;
+		font-weight: 600;
+	}
+	.flag {
+		margin-left: 8px;
+		color: var(--brand-graphite);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+	.outcomes {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 16px;
+		margin-top: 24px;
+	}
+	.outcome {
+		padding: 16px 20px;
+		border: 1px solid var(--brand-line-strong);
+		border-radius: 8px;
+	}
+	.outcome p {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	.when {
+		margin-bottom: 8px !important;
+		font-family: var(--font-mono);
+		font-size: 13px !important;
+	}
+	.key {
+		border: 2px solid var(--brand-accent);
+	}
+	.key .when {
+		color: var(--brand-accent);
+	}
+	figcaption {
+		margin-top: 16px;
+		color: var(--brand-graphite);
+		font-size: 15px;
+		line-height: 1.5;
+	}
+	@media (max-width: 600px) {
+		.outcomes {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>
