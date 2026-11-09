@@ -71,7 +71,8 @@ const menu = [
 	.brand-wordmark__fp {
 		color: var(--brand-accent);
 	}
-	/* Labels never break inside; when they don't fit, whole items wrap to the next line. */
+	/* Labels never break inside; when they don't fit, whole items wrap to the next line
+	   (on phones the menu is a single row that scrolls sideways, like the blog topics). */
 	.menu {
 		display: flex;
 		flex-wrap: wrap;
@@ -106,6 +107,25 @@ const menu = [
 		/* Phones: the newsletter stays in the footer only, to keep the menu short. */
 		.hide-phone {
 			display: none;
+		}
+		.menu {
+			flex: 0 0 calc(100% + 32px);
+			flex-wrap: nowrap;
+			min-width: 0;
+			margin: 0 -16px;
+			padding: 0 16px;
+			overflow-x: auto;
+			scroll-padding-inline: 16px;
+			scroll-snap-type: x proximity;
+			scrollbar-width: none;
+			-webkit-overflow-scrolling: touch;
+		}
+		.menu::-webkit-scrollbar {
+			display: none;
+		}
+		.menu li {
+			flex: none;
+			scroll-snap-align: start;
 		}
 	}
 </style>
