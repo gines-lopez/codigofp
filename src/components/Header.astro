@@ -28,7 +28,19 @@ const menu = [
 		}
 		{
 			linkLogo && (
-				<ul class="menu">
+				<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú">
+					<svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+						<path d="M4 7h16M4 12h16M4 17h16" />
+					</svg>
+					<svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+						<path d="M6 6l12 12M18 6L6 18" />
+					</svg>
+				</button>
+			)
+		}
+		{
+			linkLogo && (
+				<ul class="menu" id="site-menu">
 					{menu.map((m) => (
 						<li class:list={{ 'hide-phone': m.hideOnPhone }}>
 							<a href={m.href} aria-current={path.startsWith(m.href) ? 'page' : undefined}>
@@ -72,7 +84,7 @@ const menu = [
 		color: var(--brand-accent);
 	}
 	/* Labels never break inside; when they don't fit, whole items wrap to the next line
-	   (on phones the menu is a single row that scrolls sideways, like the blog topics). */
+	   (on phones the menu hides behind a hamburger). */
 	.menu {
 		display: flex;
 		flex-wrap: wrap;
@@ -100,6 +112,9 @@ const menu = [
 		text-decoration-thickness: 2px;
 		text-underline-offset: 6px;
 	}
+	.menu-toggle {
+		display: none;
+	}
 	@media (max-width: 600px) {
 		.brand-wordmark {
 			font-size: 22px;
@@ -108,24 +123,84 @@ const menu = [
 		.hide-phone {
 			display: none;
 		}
-		.menu {
-			flex: 0 0 calc(100% + 32px);
-			flex-wrap: nowrap;
-			min-width: 0;
-			margin: 0 -16px;
-			padding: 0 16px;
-			overflow-x: auto;
-			scroll-padding-inline: 16px;
-			scroll-snap-type: x proximity;
-			scrollbar-width: none;
-			-webkit-overflow-scrolling: touch;
+		/* Phones: hamburger that opens a full-screen menu; the X closes it. */
+		.menu-toggle {
+			position: relative;
+			z-index: 101;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 48px;
+			height: 48px;
+			margin-right: -12px;
+			padding: 0;
+			border: 0;
+			border-radius: 8px;
+			background: none;
+			color: var(--brand-dark);
+			cursor: pointer;
 		}
-		.menu::-webkit-scrollbar {
+		.menu-toggle .icon-close,
+		nav.is-open .menu-toggle .icon-open {
 			display: none;
 		}
-		.menu li {
-			flex: none;
-			scroll-snap-align: start;
+		nav.is-open .menu-toggle .icon-close {
+			display: block;
+		}
+		nav.is-open .brand-wordmark {
+			position: relative;
+			z-index: 101;
+		}
+		.menu {
+			display: none;
+		}
+		nav.is-open .menu {
+			position: fixed;
+			inset: 0;
+			z-index: 100;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			gap: 8px;
+			padding: 96px 16px 48px;
+			overflow-y: auto;
+			background: var(--brand-light);
+		}
+		nav.is-open .menu a {
+			display: block;
+			padding: 12px 0;
+			color: var(--brand-dark);
+			font-size: 24px;
+			font-weight: 600;
+			letter-spacing: -0.015em;
+			line-height: 1.2;
+			white-space: normal;
+		}
+		nav.is-open .menu a[aria-current='page'] {
+			color: var(--brand-accent);
 		}
 	}
 </style>
+
+<script>
+	const nav = document.querySelector<HTMLElement>('header nav');
+	const toggle = nav?.querySelector<HTMLButtonElement>('.menu-toggle');
+	if (nav && toggle) {
+		const setOpen = (open: boolean) => {
+			nav.classList.toggle('is-open', open);
+			toggle.setAttribute('aria-expanded', String(open));
+			toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+			document.documentElement.style.overflow = open ? 'hidden' : '';
+		};
+		toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+				setOpen(false);
+				toggle.focus();
+			}
+		});
+		nav.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+		// Back to desktop width with the menu open: unlock the page scroll.
+		matchMedia('(min-width: 601px)').addEventListener('change', (e) => e.matches && setOpen(false));
+	}
+</script>
