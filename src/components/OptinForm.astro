@@ -38,6 +38,6 @@ const legal = Astro.slots.has('legal') ? (await Astro.slots.render('legal')).tri
 		/>
 		<button class="brand-button" type="submit">{buttonText}</button>
 	</div>
-	<p class="brand-optin-note"><slot /></p>
+	{Astro.slots.has('default') && <p class="brand-optin-note"><slot /></p>}
 	{legal && <p class="brand-optin-legal" set:html={legal} />}
 </form>

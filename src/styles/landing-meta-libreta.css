@@ -110,6 +110,24 @@ h1 {
 	background: var(--brand-light);
 }
 
+/* Author: photo and one-line introduction between the form and the track record. */
+.libreta-author {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	max-width: 720px;
+	margin-bottom: 48px; /* Same as the space above it (.pitch padding-bottom). */
+}
+.libreta-author-photo {
+	flex: 0 0 88px;
+	width: 88px;
+	height: auto;
+	border-radius: 50%;
+}
+.libreta-author h2 {
+	margin: 0;
+}
+
 /* Track record card (TrackRecord component), opaque over the grid. */
 .libreta-record {
 	max-width: 720px;

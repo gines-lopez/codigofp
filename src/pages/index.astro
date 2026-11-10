@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
+import { Image } from 'astro:assets';
+import ginesPhoto from '../assets/gines-codigofp.png';
 import { NEWSLETTER_SCOPE, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const figures = [
@@ -98,14 +100,18 @@ const timeline = [
 			</section>
 
 			<section class="author" aria-labelledby="author-title">
-				<!-- Placeholder until the photo arrives: swap for <img src=… alt="Ginés" width="112" height="112">. -->
-				<div class="author-photo" aria-hidden="true"></div>
+				<Image
+					class="author-photo"
+					src={ginesPhoto}
+					alt="Ginés, docente de FP de Informática"
+					width={224}
+					height={224}
+				/>
 				<div class="author-body">
-					<h2 id="author-title">¿Quién está detrás?</h2>
-					<p>
-						Soy Ginés, docente de FP de Informática y funcionario de carrera. Antes fui desarrollador
-						web durante más de diez años.
-					</p>
+					<h2 id="author-title">
+						Soy Ginés, docente de FP de Informática y funcionario de carrera.
+					</h2>
+					<p>Antes fui desarrollador web durante más de diez años.</p>
 					<p>
 						En 2023 tenía una programación que cumplía con todo y no supe defenderla. En 2025 no
 						estudié más: cambié el orden en que tomaba las decisiones. Desde entonces he ayudado a una
@@ -256,8 +262,9 @@ const timeline = [
 	.author-photo {
 		width: 112px;
 		aspect-ratio: 1;
+		height: auto;
 		border-radius: 50%;
-		background: var(--brand-accent);
+		display: block;
 	}
 	.author-body h2 {
 		margin-bottom: 16px;

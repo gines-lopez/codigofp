@@ -1,9 +1,9 @@
 ---
-import { Font } from 'astro:assets';
+import { Font, Image } from 'astro:assets';
+import ginesPhoto from '../assets/gines-codigofp.png';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { NEWSLETTER_TOPICS } from '../consts';
 import OptinForm from '../components/OptinForm.astro';
 import TrackRecord from '../components/TrackRecord.astro';
 import '../styles/landing-meta-libreta.css';
@@ -77,13 +77,24 @@ const deliverables = [
 					</p>
 
 					<OptinForm id="email-l" label="¿A qué correo te mando el vídeo y el autodiagnóstico?">
-						Confirmas tu email y te llega en un par de minutos. Luego, un correo cada martes sobre
-						{NEWSLETTER_TOPICS}. Sin spam, y te das de baja con un clic.
 						<Fragment slot="legal">
 							Responsable: CódigoFP. Tus datos solo sirven para enviarte esto y se guardan en MailerLite.
 							<a href="/politica-privacidad/">Política de privacidad</a>.
 						</Fragment>
 					</OptinForm>
+				</section>
+
+				<section class="libreta-author" aria-labelledby="libreta-author-title">
+					<Image
+						class="libreta-author-photo"
+						src={ginesPhoto}
+						alt="Ginés, docente de FP de Informática"
+						width={176}
+						height={176}
+					/>
+					<h2 id="libreta-author-title">
+						Soy Ginés, docente de FP de Informática y funcionario de carrera.
+					</h2>
 				</section>
 
 				<TrackRecord compact columns showSince sinceDetail class="libreta-record" />

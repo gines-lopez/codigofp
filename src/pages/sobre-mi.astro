@@ -3,12 +3,13 @@
 // version in 12_historia_autor.md (brand project); every figure comes from src/consts.ts.
 // The page's spine is 0,13 → 9,6: the two big numerals, in ink (2023) and cobalt (2025).
 // No photo yet: TrackRecord takes `photo` when there is a real one in src/assets.
+import { Image } from 'astro:assets';
+import ginesPhoto from '../assets/gines-codigofp.png';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SubscribeFormMailerLite from '../components/SubscribeFormMailerLite.astro';
 import TrackRecord from '../components/TrackRecord.astro';
-import VideoFacade from '../components/VideoFacade.astro';
 import { NEWSLETTER_EXCLUSION, NEWSLETTER_TOPICS, PROOF_SINCE, SITE_TITLE } from '../consts';
 
 const description =
@@ -25,12 +26,19 @@ const description =
 		<main class="about">
 			<header class="intro">
 				<h1>Dejé de estudiar una oposición para empezar a opositar</h1>
-				<p class="brand-lead lead">
-					Soy Ginés, docente de FP de Informática en la Comunitat Valenciana y funcionario de carrera.
-					Esta es la historia de cómo llegué aquí y de por qué escribo CódigoFP.
-				</p>
-				<!-- Same click-to-load poster as the lead magnet video: YouTube loads only on play. -->
-				<VideoFacade class="intro-video" id="u8449WLkUHQ" title="Quién soy, en 38 segundos" duration="38 s" durationLabel="38 segundos" />
+				<div class="intro-author">
+					<Image
+						class="intro-photo"
+						src={ginesPhoto}
+						alt="Ginés, docente de FP de Informática"
+						width={176}
+						height={176}
+					/>
+					<p class="brand-lead lead">
+						Soy Ginés, docente de FP de Informática en la Comunitat Valenciana y funcionario de
+						carrera. Esta es la historia de cómo llegué aquí y de por qué escribo CódigoFP.
+					</p>
+				</div>
 			</header>
 
 			<!-- The date sits inside each H2 with a hidden full stop, so a screen reader says
@@ -210,8 +218,26 @@ const description =
 		margin: 0;
 		color: var(--brand-graphite);
 	}
-	.intro :global(.intro-video) {
-		margin-top: 48px;
+	/* Photo to the left of the lead. */
+	.intro-author {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+	}
+	.intro-photo {
+		flex: 0 0 88px;
+		width: 88px;
+		height: auto;
+		border-radius: 50%;
+	}
+	@media (max-width: 600px) {
+		.intro-author {
+			gap: 16px;
+		}
+		.intro-photo {
+			flex-basis: 64px;
+			width: 64px;
+		}
 	}
 
 	/* Chapters: the year hangs in a left margin, the text keeps a ~65ch measure.
