@@ -57,5 +57,8 @@ const { title, description, image = FallbackImage, noindex = false } = Astro.pro
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 
-<!-- Analytics -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="81b2606c-646e-442a-a7ea-93f54b912641"></script>
+<!-- Analytics: Umami Cloud, proxied through public/m/c.php so ad blockers don't drop it.
+     Production only: the PHP proxy doesn't run under `astro dev`. -->
+{import.meta.env.PROD && (
+	<script is:inline defer src="/m/c.php" data-host-url="/m/c.php" data-website-id="81b2606c-646e-442a-a7ea-93f54b912641"></script>
+)}
