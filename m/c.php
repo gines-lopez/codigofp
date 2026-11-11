@@ -8,7 +8,7 @@
  *
  * BaseHead.astro loads this file as the tracker and sets
  * data-host-url="/m/c.php", so the tracker posts to /m/c.php/api/send.
- * Plesk serves PHP from nginx, which passes the "/api/send" suffix as PATH_INFO.
+ * The "/api/send" suffix is read from REQUEST_URI (PATH_INFO comes empty on Plesk).
  */
 
 const SCRIPT_URL = 'https://cloud.umami.is/script.js';
@@ -38,7 +38,11 @@ function upstream(string $url, string $method = 'GET', ?string $body = null, arr
 	return [$out === false ? null : $out, $status, $type];
 }
 
-$path = $_SERVER['PATH_INFO'] ?? '';
+// Plesk's nginx doesn't always fill PATH_INFO, so read the suffix from the URI.
+$uri = (string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+$self = '/' . basename(__FILE__);
+$pos = strpos($uri, $self);
+$path = $pos === false ? '' : substr($uri, $pos + strlen($self));
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
 // Event collection.
