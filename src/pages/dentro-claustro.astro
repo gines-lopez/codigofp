@@ -13,8 +13,8 @@ import '../styles/dentro-claustro.css';
 const title = 'Tu material · CódigoFP';
 const description = 'El vídeo, el autodiagnóstico y el mapa del orden de CódigoFP.';
 
-// Unlisted YouTube video. Placeholder ID: replace it with the real video before sending the email.
-const YOUTUBE_ID = 'jNQXAC9IVRw';
+// Unlisted YouTube video (final version).
+const YOUTUBE_ID = 'c7ieIwvto7s';
 const VIDEO_TITLE = 'El orden, parte por parte';
 const watchUrl = `https://www.youtube.com/watch?v=${YOUTUBE_ID}`;
 
@@ -51,12 +51,12 @@ const files = {
 			<ol class="steps">
 				<li class="step">
 					<h2><span class="step-number">01</span> El vídeo</h2>
-					<p class="step-meta">6 minutos</p>
+					<p class="step-meta">5 minutos y medio</p>
 					<VideoFacade
 						id={YOUTUBE_ID}
 						title={VIDEO_TITLE}
-						duration="6 min"
-						durationLabel="6 minutos"
+						duration="5:30"
+						durationLabel="5 minutos y medio"
 						label="// la pregunta del tribunal, 2025"
 						question="«¿Por qué usas unidades de programación en lugar de unidades de trabajo?»"
 					/>
