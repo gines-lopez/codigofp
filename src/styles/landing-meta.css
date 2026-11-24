@@ -39,6 +39,10 @@ body {
 .brand-lead {
 	color: var(--brand-graphite);
 }
+/* Subtitle at 18px on this page at every width (global is 26px from 601px). */
+.pitch .brand-lead {
+	font-size: 18px;
+}
 .proof {
 	flex: 1 1 360px;
 	max-width: 720px;

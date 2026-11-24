@@ -1,0 +1,59 @@
+COPY ACTUAL · /landing-meta-libreta
+(Copia de referencia de la versión actual. Fuente: landing-meta-libreta.astro)
+
+=== META ===
+Title: CódigoFP · En qué orden se monta una programación que aguanta el «por qué»
+Description: En 6 minutos verás en qué orden se monta una programación de FP que aguanta cada «por qué» del tribunal. Luego pasas la tuya por el autodiagnóstico en 20 minutos.
+
+=== NOTA AL MARGEN (bolígrafo rojo) ===
+¿y tu
+respuesta?
+
+=== HERO ===
+H1:
+Opositor de FP: en 6 minutos verás en qué orden se monta una programación que aguanta cada «por qué» del tribunal.
+(«por qué» va rodeado con el círculo rojo)
+
+Subtítulo:
+Parte por parte: qué decides, por qué va ahí y qué te van a preguntar. Luego pasas la tuya por el autodiagnóstico en 20 minutos.
+
+Formulario:
+Label: ¿A qué correo te mando el vídeo y el autodiagnóstico?
+Legal: Responsable: CódigoFP. Tus datos solo sirven para enviarte esto y se guardan en MailerLite. Política de privacidad.
+
+=== AUTOR ===
+Alt foto: Ginés, docente de FP de Informática
+H2: Soy Ginés, docente de FP de Informática y funcionario de carrera.
+
+=== TRACK RECORD ===
+(Texto en el componente TrackRecord.astro, compartido con otras páginas; no está en este archivo.)
+
+=== LO QUE TE LLEGA AL CORREO ===
+H2: Lo que te llega al correo
+
+--- 1 ---
+Etiqueta: Vídeo · 6 min
+Título: El orden, parte por parte
+Texto: Empieza en la sala, con la pregunta que me hicieron en mi defensa. Sin presentaciones.
+Párrafo: Sabes qué has puesto. Lo que cuesta es explicar por qué está ahí y no en otro sitio.
+Párrafo: En el vídeo te enseño el orden que hace que cada decisión tenga respuesta.
+
+--- 2 ---
+Etiqueta: PDF · 20 min
+Título: El autodiagnóstico: ¿tu programación aguanta el por qué?
+Texto: Cada ítem es una pregunta del tribunal. Tres casillas, y la del medio es la que duele.
+Label: así se ve cada pregunta del autodiagnóstico
+Casillas:
+  [ ] Lo tengo y sé por qué lo decidí
+  [X] Lo tengo, pero respondería con la normativa   (marcada)
+  [ ] No lo tengo resuelto
+
+--- 3 ---
+Etiqueta: PDF · 1 página
+Título: El mapa del orden
+Texto: Una página: cada parte, su decisión y la pregunta que aguanta.
+
+=== CIERRE ===
+No es una plantilla ni una programación para copiar. La que vas a defender es la tuya, y tiene que sonar a ti.
+
+Botón: Quiero los tres ↑
